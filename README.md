@@ -1,3 +1,2 @@
 # DrinkMe
 
-@mentions Muhlach
