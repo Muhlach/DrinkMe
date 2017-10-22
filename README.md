@@ -1,3 +1,3 @@
 # DrinkMe
 
-@mentions Javier Muhlach
+@mentions Muhlach
