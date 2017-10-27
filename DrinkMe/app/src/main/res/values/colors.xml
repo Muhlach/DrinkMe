@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="amarilloBase">#E5B53B</color>
+    <color name="amarilloOscuro">#C69518</color>
+    <color name="amarilloClaro">#FDD163</color>
+
+    <color name="marronBase">#B2740E</color>
+    <color name="marronOscuro">#905A00</color>
+    <color name="marronClaro">#DD9722</color>
+
+    <color name="granateBase">#882B2B</color>
+    <color name="granateClaro">#8A4343</color>
+
+    <color name="grisOscuro">#333333</color>
+    <color name="grisClaro">#7C7C7B</color>
+
     <color name="colorAccent">#FF4081</color>
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_logros"
+        android:icon="@drawable/ic_logros_24"
+        android:title="@string/lbl_logros" />
+
+    <item
+        android:id="@+id/navigation_beber"
+        android:icon="@drawable/ic_cerveza_24"
+        android:title="@string/lbl_beber" />
+
+    <item
+        android:id="@+id/navigation_estadisticas"
+        android:icon="@drawable/ic_estadisticas_24"
+        android:title="@string/lbl_estadisticas" />
+
+</menu>

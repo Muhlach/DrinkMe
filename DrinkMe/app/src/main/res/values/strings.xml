@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Drink Me</string>
+    <string name="title_activity_main">Drink Me</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="lbl_logros">Logros</string>
+    <string name="lbl_beber">Beber</string>
+    <string name="lbl_estadisticas">Estadisticas</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_selecciona_categoria">Selecciona una categoría:</string>
+    <string name="lbl_cerveza">Cerveza</string>
+    <string name="lblChupito">Chupito</string>
+    <string name="lblCopa">Cóctel</string>
+    <string name="lblVino">Vino</string>
 </resources>
