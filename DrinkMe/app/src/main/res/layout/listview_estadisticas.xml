@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txNombreLogro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iconoLogros"
+        android:layout_marginStart="13dp"
+        android:layout_toEndOf="@+id/iconoLogros"
+        android:text="TextView"
+        android:textAlignment="viewStart"
+        android:textColor="@color/grisOscuro"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/iconoLogros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:srcCompat="@drawable/ic_estadisticas_24_girs"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/txValorEstadistico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txNombreLogro"
+        android:layout_alignBottom="@+id/txNombreLogro"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="21dp"
+        android:text="TextView"
+        android:textAlignment="viewStart"
+        android:textColor="@color/granateBase"
+        android:textSize="20sp" />
+</RelativeLayout>

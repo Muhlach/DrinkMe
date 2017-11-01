@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_beber);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
         setInitialFragment();
     }
 
@@ -41,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new LogrosFragment();
                     break;
                 case R.id.navigation_beber:
+                    Bundle newBundle = new Bundle();
                     fragment = new BeberFragment();
                     break;
                 case R.id.navigation_estadisticas:
