@@ -3,14 +3,18 @@ package com.drinkme.sdm.myapplication;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,6 +74,31 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_fragment_placeholder, fragment);
         fragmentTransaction.commit();
+    }
+
+    /**
+     * Metodo que asigna el menú principal a la activity
+     * @param menu que asignamos
+     * @return true si se ha añadido correctamente. False en caso contrario
+     */
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    /**
+     * Método que asigna la funcionalidad a cada elemento del meú
+     * @param item del menú que pulsa el usuario
+     * @return
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.perfil){
+            Toast.makeText(getApplicationContext(), "Ahora se abriría la activity de perfil",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

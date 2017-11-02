@@ -39,6 +39,7 @@ public class BeberFragment extends Fragment {
         categorias.add(copa);
         categorias.add(chupito);
 
+
         listViewCategorias = (ListView) view.findViewById(R.id.listViewCategorias);
         AdapterCategorias adapter = new AdapterCategorias(getActivity(), categorias);
         listViewCategorias.setAdapter(adapter);
