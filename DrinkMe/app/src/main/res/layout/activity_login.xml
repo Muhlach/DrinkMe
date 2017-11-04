@@ -41,10 +41,9 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.12"
+            android:layout_height="115dp"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/llogo_ttexto_mmediano" />
+            app:srcCompat="@mipmap/mediano_texto_sin_fondo" />
 
         <TextView
             android:id="@+id/textView4"
