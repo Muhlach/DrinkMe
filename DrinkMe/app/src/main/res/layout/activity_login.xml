@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     tools:context="com.drinkme.sdm.myapplication.LoginActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -17,10 +18,11 @@
         android:orientation="vertical"
         android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/textView3"
@@ -32,7 +34,7 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:textColor="@color/amarilloBase"
+            android:textColor="@color/granateBase"
             android:textSize="40sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="8dp"
@@ -41,8 +43,8 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_height="115dp"
-            android:scaleType="centerInside"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
             app:srcCompat="@mipmap/mediano_texto_sin_fondo" />
 
         <TextView
@@ -55,76 +57,76 @@
             android:text="empecemos!"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:textColor="@color/amarilloClaro"
-            android:textSize="30sp"
+            android:textColor="@color/amarilloOscuro"
+            android:textSize="36sp"
             android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.12"
-            android:paddingBottom="10dp"
+            android:paddingStart="16dp"
             android:text="Introduce tu usuario:"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:textColor="@color/amarilloOscuro"
-            android:textSize="20sp" />
+            android:textColor="@color/granateBase"
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/editText3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.12"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:paddingBottom="5dp"
+            android:paddingTop="10dp"
             android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.12"
-            android:paddingBottom="10dp"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingTop="30dp"
             android:text="Introduce tu contraseña:"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:textColor="@color/amarilloOscuro"
-            android:textSize="20sp" />
+            android:textColor="@color/granateBase"
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/editText5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.12"
             android:ems="10"
             android:inputType="textPassword"
-            android:paddingTop="5dp"
+            android:paddingTop="10dp"
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/Crearcuenta"
+            android:id="@+id/BotonCrearCuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.12"
+            android:background="@color/amarilloBase"
+            android:onClick="botonCrearCuentaOnClick"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="Crear cuenta"
             android:textAlignment="center"
-            android:textColor="@color/granateClaro"
-            android:textSize="18sp" />
+            android:textColor="@color/granateBase"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/Entar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.12"
+            android:background="@android:color/background_light"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="Entar"
-            android:textColor="@color/granateClaro"
-            android:textSize="18sp" />
+            android:text="Entrar"
+            android:textColor="@color/granateBase"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
