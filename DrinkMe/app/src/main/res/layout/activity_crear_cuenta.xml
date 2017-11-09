@@ -241,7 +241,7 @@
                 android:layout_weight="1"
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
-                app:srcCompat="@drawable/email"
+                app:srcCompat="@drawable/emai"
                 tools:layout_editor_absoluteX="90dp"
                 tools:layout_editor_absoluteY="317dp" />
 
