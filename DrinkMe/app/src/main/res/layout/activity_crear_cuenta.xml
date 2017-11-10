@@ -10,57 +10,74 @@
     tools:layout_editor_absoluteX="0dp">
 
     <LinearLayout
-        android:layout_width="585dp"
-        android:layout_height="810dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="2dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp"
-            android:paddingTop="25dp">
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
 
-            <ImageView
-                android:id="@+id/imageViewNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                app:srcCompat="@drawable/name"
-                tools:layout_editor_absoluteX="50dp"
-                tools:layout_editor_absoluteY="16dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
 
-            <EditText
-                android:id="@+id/editTextNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Nombre"
-                android:inputType="textPersonName"
-                android:paddingTop="20dp"
-                android:textColor="@color/granateBase"
-                android:textColorHint="@color/granateBase"
-                android:textSize="24sp"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="25dp" />
+                <ImageView
+                    android:id="@+id/imageViewNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    app:srcCompat="@drawable/name"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="208dp" />
+
+                <EditText
+                    android:id="@+id/editTextNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Nombre"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/granateBase"
+                    android:textColorHint="@color/granateBase"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="137dp"
+                    tools:layout_editor_absoluteY="257dp" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp">
+            android:paddingBottom="8dp"
+            android:weightSum="1">
 
             <ImageView
                 android:id="@+id/imageView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 app:srcCompat="@drawable/calendar"
                 tools:layout_editor_absoluteX="59dp"
                 tools:layout_editor_absoluteY="8dp" />
@@ -69,11 +86,11 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="50dp"
+                android:paddingRight="8dp"
                 android:text="Nacimiento"
                 android:textAlignment="center"
                 android:textColor="@color/granateBase"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editText7"
@@ -84,7 +101,7 @@
                 android:inputType="date"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/granateBase"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="137dp"
                 tools:layout_editor_absoluteY="100dp" />
 
@@ -97,7 +114,7 @@
                 android:inputType="date"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/granateBase"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="137dp"
                 tools:layout_editor_absoluteY="100dp" />
 
@@ -110,39 +127,39 @@
                 android:inputType="date"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/granateBase"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="137dp"
                 tools:layout_editor_absoluteY="100dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp">
+            android:paddingBottom="8dp">
 
             <ImageView
                 android:id="@+id/imageView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 app:srcCompat="@drawable/altura"
                 tools:layout_editor_absoluteX="23dp"
                 tools:layout_editor_absoluteY="162dp" />
 
             <EditText
                 android:id="@+id/editText10"
-                android:layout_width="100dp"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Altura"
                 android:inputType="number"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/granateBase"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="79dp"
                 tools:layout_editor_absoluteY="169dp" />
 
@@ -150,10 +167,9 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="cm."
                 android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
+                android:textColor="@color/marronOscuro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="161dp"
                 tools:layout_editor_absoluteY="182dp" />
@@ -163,23 +179,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 app:srcCompat="@drawable/peso"
                 tools:layout_editor_absoluteX="472dp"
                 tools:layout_editor_absoluteY="273dp" />
 
             <EditText
                 android:id="@+id/editText11"
-                android:layout_width="67dp"
-                android:layout_height="45dp"
-                android:layout_weight="1"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Peso"
                 android:inputType="number"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/granateBase"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="222dp"
                 tools:layout_editor_absoluteY="163dp" />
 
@@ -190,25 +205,25 @@
                 android:layout_weight="1"
                 android:text="kg."
                 android:textAlignment="center"
-                android:textColor="@android:color/background_dark"
+                android:textColor="@color/marronOscuro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="309dp"
                 tools:layout_editor_absoluteY="168dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp">
+            android:paddingBottom="8dp">
 
             <ImageView
                 android:id="@+id/imageView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingEnd="50dp"
-                android:paddingLeft="50dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 app:srcCompat="@drawable/user"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="208dp" />
@@ -223,24 +238,24 @@
                 android:inputType="textPersonName"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/granateBase"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="137dp"
                 tools:layout_editor_absoluteY="257dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp">
+            android:paddingBottom="8dp">
 
             <ImageView
                 android:id="@+id/imageView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 app:srcCompat="@drawable/emai"
                 tools:layout_editor_absoluteX="90dp"
                 tools:layout_editor_absoluteY="317dp" />
@@ -255,25 +270,25 @@
                 android:inputType="textPersonName"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/granateBase"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="160dp"
                 tools:layout_editor_absoluteY="317dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp">
+            android:paddingBottom="8dp">
 
             <ImageView
                 android:id="@+id/imageView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 app:srcCompat="@drawable/password"
                 tools:layout_editor_absoluteX="116dp"
                 tools:layout_editor_absoluteY="586dp" />
@@ -288,25 +303,25 @@
                 android:inputType="textPassword"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/granateBase"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="36dp"
                 tools:layout_editor_absoluteY="456dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp">
+            android:paddingBottom="8dp">
 
             <ImageView
                 android:id="@+id/imageView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 app:srcCompat="@drawable/password"
                 tools:layout_editor_absoluteX="107dp"
                 tools:layout_editor_absoluteY="533dp" />
@@ -321,7 +336,7 @@
                 android:inputType="textPassword"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/granateBase"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="100dp"
                 tools:layout_editor_absoluteY="414dp" />
 
