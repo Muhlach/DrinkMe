@@ -15,4 +15,5 @@
     <string name="lblChupito">Chupito</string>
     <string name="lblCopa">Cóctel</string>
     <string name="lblVino">Vino</string>
+    <string name="title_activity_perfil">Perfil</string>
 </resources>

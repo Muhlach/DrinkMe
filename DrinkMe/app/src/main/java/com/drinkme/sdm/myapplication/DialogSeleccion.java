@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -19,7 +22,11 @@ import java.util.ArrayList;
 public class DialogSeleccion extends DialogFragment{
 
     Spinner spinnerBebida;
+    TextView txPrecio;
     View view;
+    Button guardar, cancelar;
+    Bebida bebidaSeleccionada;
+    double precio;
 
     public DialogSeleccion(){}
 
@@ -28,9 +35,34 @@ public class DialogSeleccion extends DialogFragment{
         view = inflater.inflate(R.layout.dialog_seleccion_layout, container);
 
         spinnerBebida = (Spinner) view.findViewById(R.id.cmbxDialogBebidas);
+        txPrecio = (TextView) view.findViewById(R.id.txDialogPrecio);
+
+        guardar = (Button) view.findViewById(R.id.btnDialogGuardar);
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getActivity(), "Has guardado", Toast.LENGTH_SHORT).show();
+                Object b = spinnerBebida.getSelectedItem();
+                precio = Double.valueOf(txPrecio.getText().toString());
+                String r = b.toString() + "  " + precio;
+                Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
+                dismiss();
+            }
+        });
+
+        cancelar = (Button) view.findViewById(R.id.btnDialogCancelar);
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Has cancelado", Toast.LENGTH_SHORT).show();
+
+                dismiss();
+            }
+        });
         cargaBebidas();
         return view;
     }
+
 
     private void cargaBebidas() {
         Bebida b = new Bebida("Caña Rubia", 0, 0);

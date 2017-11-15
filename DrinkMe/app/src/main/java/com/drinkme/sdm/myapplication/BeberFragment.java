@@ -36,7 +36,7 @@ public class BeberFragment extends Fragment{
         Categoria vino = new Categoria("Vino", getResources().getDrawable(R.drawable.ic_vino_64));
         Categoria cerveza = new Categoria("Cerveza", getResources().getDrawable(R.drawable.ic_cerveza_64));
         Categoria copa = new Categoria("Copa", getResources().getDrawable(R.drawable.ic_copa_64));
-        Categoria chupito = new Categoria("Vino", getResources().getDrawable(R.drawable.ic_chupito_64));
+        Categoria chupito = new Categoria("Chupito", getResources().getDrawable(R.drawable.ic_chupito_64));
         categorias.add(vino);
         categorias.add(cerveza);
         categorias.add(copa);

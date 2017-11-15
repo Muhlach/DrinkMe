@@ -1,5 +1,6 @@
 package com.drinkme.sdm.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -94,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.perfil){
-            Toast.makeText(getApplicationContext(), "Ahora se abriría la activity de perfil",
-                    Toast.LENGTH_SHORT).show();
+            Intent perfilIntent = new Intent(this, PerfilActivity.class);
+            startActivity(perfilIntent);
         }
 
         return super.onOptionsItemSelected(item);
