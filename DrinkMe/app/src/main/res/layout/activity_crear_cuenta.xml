@@ -57,7 +57,7 @@
                     android:ems="10"
                     android:hint="Nombre"
                     android:inputType="textPersonName"
-                    android:textColor="@color/grisClaro"
+                    android:textColor="@color/granateBase"
                     android:textColorHint="@color/grisClaro"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="137dp"
