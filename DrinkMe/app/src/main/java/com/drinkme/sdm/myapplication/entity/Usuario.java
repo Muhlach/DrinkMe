@@ -35,6 +35,17 @@ public class Usuario {
     @ColumnInfo(name = "puntuacion")
     private int puntuacion;
 
+    public Usuario(String nombre, String apellidos, String email, String contrasena, int fecha, String sexo, int altura, int peso) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.contrasena = contrasena;
+        this.fecha = fecha;
+        this.sexo = sexo;
+        this.altura = altura;
+        this.peso = peso;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -126,6 +137,17 @@ public class Usuario {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", email='" + email + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                ", fecha=" + fecha +
+                ", sexo='" + sexo + '\'' +
+                ", altura=" + altura +
+                ", peso=" + peso +
+                '}';
+    }
 }

@@ -16,14 +16,26 @@ public class LoginActivity extends AppCompatActivity {
     private EditText user_et;
     private EditText password_et;
     private SharedPreferences mSharedPreferences;
+
+    /**
+     * Indica si se mantiene la sesión iniciada
+     */
     private boolean holdSesion;
     private CheckBox checkBox;
+
+    /**
+     * Para debugear
+     */
     private boolean debug = true;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        /**
+         * Antes de lanzar el login observamos si el usuario y contrasenia están ya guardados en shared preferences
+         */
 
          mSharedPreferences =
                 getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
@@ -33,6 +45,12 @@ public class LoginActivity extends AppCompatActivity {
         String password = mSharedPreferences.getString ("password", null);
 
         super.onCreate(savedInstanceState);
+
+
+        /**
+         *
+         * Si usuario o contrasenia están null, quiere decir que la sesión no está iniciada
+         */
 
         if(user == null || password == null){
             setContentView(R.layout.activity_login);
@@ -74,6 +92,12 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Datos incorrectos", Toast.LENGTH_SHORT);
     }
 
+    /**
+     *
+     * @param user
+     * @param password
+     * @return true sí y solo sí el usuario ya está en la BBDD
+     */
     private boolean checkUserAndPassword(String user, String password){
         return true;
     }

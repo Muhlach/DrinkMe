@@ -8,24 +8,35 @@
     <string name="lbl_beber">Beber</string>
     <string name="lbl_estadisticas">Estadisticas</string>
     <string-array name="sex_array">
-                <item>Hombre</item>
-                <item>Mujer</item>
-            </string-array>
+               
+        <item>Hombre</item>
+               
+        <item>Mujer</item>
+           
+    </string-array>
 
     <string-array name="mes_array">
-                <item>Enero</item>
-                <item>Febrero</item>
+               
+        <item>Enero</item>
+               
+        <item>Febrero</item>
         <item>Marzo</item>
-                <item>Abril</item>
+               
+        <item>Abril</item>
         <item>Mayo</item>
-                <item>Junio</item>
+               
+        <item>Junio</item>
         <item>Julio</item>
-                <item>Agosto</item>
+               
+        <item>Agosto</item>
         <item>Septiembre</item>
-                <item>Octubre</item>
-        <item>Nobiembre</item>
-                <item>Diciembre</item>
-            </string-array>
+               
+        <item>Octubre</item>
+        <item>Noviembre</item>
+               
+        <item>Diciembre</item>
+           
+    </string-array>
 
 
     <string-array name="ano_array">
@@ -147,10 +158,12 @@
         <item>2015</item>
         <item>2016</item>
 
-            </string-array>
+           
+    </string-array>
 
     <string-array name="dia_array">
-               <item>1</item>
+               
+        <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
@@ -182,83 +195,156 @@
         <item>30</item>
         <item>31</item>
 
-            </string-array>
+           
+    </string-array>
 
     <string-array name="altura_array">
-                <item>150</item>
-                <item>151</item>
-                <item>152</item>
-                <item>153</item>
-                <item>154</item>
-                <item>155</item>
-                <item>156</item>
-                <item>157</item>
-                <item>158</item>
-                <item>159</item>
-               <item>160</item>
-                <item>161</item>
-                <item>162</item>
-                <item>163</item>
-                <item>164</item>
-                <item>165</item>
-                <item>166</item>
-                <item>167</item>
-                <item>168</item>
-                <item>169</item>
-                   <item>160</item>
-                <item>161</item>
-                <item>162</item>
-                <item>163</item>
-                <item>164</item>
-                <item>165</item>
-                <item>166</item>
-                <item>167</item>
-                <item>168</item>
-                <item>169</item>
-                   <item>170</item>
-                <item>171</item>
-                <item>172</item>
-                <item>173</item>
-                <item>174</item>
-                <item>175</item>
-                <item>176</item>
-                <item>177</item>
-                <item>178</item>
-                <item>179</item>
-                   <item>180</item>
-                <item>181</item>
-                <item>182</item>
-                <item>183</item>
-                <item>184</item>
-                <item>185</item>
-                <item>186</item>
-                <item>187</item>
-                <item>188</item>
-                <item>189</item>
-                   <item>190</item>
-                <item>191</item>
-                <item>192</item>
-                <item>193</item>
-                <item>194</item>
-                <item>195</item>
-                <item>196</item>
-                <item>197</item>
-                <item>198</item>
-                <item>199</item>
-                   <item>200</item>
-                <item>201</item>
-                <item>202</item>
-                <item>203</item>
-                <item>204</item>
-                <item>205</item>
-                <item>206</item>
-                <item>207</item>
-                <item>208</item>
-                <item>209</item>
-            </string-array>
+               
+        <item>150</item>
+               
+        <item>151</item>
+         
+        <item>152</item>
+               
+        <item>153</item>
+         
+        <item>154</item>
+               
+        <item>155</item>
+         
+        <item>156</item>
+               
+        <item>157</item>
+         
+        <item>158</item>
+               
+        <item>159</item>
+           
+        <item>160</item>
+               
+        <item>161</item>
+         
+        <item>162</item>
+               
+        <item>163</item>
+         
+        <item>164</item>
+               
+        <item>165</item>
+         
+        <item>166</item>
+               
+        <item>167</item>
+         
+        <item>168</item>
+               
+        <item>169</item>
+                 
+        <item>160</item>
+               
+        <item>161</item>
+         
+        <item>162</item>
+               
+        <item>163</item>
+         
+        <item>164</item>
+               
+        <item>165</item>
+         
+        <item>166</item>
+               
+        <item>167</item>
+         
+        <item>168</item>
+               
+        <item>169</item>
+                 
+        <item>170</item>
+               
+        <item>171</item>
+         
+        <item>172</item>
+               
+        <item>173</item>
+         
+        <item>174</item>
+               
+        <item>175</item>
+         
+        <item>176</item>
+               
+        <item>177</item>
+         
+        <item>178</item>
+               
+        <item>179</item>
+                 
+        <item>180</item>
+               
+        <item>181</item>
+         
+        <item>182</item>
+               
+        <item>183</item>
+         
+        <item>184</item>
+               
+        <item>185</item>
+         
+        <item>186</item>
+               
+        <item>187</item>
+         
+        <item>188</item>
+               
+        <item>189</item>
+                 
+        <item>190</item>
+               
+        <item>191</item>
+         
+        <item>192</item>
+               
+        <item>193</item>
+         
+        <item>194</item>
+               
+        <item>195</item>
+         
+        <item>196</item>
+               
+        <item>197</item>
+         
+        <item>198</item>
+               
+        <item>199</item>
+                 
+        <item>200</item>
+               
+        <item>201</item>
+         
+        <item>202</item>
+               
+        <item>203</item>
+         
+        <item>204</item>
+               
+        <item>205</item>
+         
+        <item>206</item>
+               
+        <item>207</item>
+         
+        <item>208</item>
+               
+        <item>209</item>
+           
+    </string-array>
 
     <string-array name="peso_array">
-               <item>40</item>
+               
+        <item>40</item>
         <item>41</item>
         <item>42</item>
         <item>43</item>
@@ -358,7 +444,8 @@
         <item>137</item>
         <item>138</item>
         <item>139</item>
-            </string-array>
+           
+    </string-array>
 
 
     <!-- TODO: Remove or change this placeholder text -->
