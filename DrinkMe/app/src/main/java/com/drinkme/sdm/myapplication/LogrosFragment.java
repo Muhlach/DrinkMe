@@ -7,9 +7,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.drinkme.sdm.myapplication.Adapters.AdapterLogros;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 
 public class LogrosFragment extends Fragment {
+
+    View view;
+    ArrayList<Logro> logros;
+    ListView listViewLogros;
 
     public LogrosFragment() {}
 
@@ -17,7 +27,30 @@ public class LogrosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_logros, container, false);
+        view = inflater.inflate(R.layout.fragment_logros, container, false);
+
+        cargarLogros();
+
+        return view;
+    }
+
+    private void cargarLogros() {
+        Logro l= new Logro("Cervecero Principiante", "", getResources().getDrawable(R.drawable.ic_logros_24_lista));
+        Logro l1= new Logro("Cervecero Avanzado", "", getResources().getDrawable(R.drawable.ic_logros_24_lista));
+        Logro l2= new Logro("Coctelero Principiante", "", getResources().getDrawable(R.drawable.ic_logros_24_lista));
+        Logro l3= new Logro("Fin de Semana Cervecero", "", getResources().getDrawable(R.drawable.ic_logros_24_lista));
+        Logro l4= new Logro("Vamos de Tranquis", "", getResources().getDrawable(R.drawable.ic_logros_24_lista));
+
+        logros = new ArrayList<Logro>();
+        logros.add(l);
+        logros.add(l1);
+        logros.add(l2);
+        logros.add(l3);
+        logros.add(l4);
+
+        listViewLogros = view.findViewById(R.id.listViewMisLogros);
+        AdapterLogros adapter = new AdapterLogros(getActivity(), logros);
+        listViewLogros.setAdapter(adapter);
     }
 
 }
