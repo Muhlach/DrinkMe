@@ -29,185 +29,69 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingBottom="8dp">
-
-                <ImageView
-                    android:id="@+id/imageViewNombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    app:srcCompat="@drawable/name"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="208dp" />
-
-                <EditText
-                    android:id="@+id/editTextNombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="Nombre"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/granateBase"
-                    android:textColorHint="@color/grisClaro"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="137dp"
-                    tools:layout_editor_absoluteY="257dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="8dp"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/imageView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                app:srcCompat="@drawable/calendar"
-                tools:layout_editor_absoluteX="59dp"
-                tools:layout_editor_absoluteY="8dp" />
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="8dp"
-                android:text="Nacimiento"
-                android:textAlignment="center"
-                android:textColor="@color/grisClaro"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/editText7"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Dia"
-                android:inputType="date"
-                android:textColor="@color/granateBase"
-                android:textColorHint="@color/grisClaro"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="137dp"
-                tools:layout_editor_absoluteY="100dp" />
-
-            <EditText
-                android:id="@+id/editText2"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Mes"
-                android:inputType="date"
-                android:textColor="@color/granateBase"
-                android:textColorHint="@color/grisClaro"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="137dp"
-                tools:layout_editor_absoluteY="100dp" />
-
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Año"
-                android:inputType="date"
-                android:textColor="@color/granateBase"
-                android:textColorHint="@color/grisClaro"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="137dp"
-                tools:layout_editor_absoluteY="100dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:paddingBottom="8dp">
 
             <ImageView
-                android:id="@+id/imageView13"
+                android:id="@+id/imageViewNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                app:srcCompat="@drawable/altura"
-                tools:layout_editor_absoluteX="23dp"
-                tools:layout_editor_absoluteY="162dp" />
+                app:srcCompat="@drawable/name"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="208dp" />
 
             <EditText
-                android:id="@+id/editText10"
-                android:layout_width="75dp"
+                android:id="@+id/editTextNombre"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
-                android:hint="Altura"
-                android:inputType="number"
+                android:hint="Nombre"
+                android:inputType="textPersonName"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
-                tools:layout_editor_absoluteX="79dp"
-                tools:layout_editor_absoluteY="169dp" />
+                tools:layout_editor_absoluteX="137dp"
+                tools:layout_editor_absoluteY="257dp" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/spinnerSex"
+                android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:text="cm."
-                android:textAlignment="center"
-                android:textColor="@color/grisClaro"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="161dp"
-                tools:layout_editor_absoluteY="182dp" />
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageView99"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                app:srcCompat="@drawable/name"
+                tools:layout_editor_absoluteX="90dp"
+                tools:layout_editor_absoluteY="317dp" />
+
+            <EditText
+                android:id="@+id/editTextApellidos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                app:srcCompat="@drawable/peso"
-                tools:layout_editor_absoluteX="472dp"
-                tools:layout_editor_absoluteY="273dp" />
-
-            <EditText
-                android:id="@+id/editText11"
-                android:layout_width="78dp"
-                android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Peso"
-                android:inputType="number"
+                android:hint="Apellidos"
+                android:inputType="textPersonName"
                 android:textColor="@color/granateBase"
                 android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
-                tools:layout_editor_absoluteX="222dp"
-                tools:layout_editor_absoluteY="163dp" />
+                tools:layout_editor_absoluteX="160dp"
+                tools:layout_editor_absoluteY="317dp" />
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="kg."
-                android:textAlignment="center"
-                android:textColor="@color/grisClaro"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="309dp"
-                tools:layout_editor_absoluteY="168dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -227,7 +111,7 @@
                 tools:layout_editor_absoluteY="208dp" />
 
             <EditText
-                android:id="@+id/editText13"
+                android:id="@+id/editTextNombreUsuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -258,7 +142,7 @@
                 tools:layout_editor_absoluteY="317dp" />
 
             <EditText
-                android:id="@+id/editText12"
+                android:id="@+id/editTextCorreo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -290,7 +174,7 @@
                 tools:layout_editor_absoluteY="586dp" />
 
             <EditText
-                android:id="@+id/editText15"
+                android:id="@+id/editTextPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -322,7 +206,7 @@
                 tools:layout_editor_absoluteY="533dp" />
 
             <EditText
-                android:id="@+id/editText14"
+                android:id="@+id/editTextRePassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -337,12 +221,151 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="8dp"
+                android:text="¿Cuándo naciste?"
+                android:textAlignment="center"
+                android:textColor="@color/grisClaro"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                app:srcCompat="@drawable/calendar"
+                tools:layout_editor_absoluteX="59dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Spinner
+                android:id="@+id/spinnerDia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:spinnerMode="dialog" />
+
+            <Spinner
+                android:id="@+id/spinnerMes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:spinnerMode="dialog" />
+
+            <Spinner
+                android:id="@+id/spinnerAno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Cuánto mides y pesas?"
+                android:textAlignment="center"
+                android:textColor="@color/grisClaro"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp">
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                app:srcCompat="@drawable/altura"
+                tools:layout_editor_absoluteX="23dp"
+                tools:layout_editor_absoluteY="162dp" />
+
+            <Spinner
+                android:id="@+id/spinnerAltura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:spinnerMode="dialog" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cm."
+                android:textAlignment="center"
+                android:textColor="@color/grisClaro"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="161dp"
+                tools:layout_editor_absoluteY="182dp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                app:srcCompat="@drawable/peso"
+                tools:layout_editor_absoluteX="472dp"
+                tools:layout_editor_absoluteY="273dp" />
+
+            <Spinner
+                android:id="@+id/spinnerPeso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:spinnerMode="dialog" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="kg."
+                android:textAlignment="center"
+                android:textColor="@color/grisClaro"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="309dp"
+                tools:layout_editor_absoluteY="168dp" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/background_light"
             android:elevation="0dp"
+            android:onClick="onClickCrearCuenta"
             android:text="Crear cuenta"
             android:textAlignment="center"
             android:textColor="@color/granateBase"
