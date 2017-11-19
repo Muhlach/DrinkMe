@@ -6,15 +6,17 @@
     android:layout_height="match_parent"
     android:background="@color/amarilloClaro"
     tools:context="com.drinkme.sdm.myapplication.CrearCuentaActivity"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,8 +57,8 @@
                     android:ems="10"
                     android:hint="Nombre"
                     android:inputType="textPersonName"
-                    android:textColor="@color/granateBase"
-                    android:textColorHint="@color/granateBase"
+                    android:textColor="@color/grisClaro"
+                    android:textColorHint="@color/grisClaro"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="137dp"
                     tools:layout_editor_absoluteY="257dp" />
@@ -89,7 +91,7 @@
                 android:paddingRight="8dp"
                 android:text="Nacimiento"
                 android:textAlignment="center"
-                android:textColor="@color/granateBase"
+                android:textColor="@color/grisClaro"
                 android:textSize="18sp" />
 
             <EditText
@@ -100,7 +102,7 @@
                 android:hint="Dia"
                 android:inputType="date"
                 android:textColor="@color/granateBase"
-                android:textColorHint="@color/granateBase"
+                android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="137dp"
                 tools:layout_editor_absoluteY="100dp" />
@@ -113,7 +115,7 @@
                 android:hint="Mes"
                 android:inputType="date"
                 android:textColor="@color/granateBase"
-                android:textColorHint="@color/granateBase"
+                android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="137dp"
                 tools:layout_editor_absoluteY="100dp" />
@@ -126,7 +128,7 @@
                 android:hint="Año"
                 android:inputType="date"
                 android:textColor="@color/granateBase"
-                android:textColorHint="@color/granateBase"
+                android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="137dp"
                 tools:layout_editor_absoluteY="100dp" />
@@ -158,7 +160,7 @@
                 android:hint="Altura"
                 android:inputType="number"
                 android:textColor="@color/granateBase"
-                android:textColorHint="@color/granateBase"
+                android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="79dp"
                 tools:layout_editor_absoluteY="169dp" />
@@ -169,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:text="cm."
                 android:textAlignment="center"
-                android:textColor="@color/marronOscuro"
+                android:textColor="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="161dp"
                 tools:layout_editor_absoluteY="182dp" />
@@ -193,7 +195,7 @@
                 android:hint="Peso"
                 android:inputType="number"
                 android:textColor="@color/granateBase"
-                android:textColorHint="@color/granateBase"
+                android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="222dp"
                 tools:layout_editor_absoluteY="163dp" />
@@ -205,7 +207,7 @@
                 android:layout_weight="1"
                 android:text="kg."
                 android:textAlignment="center"
-                android:textColor="@color/marronOscuro"
+                android:textColor="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="309dp"
                 tools:layout_editor_absoluteY="168dp" />
@@ -237,7 +239,7 @@
                 android:hint="Nombre de Usuario"
                 android:inputType="textPersonName"
                 android:textColor="@color/granateBase"
-                android:textColorHint="@color/granateBase"
+                android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="137dp"
                 tools:layout_editor_absoluteY="257dp" />
@@ -269,7 +271,7 @@
                 android:hint="Correo"
                 android:inputType="textPersonName"
                 android:textColor="@color/granateBase"
-                android:textColorHint="@color/granateBase"
+                android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="160dp"
                 tools:layout_editor_absoluteY="317dp" />
@@ -302,7 +304,7 @@
                 android:hint="Contraseña"
                 android:inputType="textPassword"
                 android:textColor="@color/granateBase"
-                android:textColorHint="@color/granateBase"
+                android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="36dp"
                 tools:layout_editor_absoluteY="456dp" />
@@ -335,7 +337,7 @@
                 android:hint="Repetir contraseña"
                 android:inputType="textPassword"
                 android:textColor="@color/granateBase"
-                android:textColorHint="@color/granateBase"
+                android:textColorHint="@color/grisClaro"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="100dp"
                 tools:layout_editor_absoluteY="414dp" />
@@ -350,7 +352,6 @@
             android:elevation="0dp"
             android:text="Crear cuenta"
             android:textAlignment="center"
-            android:textAllCaps="false"
             android:textColor="@color/granateBase"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="139dp"

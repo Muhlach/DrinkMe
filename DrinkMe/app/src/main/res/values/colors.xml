@@ -4,7 +4,7 @@
     <color name="amarilloOscuro">#c69518</color>
     <color name="amarilloClaro">#fdd163</color>
 
-    <color name="marronBase">#B2740E</color>
+    <color name="marronBase">#b2740e</color>
     <color name="marronOscuro">#905a00</color>
     <color name="marronClaro">#DD9722</color>
 
@@ -14,5 +14,5 @@
     <color name="grisOscuro">#606060</color>
     <color name="grisClaro">#7c7c7b</color>
 
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
 </resources>
