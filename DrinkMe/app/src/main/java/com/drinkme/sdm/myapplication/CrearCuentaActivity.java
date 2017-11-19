@@ -30,6 +30,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         correo_et = (EditText) findViewById(R.id.editTextCorreo);
         password_et = (EditText) findViewById(R.id.editTextPassword);
         repassword_et = (EditText) findViewById(R.id.editTextRePassword);
+        nombreDeUo_et = (EditText) findViewById(R.id.editTextNombreUsuario);
 
 
         spinnerSex = (Spinner) findViewById(R.id.spinnerSex);
@@ -64,9 +65,9 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
          }
 
-         public void onClickCrearCuenta(View v){
+    public void onClickCrearCuentas(View v){
 
-            /* String nombre, apellidos, usuario, password, repassword, correo;
+             String nombre, apellidos, usuario, password, repassword, correo;
              nombre = nombre_et.getText().toString();
              apellidos = apellidos_et.getText().toString();
              usuario = nombreDeUo_et.getText().toString();
@@ -74,13 +75,15 @@ public class CrearCuentaActivity extends AppCompatActivity {
              repassword = repassword_et.getText().toString();
              correo = correo_et.getText().toString();
 
-             if(nombre == null || apellidos == null || usuario == null || password == null || repassword == null || correo == null)*/
-                 Toast.makeText(getApplicationContext(),"Completa todos los campos",Toast.LENGTH_SHORT);
+             if(nombre.isEmpty() || apellidos.isEmpty() || usuario.isEmpty() || password.isEmpty() || repassword.isEmpty() || correo.isEmpty())
+                 Toast.makeText(getApplicationContext(),"Completa todos los campos",Toast.LENGTH_SHORT).show();
 
-             /*if(password != repassword)
-                 Toast.makeText(getApplicationContext(),"Comprueba tu password",Toast.LENGTH_SHORT);*/
+             if(!password.equalsIgnoreCase(repassword))
+                 Toast.makeText(getApplicationContext(),"Comprueba tu password",Toast.LENGTH_SHORT).show();
 
 
+
+        Toast.makeText(getApplicationContext(),String.valueOf(spinnerMes.getSelectedItemPosition()+1),Toast.LENGTH_SHORT).show();
 
          }
 }
