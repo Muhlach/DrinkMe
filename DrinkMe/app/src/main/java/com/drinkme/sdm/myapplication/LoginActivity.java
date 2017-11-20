@@ -87,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             if(holdSesion)
             saveInSharedPreferences(user, password);
             launchMainActivity();
+            finish();
         }
         else
             Toast.makeText(getApplicationContext(),"Datos incorrectos", Toast.LENGTH_SHORT);
@@ -99,6 +100,12 @@ public class LoginActivity extends AppCompatActivity {
      * @return true sí y solo sí el usuario ya está en la BBDD
      */
     private boolean checkUserAndPassword(String user, String password){
+
+
+        //si el usuario y su contrasenia está en la bbdd return true
+
+        //si no return false
+        
         return true;
     }
 
