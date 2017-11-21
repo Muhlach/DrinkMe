@@ -6,24 +6,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.drinkme.sdm.myapplication.Estadistico;
+import com.drinkme.sdm.myapplication.Logro;
 import com.drinkme.sdm.myapplication.R;
 
 import java.util.ArrayList;
 
 /**
- * Created by ssant on 01/11/2017.
+ * Created by ssant on 21/11/2017.
  */
 
-public class AdapterEstadisticas extends BaseAdapter {
+public class AdapterTodosLogros extends BaseAdapter{
 
     protected Activity activity;
-    protected ArrayList<Estadistico> items;
+    protected ArrayList<Logro> items;
 
 
-    public AdapterEstadisticas (Activity activity, ArrayList<Estadistico> items) {
+    public AdapterTodosLogros (Activity activity, ArrayList<Logro> items) {
         this.activity = activity;
         this.items = items;
     }
@@ -37,9 +38,9 @@ public class AdapterEstadisticas extends BaseAdapter {
         items.clear();
     }
 
-    public void addAll(ArrayList<Estadistico> estadisticos) {
-        for (int i = 0; i<estadisticos.size(); i++) {
-            items.add(estadisticos.get(i));
+    public void addAll(ArrayList<Logro> logros) {
+        for (int i = 0; i<logros.size(); i++) {
+            items.add(logros.get(i));
         }
     }
 
@@ -59,18 +60,25 @@ public class AdapterEstadisticas extends BaseAdapter {
 
         if(convertView == null) {
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inf.inflate(R.layout.listview_estadisticas, null);
+            view = inf.inflate(R.layout.listview_todoslogros, null);
         }
 
-        Estadistico dir = items.get(i);
+        Logro dir = items.get(i);
 
         TextView nombre = (TextView) view.findViewById(R.id.txNombreTodosLogros);
         nombre.setText(dir.getNombre());
 
-        TextView valor = (TextView) view.findViewById(R.id.txValorEstadistico);
-        valor.setText(String.valueOf(dir.getValor()));
+        ImageView imagenLista = (ImageView) view.findViewById(R.id.imageLogro);
+        imagenLista.setImageDrawable(dir.getImagen());
 
+        ImageView imagenSuperado = (ImageView) view.findViewById(R.id.imageLogroSuperado);
+        imagenSuperado.setImageDrawable(dir.getImagenSuperado());
+
+        if(!dir.isSuperado()) {
+            imagenSuperado.setVisibility(View.INVISIBLE);
+        }
 
         return view;
     }
+
 }

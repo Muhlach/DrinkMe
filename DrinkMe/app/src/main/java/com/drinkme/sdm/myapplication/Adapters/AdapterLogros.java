@@ -12,8 +12,6 @@ import android.widget.TextView;
 import com.drinkme.sdm.myapplication.Logro;
 import com.drinkme.sdm.myapplication.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 /**
@@ -67,7 +65,7 @@ public class AdapterLogros extends BaseAdapter {
 
         Logro dir = items.get(i);
 
-        TextView nombre = (TextView) view.findViewById(R.id.txNombreLogro);
+        TextView nombre = (TextView) view.findViewById(R.id.txNombreTodosLogros);
         nombre.setText(dir.getNombre());
 
         ImageView imagen = (ImageView) view.findViewById(R.id.iconoLogros);

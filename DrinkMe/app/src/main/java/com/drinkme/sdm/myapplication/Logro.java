@@ -8,12 +8,15 @@ import android.graphics.drawable.Drawable;
 
 public class Logro {
     String nombre, descripcion;
-    Drawable imagen;
+    boolean superado;
+    Drawable imagen, imagenSuperado;
 
     public Logro (String nombre, String descripcion, Drawable imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
+        this.superado = false;
+        imagenSuperado = null;
     }
 
     public String getNombre() {
@@ -26,5 +29,21 @@ public class Logro {
 
     public Drawable getImagen() {
         return imagen;
+    }
+
+    public boolean isSuperado() {
+        return superado;
+    }
+
+    public void setSuperado(boolean superado) {
+        this.superado = superado;
+    }
+
+    public Drawable getImagenSuperado() {
+        return imagenSuperado;
+    }
+
+    public void setImagenSuperado(Drawable imagenSuperado) {
+        this.imagenSuperado = imagenSuperado;
     }
 }
