@@ -1,8 +1,6 @@
 package com.drinkme.sdm.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,8 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.drinkme.sdm.myapplication.Adapters.AdapterLogros;
+import com.drinkme.sdm.myapplication.logic.Logro;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -47,11 +45,11 @@ public class LogrosFragment extends Fragment {
     }
 
     private void cargarLogros() {
-        Logro l= new Logro("Cervecero Principiante", "", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l1= new Logro("Cervecero Avanzado", "", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l2= new Logro("Coctelero Principiante", "", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l3= new Logro("Fin de Semana Cervecero", "", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l4= new Logro("Vamos de Tranquis", "", getResources().getDrawable(R.drawable.ic_logros_24_lista));
+        Logro l= new Logro(1, "Cervecero Principiante", "");
+        Logro l1= new Logro(2, "Cervecero Avanzado", "");
+        Logro l2= new Logro(3, "Coctelero Principiante", "");
+        Logro l3= new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l4= new Logro(5, "Vamos de Tranquis", "");
 
         logros = new ArrayList<Logro>();
         logros.add(l);

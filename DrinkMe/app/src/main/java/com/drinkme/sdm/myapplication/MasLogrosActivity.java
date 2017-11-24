@@ -7,10 +7,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.drinkme.sdm.myapplication.Adapters.AdapterLogros;
 import com.drinkme.sdm.myapplication.Adapters.AdapterTodosLogros;
+import com.drinkme.sdm.myapplication.logic.Logro;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MasLogrosActivity extends AppCompatActivity {
@@ -35,23 +34,23 @@ public class MasLogrosActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 logroSeleccionado = (Logro) adapterView.getItemAtPosition(position);
-                txNombre.setText(logroSeleccionado.getNombre());
-                txDescripcion.setText(logroSeleccionado.getDescripcion());
+                txNombre.setText(logroSeleccionado.getLogroName());
+                txDescripcion.setText(logroSeleccionado.getLogroDescripcion());
             }
         });
     }
 
     private void cargarTodosLogros() {
-        Logro l= new Logro("Cervecero Principiante", "Descripcion1", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l1= new Logro("Cervecero Avanzado", "Descripcion2", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l2= new Logro("Coctelero Principiante", "Descripcion3", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l3= new Logro("Fin de Semana Cervecero", "Descripcion4", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l4= new Logro("Vamos de Tranquis", "Descripcion5", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l5= new Logro("Cervecero Principiante", "Descripcion1", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l6= new Logro("Cervecero Avanzado", "Descripcion2", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l7= new Logro("Coctelero Principiante", "Descripcion3", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l8= new Logro("Fin de Semana Cervecero", "Descripcion4", getResources().getDrawable(R.drawable.ic_logros_24_lista));
-        Logro l9= new Logro("Vamos de Tranquis", "Descripcion5", getResources().getDrawable(R.drawable.ic_logros_24_lista));
+        Logro l= new Logro(1, "Cervecero Principiante", "");
+        Logro l1= new Logro(2, "Cervecero Avanzado", "");
+        Logro l2= new Logro(3, "Coctelero Principiante", "");
+        Logro l3= new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l4= new Logro(5, "Vamos de Tranquis", "");
+        Logro l5= new Logro(1, "Cervecero Principiante", "");
+        Logro l6= new Logro(2, "Cervecero Avanzado", "");
+        Logro l7= new Logro(3, "Coctelero Principiante", "");
+        Logro l8= new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l9= new Logro(5, "Vamos de Tranquis", "");
         l2.setSuperado(true);
         l4.setSuperado(true);
         l5.setSuperado(true);
@@ -72,7 +71,7 @@ public class MasLogrosActivity extends AppCompatActivity {
         logros.add(l9);
 
         for (Logro logro:logros) {
-            logro.setImagenSuperado(getResources().getDrawable(R.drawable.ic_logrosuperado_32));
+            logro.setLogroSuperadoImg(getResources().getDrawable(R.drawable.ic_logrosuperado_32));
         }
 
         AdapterTodosLogros adapter = new AdapterTodosLogros(this, logros);

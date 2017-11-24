@@ -1,7 +1,5 @@
 package com.drinkme.sdm.myapplication;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.drinkme.sdm.myapplication.Adapters.AdapterEstadisticas;
+import com.drinkme.sdm.myapplication.logic.Estadistico;
 
 import java.util.ArrayList;
 
@@ -47,10 +45,10 @@ public class EstadisticasFragment extends Fragment {
      * Método que carga los valores de los estadísticos en el list view
      */
     private void cargaEstadisticos() {
-        Estadistico e = new Estadistico("Total L bebidos: ", 100);
-        Estadistico e1 = new Estadistico("Total L alcohol: ", 21.8);
-        Estadistico e2 = new Estadistico("Total kcal: ", 15000);
-        Estadistico e3 = new Estadistico("Total € gastados: ", 115.87);
+        Estadistico e = new Estadistico(1, "Total L bebidos: ", 100);
+        Estadistico e1 = new Estadistico(2, "Total L alcohol: ", 21.8);
+        Estadistico e2 = new Estadistico(3, "Total kcal: ", 15000);
+        Estadistico e3 = new Estadistico(4, "Total € gastados: ", 115.87);
         estadisticos = new ArrayList<Estadistico>();
         estadisticos.add(e);
         estadisticos.add(e1);

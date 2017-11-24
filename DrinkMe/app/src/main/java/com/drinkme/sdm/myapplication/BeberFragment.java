@@ -1,7 +1,6 @@
 package com.drinkme.sdm.myapplication;
 
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.drinkme.sdm.myapplication.Adapters.AdapterCategorias;
+import com.drinkme.sdm.myapplication.logic.Categoria;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class BeberFragment extends Fragment{
@@ -33,10 +32,10 @@ public class BeberFragment extends Fragment{
 
     private void cargarCategorías() {
         categorias = new ArrayList<Categoria>();
-        Categoria vino = new Categoria("Vino", getResources().getDrawable(R.drawable.ic_vino_64));
-        Categoria cerveza = new Categoria("Cerveza", getResources().getDrawable(R.drawable.ic_cerveza_64));
-        Categoria copa = new Categoria("Copa", getResources().getDrawable(R.drawable.ic_copa_64));
-        Categoria chupito = new Categoria("Chupito", getResources().getDrawable(R.drawable.ic_chupito_64));
+        Categoria vino = new Categoria("Vino", getResources().getDrawable(R.drawable.ic_vino_64), null, 1);
+        Categoria cerveza = new Categoria("Cerveza", getResources().getDrawable(R.drawable.ic_cerveza_64), null, 1);
+        Categoria copa = new Categoria("Copa", getResources().getDrawable(R.drawable.ic_copa_64), null, 1);
+        Categoria chupito = new Categoria("Chupito", getResources().getDrawable(R.drawable.ic_chupito_64), null, 1);
         categorias.add(vino);
         categorias.add(cerveza);
         categorias.add(copa);

@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.drinkme.sdm.myapplication.Logro;
+import com.drinkme.sdm.myapplication.logic.Logro;
 import com.drinkme.sdm.myapplication.R;
 
 import java.util.ArrayList;
@@ -66,10 +66,10 @@ public class AdapterLogros extends BaseAdapter {
         Logro dir = items.get(i);
 
         TextView nombre = (TextView) view.findViewById(R.id.txNombreTodosLogros);
-        nombre.setText(dir.getNombre());
+        nombre.setText(dir.getLogroName());
 
         ImageView imagen = (ImageView) view.findViewById(R.id.iconoLogros);
-        imagen.setImageDrawable(dir.getImagen());
+        imagen.setImageDrawable(dir.getLogroImg());
 
         return view;
     }

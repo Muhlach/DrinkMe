@@ -1,4 +1,4 @@
-package com.drinkme.sdm.myapplication;
+package com.drinkme.sdm.myapplication.logic;
 
 /**
  * Created by ssant on 01/11/2017.
@@ -6,10 +6,12 @@ package com.drinkme.sdm.myapplication;
 
 public class Estadistico {
 
-    String nombre;
-    double valor;
+    private int estID;
+    private String nombre;
+    private double valor;
 
-    public Estadistico (String nombre, double valor) {
+    public Estadistico (int estID, String nombre, double valor) {
+        this.estID = estID;
         this.nombre = nombre;
         this.valor = valor;
     }
@@ -28,5 +30,13 @@ public class Estadistico {
 
     public void setNombre (String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getEstID() {
+        return estID;
+    }
+
+    public void setEstID(int estID) {
+        this.estID = estID;
     }
 }

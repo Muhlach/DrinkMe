@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>63</x>
+      <y>495</y>
+      <w>189</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Estadistico
+--
+- estID : int
+- estName : String
+- estValor : double
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>9</x>
+      <y>396</y>
+      <w>297</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>EstadisticosBD
+--
+- estadisticos : ArrayList&lt;Estadistico&gt;
+--
++ añadirEstaditico(est : Estadistico) : boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>396</x>
+      <y>495</y>
+      <w>252</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Nivel
+--
+- nivelID : int
+- rangoBebedor : String
+- puntosMinimos : int
+- puntosMaximos : int
+--
+- asignarRangoBebedor(logroID : puntos)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>369</x>
+      <y>36</y>
+      <w>315</w>
+      <h>279</h>
+    </coordinates>
+    <panel_attributes>Usuario
+--
+- userID : String
+- nombre : String
+- apellidos : String
+- sexo : boolean
+- correo : String
+- password : String
+- nacimiento : Date
+- altura : int
+- peso : int
+- puntosExperiencia : int
+- nivel : Nivel
+- logros : LogrosBD
+--
++ actualizarUsuario(bebida : Bebida)
+- actualizarPuntosExperiencia(nuevosPuntos : int)
+- actualizarLogros()
+- actualizarNivel()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>189</y>
+      <w>189</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Bebida
+--
+- bebName : String
+- kcal : int
+- azucar : int
+- alcohol : double
+- precio : double
+- volumenTotal : int
+- volumenAlcohol : int
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>36</y>
+      <w>333</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>Categoria
+--
+- catName : String
+- catImg : Drawable
+- bebidas : ArrayList&lt;Bebida&gt;
+- puntosCategoria : int
+--
++ getBebidas() : ArrayList&lt;Bebida&gt;
++ añadeBebida(bebida : Bebida) : boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>153</x>
+      <y>144</y>
+      <w>27</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>801</x>
+      <y>297</y>
+      <w>189</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Logro
+--
+- logroID : int
+- logroName : String
+- logroDescripcion : String
+- superado : boolean
+- logroImg : Drawable
+- logroSuperadoImg : Drawable
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>711</x>
+      <y>108</y>
+      <w>369</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>LogrosBD
+--
+- todosLogros : ArrayList&lt;Logro&gt;
+- logrosSuperados : ArrayList&lt;Logro&gt;
+--
+- crearTodosLogros() : boolean
++ añadirLogro(lista : ArrayList&lt;Logro&gt;, logro : Logro) : boolean
+- existeLogro(lista : ArrayList&lt;Logro&gt;, logro : Logro) : boolean
++ comprobarLogros(puntos : int) : ArrayList&lt;Logro&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>225</y>
+      <w>27</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>459</y>
+      <w>27</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>153</y>
+      <w>54</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>
+</panel_attributes>
+    <additional_attributes>40.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>369</x>
+      <y>369</y>
+      <w>315</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>NivelBD
+--
+- niveles : ArrayList&lt;Nivel&gt;
+--
+- generaraNiveles()
++ getNivelUsuario(puntosActuales : int) : Nivel
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>513</x>
+      <y>432</y>
+      <w>27</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>513</x>
+      <y>306</y>
+      <w>27</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+</diagram>
