@@ -63,14 +63,14 @@ public class DialogSeleccion extends DialogFragment{
 
 
     private void cargaBebidas() {
-        Bebida b = new Bebida("Caña Rubia", 0, 0, 0, 0, 0);
-        Bebida b1 = new Bebida("Caña Tostada", 0, 0, 0, 0, 0);
-        Bebida b2 = new Bebida("Caña de Trigo", 0, 0, 0, 0, 0);
-        Bebida b3 = new Bebida("Caña con Limón", 0, 0, 0, 0, 0);
-        Bebida b4 = new Bebida("Botellin Pilsen", 0, 0, 0, 0, 0);
-        Bebida b5 = new Bebida("Botellin Premium", 0, 0, 0, 0, 0);
-        Bebida b7 = new Bebida("Botellin de Trigo", 0, 0, 0, 0, 0);
-        Bebida b8 = new Bebida("Desperados", 0, 0, 0, 0, 0);
+        Bebida b = new Bebida("Caña Rubia", 0, 0, 0, 0, 0, 1);
+        Bebida b1 = new Bebida("Caña Tostada", 0, 0, 0, 0, 0, 1);
+        Bebida b2 = new Bebida("Caña de Trigo", 0, 0, 0, 0, 0, 1);
+        Bebida b3 = new Bebida("Caña con Limón", 0, 0, 0, 0, 0, 1);
+        Bebida b4 = new Bebida("Botellin Pilsen", 0, 0, 0, 0, 0, 1);
+        Bebida b5 = new Bebida("Botellin Premium", 0, 0, 0, 0, 0, 1);
+        Bebida b7 = new Bebida("Botellin de Trigo", 0, 0, 0, 0, 0, 1);
+        Bebida b8 = new Bebida("Desperados", 0, 0, 0, 0, 0, 1);
 
         String[] bebidas = {"Caña Rubia","Caña Tostada","Caña de Trigo","Caña con Limón",
                 "Botellin Pilsen","Botellin Premium","Botellin de Trigo","Desperados"};

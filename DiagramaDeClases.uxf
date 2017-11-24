@@ -75,10 +75,11 @@
 - altura : int
 - peso : int
 - puntosExperiencia : int
+- niveles : NivelBD
 - nivel : Nivel
 - logros : LogrosBD
 --
-+ actualizarUsuario(bebida : Bebida)
++ realizarConsumicion(bebida : Bebida)
 - actualizarPuntosExperiencia(nuevosPuntos : int)
 - actualizarLogros()
 - actualizarNivel()

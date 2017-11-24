@@ -9,17 +9,20 @@ public class Bebida {
     private int kcal, azucar;
     private double alcohol, precio;
     private int volumenTotal, volumenAlcohol; //el volumen se medirá en mL
+    private int puntosBebida;
 
 
     public Bebida(){}
 
-    public Bebida(String bebName, int kcal, int azucar, double alcohol, int volumenTotal, int volumenAlcohol) {
+    public Bebida(String bebName, int kcal, int azucar, double alcohol, int volumenTotal, int volumenAlcohol, int puntosBebida) {
         this.bebName = bebName;
         this.kcal = kcal;
         this.azucar = azucar;
         this.alcohol = alcohol;
         this.volumenTotal = volumenTotal;
         this.volumenAlcohol = volumenAlcohol;
+        this.puntosBebida = puntosBebida;
+
     }
 
     public String getBebName() {
@@ -77,6 +80,15 @@ public class Bebida {
     public void setVolumenAlcohol(int volumenAlcohol) {
         this.volumenAlcohol = volumenAlcohol;
     }
+
+    public int getPuntosBebida() {
+        return puntosBebida;
+    }
+
+    public void setPuntosBebida(int puntosBebida) {
+        this.puntosBebida = puntosBebida;
+    }
+
 
     @Override
     public String toString() {

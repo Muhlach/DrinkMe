@@ -14,17 +14,15 @@ public class Categoria {
     private String catName;
     private Drawable catImg;
     private ArrayList<Bebida> bebidas;
-    private int puntosCategoria;
 
     public Categoria() {
 
     }
 
-    public Categoria(String catName, Drawable catImg, ArrayList<Bebida> bebidas, int puntosCategoria) {
+    public Categoria(String catName, Drawable catImg, ArrayList<Bebida> bebidas) {
         this.catName = catName;
         this.catImg = catImg;
         this.bebidas = bebidas;
-        this.puntosCategoria = puntosCategoria;
     }
 
     public String getCatName() {
