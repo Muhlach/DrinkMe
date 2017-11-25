@@ -21,11 +21,21 @@ import com.drinkme.sdm.myapplication.logic.Bebida;
 import com.drinkme.sdm.myapplication.logic.Categoria;
 import com.drinkme.sdm.myapplication.logic.Estadistico;
 import com.drinkme.sdm.myapplication.logic.EstadisticosBD;
+import com.drinkme.sdm.myapplication.logic.Logro;
+import com.drinkme.sdm.myapplication.logic.LogrosBD;
 import com.drinkme.sdm.myapplication.logic.Usuario;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String KEY_CATEGORIAS = "lista_categorias";
+    public static final String BEBIDAS_KEY = "lista_bebidas";
+    public static final String USER_KEY = "usuario";
+    public static final String LOGROS_KEY = "lista_logros";
+    public static final String ESTADISTICOS_KEY = "estadisticos";
+
 
     Usuario currentUser;
     EstadisticosBD estadisticosBD;
@@ -36,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-        /** Carga los datos de usuario, bebidas y estadisticos **/
-        currentUser = new Usuario();
+        /** Carga los datos de usuario, bebidasArrayList y estadisticos **/
+        currentUser = cargarUsuario();
         categorias = cargarCategorias();
         estadisticosBD = cargarEstadisticos();
 
@@ -57,15 +67,24 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment = null;
+            Bundle b = new Bundle();
             switch (item.getItemId()) {
                 case R.id.navigation_logros:
+                    b.putParcelable(USER_KEY, currentUser);
                     fragment = new LogrosFragment();
+                    fragment.setArguments(b);
                     break;
                 case R.id.navigation_beber:
+
+                    b.putParcelableArrayList(KEY_CATEGORIAS, categorias);
                     fragment = new BeberFragment();
+                    fragment.setArguments(b);
                     break;
                 case R.id.navigation_estadisticas:
+                    b.putParcelableArrayList(ESTADISTICOS_KEY, estadisticosBD.getEstadisticos());
+                    b.putParcelableArrayList(KEY_CATEGORIAS, categorias);
                     fragment = new EstadisticasFragment();
+                    fragment.setArguments(b);
                     break;
             }
             replaceFragment(fragment);
@@ -78,8 +97,14 @@ public class MainActivity extends AppCompatActivity {
      * Carga el fragment principal (el de beber)
      */
     private void setInitialFragment() {
+        Bundle b = new Bundle();
+        b.putParcelableArrayList(KEY_CATEGORIAS, categorias);
+        BeberFragment fragment = new BeberFragment();
+        fragment.setArguments(b);
+
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.main_fragment_placeholder, new BeberFragment());
+        fragmentTransaction.add(R.id.main_fragment_placeholder, fragment);
         fragmentTransaction.commit();
     }
 
@@ -112,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.perfil){
             Intent perfilIntent = new Intent(this, PerfilActivity.class);
+            perfilIntent.putExtra(USER_KEY, currentUser);
             startActivity(perfilIntent);
         }
 
@@ -119,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Metodo que carga todas las categorias con sus correspondientes bebeidas en la aplicacion.
+     * Metodo que carga todas las categoriasArrayList con sus correspondientes bebeidas en la aplicacion.
      *
      * ACTUALMENTE ES UN METODO DE PRUEBA QUE CREA LOS OBJETOS
      *
@@ -127,13 +153,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private ArrayList<Categoria> cargarCategorias() {
         ArrayList<Categoria> categorias = new ArrayList<Categoria>();
-        //Creamos las categorias
+        //Creamos las categoriasArrayList
         Categoria vino = new Categoria("Vino", getResources().getDrawable(R.drawable.ic_vino_64), null);
         Categoria cerveza = new Categoria("Cerveza", getResources().getDrawable(R.drawable.ic_cerveza_64), null);
         Categoria copa = new Categoria("Copa", getResources().getDrawable(R.drawable.ic_copa_64), null);
         Categoria chupito = new Categoria("Chupito", getResources().getDrawable(R.drawable.ic_chupito_64), null);
 
-        //Creamos las bebidas
+        //Creamos las bebidasArrayList
         Bebida b = new Bebida("Caña Rubia", 0, 0, 0, 0, 0, 1);
         Bebida b1 = new Bebida("Caña Tostada", 0, 0, 0, 0, 0, 1);
         Bebida b2 = new Bebida("Caña de Trigo", 0, 0, 0, 0, 0, 1);
@@ -150,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         Bebida b11 = new Bebida("Chupito de Whiskey", 0, 0, 0, 0, 0, 1);
         Bebida b12 = new Bebida("Chupito de Absenta", 0, 0, 0, 0, 0, 1);
 
-        //Creamos los arrays de bebidas
+        //Creamos los arrays de bebidasArrayList
         ArrayList<Bebida> bebidasCerveza = new ArrayList<Bebida>();
         ArrayList<Bebida> bebidasVino = new ArrayList<Bebida>();
         ArrayList<Bebida> bebidasCoctel = new ArrayList<Bebida>();
@@ -161,14 +187,14 @@ public class MainActivity extends AppCompatActivity {
         bebidasCoctel.add(b7);bebidasCoctel.add(b8);bebidasCoctel.add(b9);
         bebidasChupito.add(b10);bebidasChupito.add(b11);bebidasChupito.add(b12);
 
-        //Asignamos los arrays a las categorias
+        //Asignamos los arrays a las categoriasArrayList
         vino.setBebidas(bebidasVino);
         cerveza.setBebidas(bebidasCerveza);
         copa.setBebidas(bebidasCoctel);
         chupito.setBebidas(bebidasChupito);
 
 
-        //Añadimos las categorias al array y hacemos return
+        //Añadimos las categoriasArrayList al array y hacemos return
         categorias.add(vino);
         categorias.add(cerveza);
         categorias.add(copa);
@@ -198,5 +224,61 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<Categoria> getCategorias() {
         return categorias;
     }
+
+    /**
+     * Método que carga el usuario logeado en la main activity
+     * @return
+     */
+    private Usuario cargarUsuario() {
+        Usuario user = new Usuario();
+        user.setUserID("pruebas1");
+        user.setNombre("Sergio");
+        user.setApellidos("Santano Álvarez");
+        user.setSexo(Usuario.HOMBRE);
+        user.setCorreo("correo@prueba.es");
+        user.setContraseña("1234");
+        user.setNacimiento(new Date(1996,3,9));
+        user.setPuntosExperiencia(400);
+        user.setPeso(80);
+        user.setAltura(175);
+        user.setLogros(new LogrosBD());
+        user.setLogros(cargaLogros(user.getUserID()));
+
+        return user;
+    }
+
+    /**
+     * Metodo que carga los logros del usuario
+     * @param userID
+     * @return
+     */
+    private LogrosBD cargaLogros(String userID) {
+        Logro l= new Logro(1, "Cervecero Principiante", "");
+        Logro l1= new Logro(2, "Cervecero Avanzado", "");
+        Logro l2= new Logro(3, "Coctelero Principiante", "");
+        Logro l3= new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l4= new Logro(5, "Vamos de Tranquis", "");
+        Logro l5= new Logro(1, "Cervecero Principiante", "");
+        Logro l6= new Logro(2, "Cervecero Avanzado", "");
+        Logro l7= new Logro(3, "Coctelero Principiante", "");
+        Logro l8= new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l9= new Logro(5, "Vamos de Tranquis", "");
+        l2.setSuperado(true);
+        l4.setSuperado(true);
+        l5.setSuperado(true);
+        l7.setSuperado(true);
+        l9.setSuperado(true);
+
+        ArrayList<Logro> todos = new ArrayList<Logro>();
+        todos.add(l);todos.add(l1);todos.add(l2);todos.add(l3);todos.add(l4);todos.add(l5);
+        todos.add(l6);todos.add(l7);todos.add(l8);todos.add(l9);
+
+        ArrayList<Logro> superados = new ArrayList<Logro>();
+        superados.add(l2);superados.add(l4);superados.add(l5);superados.add(l7);superados.add(l9);
+
+        LogrosBD result = new LogrosBD(todos, superados);
+        return result;
+    }
+
 
 }

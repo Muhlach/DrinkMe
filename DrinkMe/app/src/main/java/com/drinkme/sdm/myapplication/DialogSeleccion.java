@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.drinkme.sdm.myapplication.logic.Bebida;
 
+import java.util.ArrayList;
+
 /**
  * Created by ssant on 09/11/2017.
  */
@@ -24,6 +26,7 @@ public class DialogSeleccion extends DialogFragment{
     View view;
     Button guardar, cancelar;
     Bebida bebidaSeleccionada;
+    ArrayList<Bebida> bebidasArrayList;
     double precio;
 
     public DialogSeleccion(){}
@@ -39,12 +42,21 @@ public class DialogSeleccion extends DialogFragment{
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getActivity(), "Has guardado", Toast.LENGTH_SHORT).show();
-                Object b = spinnerBebida.getSelectedItem();
-                precio = Double.valueOf(txPrecio.getText().toString());
-                String r = b.toString() + "  " + precio;
-                Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
-                dismiss();
+
+                //Cogemos la bebida seleccionada y el precio introducido
+                Bebida b = (Bebida) spinnerBebida.getSelectedItem();
+                String precioStr = txPrecio.getText().toString();
+
+                //Comprobamos que se haya seleccionado una bebida y que se haya introducido precio
+                if(precioStr.isEmpty())
+                    Toast.makeText(getActivity(), "Debes introducir un precio", Toast.LENGTH_SHORT).show();
+                else {
+                    precio = Double.valueOf(precioStr);
+                    //TODO: Aquí se debe implementar el registro de la consumición
+                    String r = b.toString() + "  " + precio;
+                    Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
+                    dismiss();
+                }
             }
         });
 
@@ -52,34 +64,36 @@ public class DialogSeleccion extends DialogFragment{
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Has cancelado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Consumición cancelada", Toast.LENGTH_SHORT).show();
 
                 dismiss();
             }
         });
+
+
+        Bundle bundleRecibido = getArguments();
+        bebidasArrayList = bundleRecibido.getParcelableArrayList(MainActivity.BEBIDAS_KEY);
         cargaBebidas();
         return view;
     }
 
 
     private void cargaBebidas() {
-        Bebida b = new Bebida("Caña Rubia", 0, 0, 0, 0, 0, 1);
-        Bebida b1 = new Bebida("Caña Tostada", 0, 0, 0, 0, 0, 1);
-        Bebida b2 = new Bebida("Caña de Trigo", 0, 0, 0, 0, 0, 1);
-        Bebida b3 = new Bebida("Caña con Limón", 0, 0, 0, 0, 0, 1);
-        Bebida b4 = new Bebida("Botellin Pilsen", 0, 0, 0, 0, 0, 1);
-        Bebida b5 = new Bebida("Botellin Premium", 0, 0, 0, 0, 0, 1);
-        Bebida b7 = new Bebida("Botellin de Trigo", 0, 0, 0, 0, 0, 1);
-        Bebida b8 = new Bebida("Desperados", 0, 0, 0, 0, 0, 1);
-
-        String[] bebidas = {"Caña Rubia","Caña Tostada","Caña de Trigo","Caña con Limón",
-                "Botellin Pilsen","Botellin Premium","Botellin de Trigo","Desperados"};
-
-        ArrayAdapter<String> adapterBebida = new ArrayAdapter<String>(getActivity(),
+        Bebida[] bebidas = creaArray();
+        ArrayAdapter<Bebida> adapterBebida = new ArrayAdapter<Bebida>(getActivity(),
                 android.R.layout.simple_spinner_item, bebidas);
         adapterBebida.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerBebida.setAdapter(adapterBebida);
+    }
 
+    private Bebida[] creaArray() {
+        Bebida[] result = new Bebida[bebidasArrayList.size()];
+        int counter = 0;
+        for(Bebida beb : bebidasArrayList) {
+            result[counter] = beb;
+            counter++;
+        }
 
+        return result;
     }
 }

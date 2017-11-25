@@ -8,9 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.drinkme.sdm.myapplication.Adapters.AdapterLogros;
 import com.drinkme.sdm.myapplication.logic.Logro;
+import com.drinkme.sdm.myapplication.logic.Usuario;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -21,6 +26,9 @@ public class LogrosFragment extends Fragment {
     ArrayList<Logro> logros;
     ListView listViewLogros;
     Button btnMasLogros;
+    Usuario currentUser;
+    TextView txNivel, txNombre, txRango, txProgreso;
+    ProgressBar progressBar;
 
     public LogrosFragment() {}
 
@@ -35,9 +43,28 @@ public class LogrosFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent masLogrosIntent = new Intent(getActivity(), MasLogrosActivity.class);
+                masLogrosIntent.putParcelableArrayListExtra(MainActivity.LOGROS_KEY,
+                        currentUser.getLogros().getTodosLogros());
                 startActivity(masLogrosIntent);
             }
         });
+
+        Bundle bundleRecibido = getArguments();
+        currentUser = bundleRecibido.getParcelable(MainActivity.USER_KEY);
+
+        //Cargar los datos del usuario
+        txNombre = (TextView) view.findViewById(R.id.lblNombreUsuarioLogros);
+        txRango = (TextView) view.findViewById(R.id.lblRangoBebedorLogros);
+        txNivel = (TextView) view.findViewById(R.id.lblNivelUsuario);
+        txProgreso = (TextView) view.findViewById(R.id.lblProgresoNivel);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBarNivel);
+
+        txNombre.setText(currentUser.getNombre());
+        txRango.setText(currentUser.getNivel().getRangoBebedor());
+        txNivel.setText(String.valueOf(currentUser.getNivel().getNivelID()));
+        txProgreso.setText(currentUser.getPuntosExperiencia() + " / " + currentUser.getNivel().getPuntosMaximos());
+        progressBar.setMax(currentUser.getNivel().getPuntosMaximos());
+        progressBar.setProgress(currentUser.getPuntosExperiencia());
 
         cargarLogros();
 
@@ -45,18 +72,10 @@ public class LogrosFragment extends Fragment {
     }
 
     private void cargarLogros() {
-        Logro l= new Logro(1, "Cervecero Principiante", "");
-        Logro l1= new Logro(2, "Cervecero Avanzado", "");
-        Logro l2= new Logro(3, "Coctelero Principiante", "");
-        Logro l3= new Logro(4, "Fin de Semana Cervecero", "");
-        Logro l4= new Logro(5, "Vamos de Tranquis", "");
-
-        logros = new ArrayList<Logro>();
-        logros.add(l);
-        logros.add(l1);
-        logros.add(l2);
-        logros.add(l3);
-        logros.add(l4);
+        logros = currentUser.getLogrosSuperadosDelUsuario();
+        for(Logro l : logros) {
+            l.setLogroImg(getResources().getDrawable(R.drawable.ic_logros_24_lista));
+        }
 
         listViewLogros = view.findViewById(R.id.listViewMisLogros);
         AdapterLogros adapter = new AdapterLogros(getActivity(), logros);

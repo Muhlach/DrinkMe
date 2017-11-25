@@ -1,12 +1,14 @@
 package com.drinkme.sdm.myapplication.logic;
 
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by ssant on 01/11/2017.
  */
 
-public class Logro {
+public class Logro implements Parcelable{
     private int logroID;
     private String logroName, logroDescripcion;
     private boolean superado;
@@ -18,6 +20,25 @@ public class Logro {
         this.logroDescripcion = logroDescripcion;
         this.superado = false;
     }
+
+    protected Logro(Parcel in) {
+        logroID = in.readInt();
+        logroName = in.readString();
+        logroDescripcion = in.readString();
+        superado = in.readByte() != 0;
+    }
+
+    public static final Creator<Logro> CREATOR = new Creator<Logro>() {
+        @Override
+        public Logro createFromParcel(Parcel in) {
+            return new Logro(in);
+        }
+
+        @Override
+        public Logro[] newArray(int size) {
+            return new Logro[size];
+        }
+    };
 
     public int getLogroID() {
         return logroID;
@@ -65,5 +86,18 @@ public class Logro {
 
     public void setLogroSuperadoImg(Drawable logroSuperadoImg) {
         this.logroSuperadoImg = logroSuperadoImg;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(logroID);
+        parcel.writeString(logroName);
+        parcel.writeString(logroDescripcion);
+        parcel.writeByte((byte) (superado ? 1 : 0));
     }
 }

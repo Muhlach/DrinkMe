@@ -11,10 +11,12 @@ import android.widget.ListView;
 import com.drinkme.sdm.myapplication.Adapters.AdapterCategorias;
 import com.drinkme.sdm.myapplication.logic.Categoria;
 
+import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 
 
 public class BeberFragment extends Fragment{
+
 
     ListView listViewCategorias;
     ArrayList<Categoria> categorias;
@@ -26,29 +28,24 @@ public class BeberFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_beber, container, false);
+        Bundle bundle = getArguments();
+        categorias = bundle.getParcelableArrayList(MainActivity.KEY_CATEGORIAS);
         cargarCategorías();
         return view;
     }
 
     private void cargarCategorías() {
-        categorias = new ArrayList<Categoria>();
-        Categoria vino = new Categoria("Vino", getResources().getDrawable(R.drawable.ic_vino_64), null);
-        Categoria cerveza = new Categoria("Cerveza", getResources().getDrawable(R.drawable.ic_cerveza_64), null);
-        Categoria copa = new Categoria("Copa", getResources().getDrawable(R.drawable.ic_copa_64), null);
-        Categoria chupito = new Categoria("Chupito", getResources().getDrawable(R.drawable.ic_chupito_64), null);
-        categorias.add(vino);
-        categorias.add(cerveza);
-        categorias.add(copa);
-        categorias.add(chupito);
-
-
         listViewCategorias = (ListView) view.findViewById(R.id.listViewCategorias);
         AdapterCategorias adapter = new AdapterCategorias(getActivity(), categorias);
         listViewCategorias.setAdapter(adapter);
         listViewCategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Categoria categoriaSeleccionada = (Categoria) adapterView.getItemAtPosition(i);
+                Bundle bundleBebidas = new Bundle();
+                bundleBebidas.putParcelableArrayList(MainActivity.BEBIDAS_KEY, categoriaSeleccionada.getBebidas());
                 DialogSeleccion dialog = new DialogSeleccion();
+                dialog.setArguments(bundleBebidas);
                 dialog.show(getFragmentManager(), "personal");
             }
         });

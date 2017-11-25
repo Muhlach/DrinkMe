@@ -1,5 +1,8 @@
 package com.drinkme.sdm.myapplication.logic;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,7 +10,7 @@ import java.util.Date;
  * Created by ssant on 24/11/2017.
  */
 
-public class Usuario {
+public class Usuario implements Parcelable {
 
     public final static boolean HOMBRE = true;
     public final static boolean MUJER = false;
@@ -24,19 +27,32 @@ public class Usuario {
 
 
     public Usuario() {
-        this.userID = userID;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.correo = correo;
-        this.contraseña = contraseña;
-        this.sexo = sexo;
-        this.nacimiento = nacimiento;
-        this.altura = altura;
-        this.peso = peso;
-        this.puntosExperiencia = puntosExperiencia;
-        nivelBD = new NivelBD();
-        nivel = nivelBD.getNivelUsuario(puntosExperiencia);
+
     }
+
+    protected Usuario(Parcel in) {
+        userID = in.readString();
+        nombre = in.readString();
+        apellidos = in.readString();
+        correo = in.readString();
+        contraseña = in.readString();
+        sexo = in.readByte() != 0;
+        altura = in.readInt();
+        peso = in.readInt();
+        puntosExperiencia = in.readInt();
+    }
+
+    public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {
+        @Override
+        public Usuario createFromParcel(Parcel in) {
+            return new Usuario(in);
+        }
+
+        @Override
+        public Usuario[] newArray(int size) {
+            return new Usuario[size];
+        }
+    };
 
     public int getPuntosExperiencia() {
         return puntosExperiencia;
@@ -44,6 +60,8 @@ public class Usuario {
 
     public void setPuntosExperiencia(int puntosExperiencia) {
         this.puntosExperiencia = puntosExperiencia;
+        nivelBD = new NivelBD();
+        nivel = nivelBD.getNivelUsuario(puntosExperiencia);
     }
 
     public String getUserID() {
@@ -160,4 +178,21 @@ public class Usuario {
         return false;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(userID);
+        parcel.writeString(nombre);
+        parcel.writeString(apellidos);
+        parcel.writeString(correo);
+        parcel.writeString(contraseña);
+        parcel.writeByte((byte) (sexo ? 1 : 0));
+        parcel.writeInt(altura);
+        parcel.writeInt(peso);
+        parcel.writeInt(puntosExperiencia);
+    }
 }

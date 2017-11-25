@@ -1,6 +1,8 @@
 package com.drinkme.sdm.myapplication.logic;
 
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v4.content.res.TypedArrayUtils;
 
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
  * Created by ssant on 01/11/2017.
  */
 
-public class Categoria {
+public class Categoria implements Parcelable{
 
     private String catName;
     private Drawable catImg;
@@ -24,6 +26,22 @@ public class Categoria {
         this.catImg = catImg;
         this.bebidas = bebidas;
     }
+
+    protected Categoria(Parcel in) {
+        catName = in.readString();
+    }
+
+    public static final Creator<Categoria> CREATOR = new Creator<Categoria>() {
+        @Override
+        public Categoria createFromParcel(Parcel in) {
+            return new Categoria(in);
+        }
+
+        @Override
+        public Categoria[] newArray(int size) {
+            return new Categoria[size];
+        }
+    };
 
     public String getCatName() {
         return catName;
@@ -74,5 +92,16 @@ public class Categoria {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(catName);
+        parcel.writeArray(bebidas.toArray());
     }
 }

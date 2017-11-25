@@ -30,6 +30,7 @@ public class MasLogrosActivity extends AppCompatActivity {
         txNombre = (TextView) findViewById(R.id.txNombreDescripcion);
 
         cargarTodosLogros();
+
         listaLogros.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -41,37 +42,13 @@ public class MasLogrosActivity extends AppCompatActivity {
     }
 
     private void cargarTodosLogros() {
-        Logro l= new Logro(1, "Cervecero Principiante", "");
-        Logro l1= new Logro(2, "Cervecero Avanzado", "");
-        Logro l2= new Logro(3, "Coctelero Principiante", "");
-        Logro l3= new Logro(4, "Fin de Semana Cervecero", "");
-        Logro l4= new Logro(5, "Vamos de Tranquis", "");
-        Logro l5= new Logro(1, "Cervecero Principiante", "");
-        Logro l6= new Logro(2, "Cervecero Avanzado", "");
-        Logro l7= new Logro(3, "Coctelero Principiante", "");
-        Logro l8= new Logro(4, "Fin de Semana Cervecero", "");
-        Logro l9= new Logro(5, "Vamos de Tranquis", "");
-        l2.setSuperado(true);
-        l4.setSuperado(true);
-        l5.setSuperado(true);
-        l7.setSuperado(true);
-        l9.setSuperado(true);
 
+        Bundle bundleRecibido = getIntent().getExtras();
+        logros = bundleRecibido.getParcelableArrayList(MainActivity.LOGROS_KEY );
 
-        logros = new ArrayList<Logro>();
-        logros.add(l);
-        logros.add(l1);
-        logros.add(l2);
-        logros.add(l3);
-        logros.add(l4);
-        logros.add(l5);
-        logros.add(l6);
-        logros.add(l7);
-        logros.add(l8);
-        logros.add(l9);
-
-        for (Logro logro:logros) {
-            logro.setLogroSuperadoImg(getResources().getDrawable(R.drawable.ic_logrosuperado_32));
+        for(Logro l : logros) {
+            l.setLogroImg(getResources().getDrawable(R.drawable.ic_logros_32));
+            l.setLogroSuperadoImg(getResources().getDrawable(R.drawable.ic_logrosuperado_32));
         }
 
         AdapterTodosLogros adapter = new AdapterTodosLogros(this, logros);
