@@ -102,6 +102,8 @@ public class LoginActivity extends AppCompatActivity {
     private boolean checkUserAndPassword(String user, String password){
 
 
+        //TODO checkUserAndPassword
+
         //si el usuario y su contrasenia está en la bbdd return true
 
         //si no return false

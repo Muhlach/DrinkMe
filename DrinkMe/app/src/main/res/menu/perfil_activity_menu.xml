@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemEditarPassword"
+        android:title="Editar password" />
+    <item
+        android:id="@+id/itemEditarUO"
+        android:title="Editar usuario" />
+    <item
+        android:id="@+id/itemEditarEmail"
+        android:title="Editar email" />
+    <item
+        android:id="@+id/itemEditarAltura"
+        android:title="Editar Altura" />
+    <item
+        android:id="@+id/itemEditarPeso"
+        android:title="Editar peso" />
+</menu>
