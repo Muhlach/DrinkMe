@@ -11,10 +11,4 @@
     <item
         android:id="@+id/itemEditarEmail"
         android:title="Editar email" />
-    <item
-        android:id="@+id/itemEditarAltura"
-        android:title="Editar Altura" />
-    <item
-        android:id="@+id/itemEditarPeso"
-        android:title="Editar peso" />
 </menu>

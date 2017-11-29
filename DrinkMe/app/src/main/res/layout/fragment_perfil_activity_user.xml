@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,12 +21,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textViewActualizaPassword"
+            android:id="@+id/textViewActualizarUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingBottom="26dp"
-            android:text="Vas a actualizar tu password"
+            android:text="Vas a actualizar tu usuario"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/amarilloBase"
@@ -35,19 +35,19 @@
             tools:layout_editor_absoluteY="74dp" />
 
         <TextView
-            android:id="@+id/textViewEstaEsPasswordActual"
+            android:id="@+id/textViewEstaEsUserActual"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingBottom="16dp"
-            android:text="Esta es tu password actual"
+            android:text="Esta es tu usuario actual"
             android:textAlignment="center"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="71dp"
             tools:layout_editor_absoluteY="125dp" />
 
         <TextView
-            android:id="@+id/textViewPasswordActual"
+            android:id="@+id/textViewUsuarioActual"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="16dp"
@@ -56,12 +56,12 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/textViewEscribeAContinuacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingBottom="16dp"
-            android:text="Escribe a continuacion tu nueva password"
+            android:text="Escribe a continuacion tu nuevo usuario"
             android:textAlignment="center"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="72dp"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="new password"
+            android:hint="nuevo nombre de usuario"
             android:inputType="textPassword"
             android:paddingBottom="20dp"
             android:textAlignment="center"
