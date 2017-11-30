@@ -47,8 +47,8 @@ public class MasLogrosActivity extends AppCompatActivity {
         logros = bundleRecibido.getParcelableArrayList(MainActivity.LOGROS_KEY );
 
         for(Logro l : logros) {
-            l.setLogroImg(getResources().getDrawable(R.drawable.ic_logros_32));
-            l.setLogroSuperadoImg(getResources().getDrawable(R.drawable.ic_logrosuperado_32));
+            l.setLogroImg(getResources().getDrawable(R.drawable.ic_logros_32, null));
+            l.setLogroSuperadoImg(getResources().getDrawable(R.drawable.ic_logrosuperado_32, null));
         }
 
         AdapterTodosLogros adapter = new AdapterTodosLogros(this, logros);

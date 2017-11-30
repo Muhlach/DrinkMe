@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             checkBox = (CheckBox) findViewById(R.id.checkBoxMantenerSesion);
         }else {
             if(debug)
-            deleteSharedPreferences();
+                deleteSharedPreferences();
             finish();
             launchMainActivity();
         }

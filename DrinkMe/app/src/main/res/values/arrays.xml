@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="logros_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+    </integer-array>
+
+    <string-array name="logros_nombres">
+        <item>Cervecero Aficionado</item>
+        <item>Cervecero Amateur</item>
+        <item>Cervecero</item>
+        <item>Rey de la Cerveza</item>
+        <item>Enólogo Aficionado</item>
+        <item>Enólogo Amateur</item>
+        <item>Enólogo </item>
+        <item>Rey del Vino</item>
+        <item>Coctelero aficionado</item>
+        <item>Coctelero amateur</item>
+        <item>Coctelero</item>
+        <item>Rey del Cóctel</item>
+        <item>Chupitólogo aficionado</item>
+        <item>Chupitólogo amateur</item>
+        <item>Chupitólogo</item>
+        <item>Rey del chupito</item>
+        <item>De todo un poco</item>
+        <item>Hasta el agua de los floreros</item>
+        <item>Hoy vamos de tranquis</item>
+        <item>Hoy si que vamos de tranquis</item>
+        <item>Hoy de verdad que vamos de tranquis</item>
+        <item>Cervecita π</item>
+        <item>Vinito π</item>
+        <item>Copita π</item>
+        <item>Chupito π</item>
+        <item>La antepenúltima</item>
+        <item>La penúltima</item>
+        <item>Última y para casa</item>
+        <item>Nunca es la última</item>
+    </string-array>
+
+
+    <string-array name="logros_descripciones">
+        <item>Se consigue cuando se beben 20 cervezas</item>
+        <item>Se consigue cuando se beben 100 cervezas</item>
+        <item>Se consigue cuando se beben 500 cervezas</item>
+        <item>Se consigue cuando se beben 1000 cervezas</item>
+        <item>Se consigue cuando se beben 20 consumiciones de la categoria Vino</item>
+        <item>Se consigue cuando se beben 100 consumiciones de la categoria Vino</item>
+        <item>Se consigue cuando se beben 500 consumiciones de la categoria Vino</item>
+        <item>Se consigue cuando se beben 1000 consumiciones de la categoria Vino</item>
+        <item>Se consigue cuando se beben 10 cócteles</item>
+        <item>Se consigue cuando se beben 50 cócteles</item>
+        <item>Se consigue cuando se beben 200 cócteles</item>
+        <item>Se consigue cuando se beben 500 cócteles</item>
+        <item>Se consigue cuando se beben 20 chupitos</item>
+        <item>Se consigue cuando se beben 100 chupitos</item>
+        <item>Se consigue cuando se beben 500 chupitos</item>
+        <item>Se consigue cuando se beben 1000 chupitos</item>
+        <item>Se consigue cuando obtienes el nivel Amateur en todas las categorias</item>
+        <item>Se consigue cuando obtienes el nivel Rey en todas las categorias</item>
+        <item>Se consigue cuando se realizan 10 consumiciones en el mismo día</item>
+        <item>Se consigue cuando se realizan 15 consumiciones en el mismo día</item>
+        <item>Se consigue cuando se realizan 20 consumiciones en el mismo día</item>
+        <item>Realiza una consumición de la categoría Cerveza a las 3:14 am</item>
+        <item>Realiza una consumición de la categoría Vino a las 3:14 am</item>
+        <item>Realiza una consumición de la categoría Cóctel a las 3:14 am</item>
+        <item>Realiza una consumición de la categoría Chupito a las 3:14 am</item>
+        <item>Consume una copa o cerveza entre las 5am y 5:30am</item>
+        <item>Consume una copa o cerveza entre las 5:30am y 6:30am</item>
+        <item>Consume una copa o cerveza entre las 6:30am y 7:30am</item>
+        <item>Consume una copa o cerveza entre las 7:30am y 8:30am</item>
+    </string-array>
+
+
+    <integer-array name="logros_puntos">
+        <item>20</item>
+        <item>100</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>20</item>
+        <item>100</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>20</item>
+        <item>100</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>20</item>
+        <item>100</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>500</item>
+        <item>2000</item>
+        <item>100</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>50</item>
+        <item>50</item>
+        <item>50</item>
+        <item>50</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+        <item>100</item>
+    </integer-array>
+</resources>
