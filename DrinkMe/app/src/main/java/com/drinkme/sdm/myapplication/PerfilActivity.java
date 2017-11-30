@@ -133,6 +133,7 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 spinnerAltura.setEnabled(true);
+                spinnerAltura.setSelected(true);
             }
         });
 
@@ -140,6 +141,7 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 spinnerPeso.setEnabled(true);
+                spinnerPeso.setSelected(true);
             }
         });
 
@@ -154,8 +156,11 @@ public class PerfilActivity extends AppCompatActivity {
             rbEmail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    email_t.setEnabled(true);
-                }
+                        email_t.setEnabled(true);
+                        email_t.setSelected(true);
+                    }
+
+
             });
 
 
@@ -168,14 +173,24 @@ public class PerfilActivity extends AppCompatActivity {
 
             String date_s = String.valueOf(user.getNacimiento());
 
-            fecha.setText(fecha.getText().toString().concat(" ").concat(date_s.substring(0,2).concat("/").concat(date_s.substring(2,4).concat("/").concat(date_s.substring(4)))));
-
+            fecha.setText(fecha.getText().toString().concat(" ").concat(date_s.substring(0, 2).concat("/").concat(date_s.substring(2, 4).concat("/").concat(date_s.substring(4)))));
 
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
         }
 
     }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+            email_t.setEnabled(false);
+            email_t.setSelected(false);
+            rbEmail.setChecked(false);
+            return true;
+        }
+        return super.dispatchKeyEvent(e);
+    };
 
     private void updateUserEmailForView() {
         email_t.setHint(user.getCorreo());
@@ -239,10 +254,10 @@ public class PerfilActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode== KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             setResultToMainActivity();
         }
-        return(super.onKeyDown(keyCode, event));
+        return (super.onKeyDown(keyCode, event));
     }
 
     private void setResultToMainActivity() {
@@ -254,7 +269,7 @@ public class PerfilActivity extends AppCompatActivity {
             setResult(RESULT_OK, resultIntent);
             finish();
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
             setResult(RESULT_CANCELED);
             finish();
         }

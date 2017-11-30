@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String ESTADISTICOS_KEY = "estadisticos";
     public static final int REQUEST_CODE_FOR_PERFIL_ACTIVITY = 1;
 
-    Usuario currentUser;
+    private boolean debug = true;
+    private Usuario currentUser;
     EstadisticosBD estadisticosBD;
     ArrayList<Categoria> categorias;
 
@@ -149,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             final Bundle mBundle = data.getExtras();
             currentUser = mBundle.getParcelable(PerfilActivity.KEY_FOR_USER_IN_PA);
+            if (debug)
+                Toast.makeText(getApplicationContext(),currentUser.toString(),Toast.LENGTH_LONG).show();
         }
     }
 

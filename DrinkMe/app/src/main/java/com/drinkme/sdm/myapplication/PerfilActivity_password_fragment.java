@@ -20,6 +20,7 @@ public class PerfilActivity_password_fragment extends DialogFragment {
     TextView oldPassword, newPassword;
     Button aceptar;
     View view;
+    String oldPass;
 
     @Nullable
     @Override
@@ -28,7 +29,7 @@ public class PerfilActivity_password_fragment extends DialogFragment {
         view = inflater.inflate(R.layout.fragment_perfil_activity_password, container);
 
         oldPassword = (EditText) view.findViewById(R.id.editTextPasswordActual);
-        oldPassword.setText(getArguments().getString("password", null));
+        oldPass = getArguments().getString("password", null);
 
         newPassword = (TextView) view.findViewById(R.id.editTextNewPass);
 
@@ -44,16 +45,21 @@ public class PerfilActivity_password_fragment extends DialogFragment {
 
     void onClickAceptar(View v){
 
-        String password = newPassword.getText().toString();
+        String newPassword = this.newPassword.getText().toString();
+        String oldPassword_s = oldPassword.getText().toString();
 
         PerfilActivity perfilActivity = (PerfilActivity) getActivity();
 
-        if(!password.isEmpty()){
-            perfilActivity.updateUserPassword(password);
-            Toast.makeText(perfilActivity.getApplicationContext(),"Cambio aplicado correctamente", Toast.LENGTH_SHORT).show();
-            dismiss();
+        if(!newPassword.isEmpty() && !oldPassword_s.isEmpty()){
+            if (oldPass.equalsIgnoreCase(oldPassword.getText().toString())){
+                perfilActivity.updateUserPassword(newPassword);
+                Toast.makeText(perfilActivity.getApplicationContext(),"Cambio aplicado correctamente", Toast.LENGTH_SHORT).show();
+                dismiss();
+            }else{
+                Toast.makeText(perfilActivity.getApplicationContext(),"Password antigua incorrecta", Toast.LENGTH_SHORT).show();
+            }
         }else{
-            Toast.makeText(perfilActivity.getApplicationContext(),"Introduce la nueva password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(perfilActivity.getApplicationContext(),"No has completado los campos", Toast.LENGTH_SHORT).show();
         }
 
     }

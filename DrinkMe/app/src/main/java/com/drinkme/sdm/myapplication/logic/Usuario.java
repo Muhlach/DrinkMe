@@ -197,4 +197,23 @@ public class Usuario implements Parcelable {
         parcel.writeInt(puntosExperiencia);
         parcel.writeInt(nacimiento);
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "userID='" + userID + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", correo='" + correo + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", sexo=" + sexo +
+                ", nacimiento=" + nacimiento +
+                ", altura=" + altura +
+                ", peso=" + peso +
+                ", puntosExperiencia=" + puntosExperiencia +
+                ", nivelBD=" + nivelBD +
+                ", nivel=" + nivel +
+                ", logros=" + logros +
+                '}';
+    }
 }

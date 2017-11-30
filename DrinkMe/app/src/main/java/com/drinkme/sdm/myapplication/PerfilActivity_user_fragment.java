@@ -29,7 +29,7 @@ public class PerfilActivity_user_fragment extends DialogFragment {
         oldUser = (TextView) view.findViewById(R.id.textViewUsuarioActual);
         oldUser.setText(getArguments().getString("user", null));
 
-        newUser = (TextView) view.findViewById(R.id.editTextnewUO);
+        newUser = (TextView) view.findViewById(R.id.editTextNewUO);
 
         aceptar = (Button) view.findViewById(R.id.buttonFPAAceptar);
         aceptar.setOnClickListener(new View.OnClickListener() {

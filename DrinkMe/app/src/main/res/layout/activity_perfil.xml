@@ -7,53 +7,61 @@
     tools:context="com.drinkme.sdm.myapplication.PerfilActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:id="@+id/linearLayout3"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <TextView
+            android:id="@+id/textViewNombreUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:text="NOMBRE DEL USUARIO"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textViewNombreApellidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="16dp"
+            android:text="Sergio Santano Alvarez"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
+        android:background="@android:color/background_light"
+        android:onClick="onClickVolver"
+        android:text="VOLVER"
+        android:textColor="@color/granateBase"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_cerveza_128" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textViewNombreUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingBottom="15dp"
-                android:text="NOMBRE DEL USUARIO"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/textViewNombreApellidos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nombre y Apellidos"
-                android:textSize="30sp" />
-        </LinearLayout>
-
-    </LinearLayout>
+        app:layout_constraintRight_toRightOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -63,18 +71,17 @@
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <TextView
             android:id="@+id/textViewDatos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingBottom="25dp"
+            android:paddingBottom="20dp"
             android:text="Tus datos:"
             android:textAlignment="center"
             android:textColor="@color/grisOscuro"
@@ -84,49 +91,17 @@
             android:id="@+id/textViewFechaNaci"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="12dp"
+            android:paddingBottom="16dp"
             android:text="Fecha de nacimiento:"
             android:textColor="@color/grisClaro"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textViewEmailP"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="12dp"
-                android:text="Email: "
-                android:textColor="@color/grisClaro"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/editTextEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="email"
-                android:inputType="textPersonName"
-                android:textColorHint="@color/grisClaro" />
-
-            <RadioButton
-                android:id="@+id/radioButtonEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Editar Email"
-                android:visibility="invisible" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:paddingBottom="12dp"
-            android:weightSum="1"
+            android:paddingBottom="16dp"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="0dp">
 
@@ -134,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="25dp"
-                android:text="Altura"
+                android:text="Altura:"
                 android:textSize="18sp" />
 
             <Spinner
@@ -168,19 +143,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="horizontal"
-            android:paddingBottom="12dp"
-            android:weightSum="1"
+            android:paddingBottom="16dp"
             tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp">
+            tools:layout_editor_absoluteY="0dp">
 
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="25dp"
-                android:text="Peso"
+                android:paddingRight="33dp"
+                android:text="Peso:"
                 android:textSize="18sp" />
 
             <Spinner
@@ -194,41 +167,57 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.05"
+                android:paddingLeft="5dp"
                 android:paddingRight="30dp"
                 android:text="kg."
                 android:textAlignment="center"
                 android:textColor="@color/grisClaro"
                 android:textSize="18sp"
-                tools:layout_editor_absoluteX="309dp"
-                tools:layout_editor_absoluteY="168dp" />
+                tools:layout_editor_absoluteX="161dp"
+                tools:layout_editor_absoluteY="182dp" />
 
             <RadioButton
                 android:id="@+id/radioButtonPeso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="1dp"
-                android:text="Editar Peso"
+                android:text="Editar Peso  "
                 android:visibility="invisible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="15dp"
+                android:text="Email:"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/grisClaro" />
+
+            <RadioButton
+                android:id="@+id/radioButtonEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Editar Email "
+                android:visibility="invisible" />
+
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@android:color/background_light"
-        android:onClick="onClickVolver"
-        android:text="VOLVER"
-        android:textColor="@color/granateBase"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
 </android.support.constraint.ConstraintLayout>
