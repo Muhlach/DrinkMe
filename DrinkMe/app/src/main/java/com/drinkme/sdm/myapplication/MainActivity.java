@@ -4,17 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.drinkme.sdm.myapplication.logic.Bebida;
@@ -25,7 +19,9 @@ import com.drinkme.sdm.myapplication.logic.Logro;
 import com.drinkme.sdm.myapplication.logic.LogrosBD;
 import com.drinkme.sdm.myapplication.logic.Usuario;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String USER_KEY = "usuario";
     public static final String LOGROS_KEY = "lista_logros";
     public static final String ESTADISTICOS_KEY = "estadisticos";
-
+    public static final int REQUEST_CODE_FOR_PERFIL_ACTIVITY = 1;
 
     Usuario currentUser;
     EstadisticosBD estadisticosBD;
@@ -110,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Recibe un fragmento que cargará en la pantalla que se visualiza
+     *
      * @param fragment que mostrará en pantalla
      */
     private void replaceFragment(Fragment fragment) {
@@ -120,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Metodo que asigna el menú principal a la activity
+     *
      * @param menu que asignamos
      * @return true si se ha añadido correctamente. False en caso contrario
      */
@@ -130,23 +128,33 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Método que asigna la funcionalidad a cada elemento del meú
+     *
      * @param item del menú que pulsa el usuario
      * @return
      */
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.perfil){
+        if (id == R.id.perfil) {
             Intent perfilIntent = new Intent(this, PerfilActivity.class);
             perfilIntent.putExtra(USER_KEY, currentUser);
-            startActivity(perfilIntent);
+            startActivityForResult(perfilIntent, REQUEST_CODE_FOR_PERFIL_ACTIVITY);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            final Bundle mBundle = data.getExtras();
+            currentUser = mBundle.getParcelable(PerfilActivity.KEY_FOR_USER_IN_PA);
+        }
+    }
+
     /**
      * Metodo que carga todas las categoriasArrayList con sus correspondientes bebeidas en la aplicacion.
-     *
+     * <p>
      * ACTUALMENTE ES UN METODO DE PRUEBA QUE CREA LOS OBJETOS
      *
      * @return
@@ -182,10 +190,18 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Bebida> bebidasCoctel = new ArrayList<Bebida>();
         ArrayList<Bebida> bebidasChupito = new ArrayList<Bebida>();
 
-        bebidasCerveza.add(b);bebidasCerveza.add(b1);bebidasCerveza.add(b2);
-        bebidasVino.add(b3);bebidasVino.add(b4);bebidasVino.add(b5);
-        bebidasCoctel.add(b7);bebidasCoctel.add(b8);bebidasCoctel.add(b9);
-        bebidasChupito.add(b10);bebidasChupito.add(b11);bebidasChupito.add(b12);
+        bebidasCerveza.add(b);
+        bebidasCerveza.add(b1);
+        bebidasCerveza.add(b2);
+        bebidasVino.add(b3);
+        bebidasVino.add(b4);
+        bebidasVino.add(b5);
+        bebidasCoctel.add(b7);
+        bebidasCoctel.add(b8);
+        bebidasCoctel.add(b9);
+        bebidasChupito.add(b10);
+        bebidasChupito.add(b11);
+        bebidasChupito.add(b12);
 
         //Asignamos los arrays a las categoriasArrayList
         vino.setBebidas(bebidasVino);
@@ -205,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Metodo que crea la lista de estadisticos.
+     *
      * @return
      */
     private EstadisticosBD cargarEstadisticos() {
@@ -227,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Método que carga el usuario logeado en la main activity
+     *
      * @return
      */
     private Usuario cargarUsuario() {
@@ -237,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
         user.setSexo(Usuario.HOMBRE);
         user.setCorreo("correo@prueba.es");
         user.setContraseña("1234");
-        user.setNacimiento(new Date(1996,3,9));
+        user.setNacimiento(11051997);
         user.setPuntosExperiencia(400);
         user.setPeso(80);
         user.setAltura(175);
@@ -249,20 +267,21 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Metodo que carga los logros del usuario
+     *
      * @param userID
      * @return
      */
     private LogrosBD cargaLogros(String userID) {
-        Logro l= new Logro(1, "Cervecero Principiante", "");
-        Logro l1= new Logro(2, "Cervecero Avanzado", "");
-        Logro l2= new Logro(3, "Coctelero Principiante", "");
-        Logro l3= new Logro(4, "Fin de Semana Cervecero", "");
-        Logro l4= new Logro(5, "Vamos de Tranquis", "");
-        Logro l5= new Logro(1, "Cervecero Principiante", "");
-        Logro l6= new Logro(2, "Cervecero Avanzado", "");
-        Logro l7= new Logro(3, "Coctelero Principiante", "");
-        Logro l8= new Logro(4, "Fin de Semana Cervecero", "");
-        Logro l9= new Logro(5, "Vamos de Tranquis", "");
+        Logro l = new Logro(1, "Cervecero Principiante", "");
+        Logro l1 = new Logro(2, "Cervecero Avanzado", "");
+        Logro l2 = new Logro(3, "Coctelero Principiante", "");
+        Logro l3 = new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l4 = new Logro(5, "Vamos de Tranquis", "");
+        Logro l5 = new Logro(1, "Cervecero Principiante", "");
+        Logro l6 = new Logro(2, "Cervecero Avanzado", "");
+        Logro l7 = new Logro(3, "Coctelero Principiante", "");
+        Logro l8 = new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l9 = new Logro(5, "Vamos de Tranquis", "");
         l2.setSuperado(true);
         l4.setSuperado(true);
         l5.setSuperado(true);
@@ -270,14 +289,38 @@ public class MainActivity extends AppCompatActivity {
         l9.setSuperado(true);
 
         ArrayList<Logro> todos = new ArrayList<Logro>();
-        todos.add(l);todos.add(l1);todos.add(l2);todos.add(l3);todos.add(l4);todos.add(l5);
-        todos.add(l6);todos.add(l7);todos.add(l8);todos.add(l9);
+        todos.add(l);
+        todos.add(l1);
+        todos.add(l2);
+        todos.add(l3);
+        todos.add(l4);
+        todos.add(l5);
+        todos.add(l6);
+        todos.add(l7);
+        todos.add(l8);
+        todos.add(l9);
 
         ArrayList<Logro> superados = new ArrayList<Logro>();
-        superados.add(l2);superados.add(l4);superados.add(l5);superados.add(l7);superados.add(l9);
+        superados.add(l2);
+        superados.add(l4);
+        superados.add(l5);
+        superados.add(l7);
+        superados.add(l9);
 
         LogrosBD result = new LogrosBD(todos, superados);
         return result;
+    }
+
+    private  Date getDate(int day, int month, int year) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, year);
+        cal.set(Calendar.MONTH, month);
+        cal.set(Calendar.DAY_OF_MONTH, day);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTime();
     }
 
 

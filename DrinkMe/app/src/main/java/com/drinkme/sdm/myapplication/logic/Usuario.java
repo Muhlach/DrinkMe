@@ -18,7 +18,7 @@ public class Usuario implements Parcelable {
     private String userID, nombre, apellidos;
     private String correo, contraseña;
     private boolean sexo;
-    private Date nacimiento;
+    private int nacimiento;
     private int altura, peso;
     private int puntosExperiencia;
     private NivelBD nivelBD;
@@ -40,6 +40,7 @@ public class Usuario implements Parcelable {
         altura = in.readInt();
         peso = in.readInt();
         puntosExperiencia = in.readInt();
+        nacimiento = in.readInt();
     }
 
     public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {
@@ -112,11 +113,11 @@ public class Usuario implements Parcelable {
         this.sexo = sexo;
     }
 
-    public Date getNacimiento() {
+    public int getNacimiento() {
         return nacimiento;
     }
 
-    public void setNacimiento(Date nacimiento) {
+    public void setNacimiento(int nacimiento) {
         this.nacimiento = nacimiento;
     }
 
@@ -194,5 +195,6 @@ public class Usuario implements Parcelable {
         parcel.writeInt(altura);
         parcel.writeInt(peso);
         parcel.writeInt(puntosExperiencia);
+        parcel.writeInt(nacimiento);
     }
 }

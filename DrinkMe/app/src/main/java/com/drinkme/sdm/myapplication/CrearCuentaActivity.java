@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.drinkme.sdm.myapplication.entity.Usuario;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class CrearCuentaActivity extends AppCompatActivity {
 
     private Spinner spinnerSex;
@@ -52,11 +55,15 @@ public class CrearCuentaActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.altura_array, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerAltura.setAdapter(adapter2);
+        final List<String> listAltura = Arrays.asList(getResources().getStringArray(R.array.altura_array));
+        spinnerAltura.setSelection(listAltura.size()/2);
 
         spinnerPeso = (Spinner) findViewById(R.id.spinnerPeso);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.peso_array, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPeso.setAdapter(adapter3);
+        final List<String> listPeso = Arrays.asList(getResources().getStringArray(R.array.ano_array));
+        spinnerPeso.setSelection(listPeso.size()/2);
 
         spinnerDia = (Spinner) findViewById(R.id.spinnerDia);
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this, R.array.dia_array, android.R.layout.simple_spinner_item);
@@ -72,6 +79,8 @@ public class CrearCuentaActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this, R.array.ano_array, android.R.layout.simple_spinner_item);
         adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerAno.setAdapter(adapter6);
+        final List<String> listAno = Arrays.asList(getResources().getStringArray(R.array.ano_array));
+        spinnerAno.setSelection(listAno.size()-20);
     }
 
     public void onClickCrearCuentas(View v) {

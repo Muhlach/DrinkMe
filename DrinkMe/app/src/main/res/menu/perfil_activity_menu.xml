@@ -9,6 +9,11 @@
         android:id="@+id/itemEditarUO"
         android:title="Editar usuario" />
     <item
-        android:id="@+id/itemEditarEmail"
-        android:title="Editar email" />
+        android:id="@+id/itemCerrarSesion"
+        android:title="Cerrar Sesion" />
+    <item
+        android:id="@+id/itemLapiz"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Item"
+        app:showAsAction="always" />
 </menu>

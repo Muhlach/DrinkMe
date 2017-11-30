@@ -15,19 +15,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText user_et;
     private EditText password_et;
-    private SharedPreferences mSharedPreferences;
+    private static SharedPreferences mSharedPreferences;
 
     /**
      * Indica si se mantiene la sesión iniciada
      */
     private boolean holdSesion;
     private CheckBox checkBox;
-
-    /**
-     * Para debugear
-     */
-    private boolean debug = true;
-
 
 
     @Override
@@ -59,8 +53,6 @@ public class LoginActivity extends AppCompatActivity {
             password_et = (EditText) findViewById(R.id.editTextPassword);
             checkBox = (CheckBox) findViewById(R.id.checkBoxMantenerSesion);
         }else {
-            if(debug)
-            deleteSharedPreferences();
             finish();
             launchMainActivity();
         }
@@ -119,7 +111,8 @@ public class LoginActivity extends AppCompatActivity {
         mEditor.commit();
     }
 
-    private void deleteSharedPreferences(){
+
+    public static void deleteSharedPreferences(){
         final SharedPreferences.Editor mEditor =
                 mSharedPreferences.edit();
         mEditor.putString("user", null);
