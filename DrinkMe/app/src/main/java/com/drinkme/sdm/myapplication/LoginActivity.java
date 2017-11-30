@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +13,16 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.drinkme.sdm.myapplication.database.MyDatabase;
+import com.drinkme.sdm.myapplication.entity.Usuario;
+import com.drinkme.sdm.myapplication.utils.DatabaseInitializer;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText user_et;
     private EditText password_et;
     private SharedPreferences mSharedPreferences;
+    private Usuario usuario;
 
     /**
      * Indica si se mantiene la sesión iniciada
@@ -27,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
      * Para debugear
      */
     private boolean debug = true;
+
+    MyDatabase database;
 
 
 
@@ -46,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        database = MyDatabase.getDatabase(getApplicationContext());
 
         /**
          *
@@ -68,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void launchMainActivity(){
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+       // intent.putExtra("database",database);
         startActivity(intent);
     }
 
@@ -101,12 +112,13 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean checkUserAndPassword(String user, String password){
 
+        Usuario usuarioActivo = database.usuarioDAO().findByNombreAndContraseña(user,password);
+        if(usuarioActivo!=null){
+            usuario = usuarioActivo;
+            return true;
+        }
 
-        //si el usuario y su contrasenia está en la bbdd return true
-
-        //si no return false
-        
-        return true;
+        return false;
     }
 
     private void saveInSharedPreferences(String user, String password){
@@ -124,4 +136,10 @@ public class LoginActivity extends AppCompatActivity {
         mEditor.putString("password",null);
         mEditor.commit();
     }
+    @Override
+    protected void onDestroy() {
+        MyDatabase.destroyInstance();
+        super.onDestroy();
+    }
+
 }

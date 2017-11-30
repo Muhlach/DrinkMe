@@ -38,6 +38,11 @@ public class DatabaseInitializer {
         List<Usuario> userList = db.usuarioDAO().getAll();
         Log.d(DatabaseInitializer.TAG, "Rows Count: " + userList.size());*/
     }
+    public static boolean comprobarLogin(String nombre, String contraseña){
+
+
+        return false;
+    }
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 

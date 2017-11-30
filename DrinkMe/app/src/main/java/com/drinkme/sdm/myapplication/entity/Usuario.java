@@ -45,6 +45,7 @@ public class Usuario {
         this.altura = altura;
         this.peso = peso;
     }
+    public Usuario(){}
 
     public void setId(int id) {
         this.id = id;

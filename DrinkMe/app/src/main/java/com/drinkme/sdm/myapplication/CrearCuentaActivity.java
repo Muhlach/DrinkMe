@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Usuario;
 
 public class CrearCuentaActivity extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
      * Para debugear
      */
     private boolean debug = true;
+    MyDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crear_cuenta);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         findViews();
+        database =  MyDatabase.getDatabase(getApplicationContext());
     }
 
     private void findViews() {
@@ -102,8 +105,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
              *
              * El objeto usuario ya está creado, debería insertarse en la BBDD
              */
-
-
+            database.usuarioDAO().insertAll(user);
 
 
             //insertar en la bbdd;
