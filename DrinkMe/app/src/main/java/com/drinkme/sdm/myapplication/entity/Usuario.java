@@ -45,6 +45,7 @@ public class Usuario {
         this.altura = altura;
         this.peso = peso;
     }
+    public Usuario(){}
 
     public void setId(int id) {
         this.id = id;
@@ -139,7 +140,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "UsuarioBin{" +
                 "nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", email='" + email + '\'' +

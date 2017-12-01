@@ -1,5 +1,6 @@
 package com.drinkme.sdm.myapplication;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Usuario;
 
 import java.util.Arrays;
@@ -28,6 +30,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
      * Para debugear
      */
     private boolean debug = true;
+    MyDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crear_cuenta);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         findViews();
+        database =  MyDatabase.getDatabase(getApplicationContext());
     }
 
     private void findViews() {
@@ -104,6 +108,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
             Integer anio = Integer.parseInt(spinnerAno.getSelectedItem().toString());
             int fecha_i = dias * 1000000 + meses * 10000 + anio;
             Usuario user = new Usuario(nombre, apellidos, correo, password, fecha_i, spinnerSex.getSelectedItem().toString(), Integer.parseInt(spinnerAltura.getSelectedItem().toString()), Integer.parseInt(spinnerPeso.getSelectedItem().toString()));
+
             if(debug)
             Toast.makeText(getApplicationContext(),user.toString(),Toast.LENGTH_LONG).show();
 
@@ -111,10 +116,8 @@ public class CrearCuentaActivity extends AppCompatActivity {
              *
              * El objeto usuario ya está creado, debería insertarse en la BBDD
              */
-
-
-            //TODO:
-
+            database.usuarioDAO().insertAll(user);
+            this.finish();
 
             //insertar en la bbdd;
 

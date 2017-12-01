@@ -23,6 +23,10 @@ public interface UsuarioDAO {
     @Query("SELECT * FROM usuarios WHERE nombre LIKE :nombre LIMIT 1")
     Usuario findByNombre(String nombre);
 
+    @Query("SELECT * FROM usuarios WHERE nombre LIKE :nombre and contrasena LIKE :contrasena LIMIT 1")
+    Usuario findByNombreAndContraseña(String nombre,String contrasena);
+
+
     @Insert
     void insertAll(Usuario... usuarios);
 

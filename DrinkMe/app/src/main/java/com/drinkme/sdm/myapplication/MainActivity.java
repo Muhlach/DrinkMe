@@ -4,11 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.drinkme.sdm.myapplication.logic.Bebida;
@@ -17,11 +23,9 @@ import com.drinkme.sdm.myapplication.logic.Estadistico;
 import com.drinkme.sdm.myapplication.logic.EstadisticosBD;
 import com.drinkme.sdm.myapplication.logic.Logro;
 import com.drinkme.sdm.myapplication.logic.LogrosBD;
-import com.drinkme.sdm.myapplication.logic.Usuario;
+import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_FOR_PERFIL_ACTIVITY = 1;
 
     private boolean debug = true;
-    private Usuario currentUser;
+    UsuarioBin currentUser;
     EstadisticosBD estadisticosBD;
     ArrayList<Categoria> categorias;
 
@@ -107,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Recibe un fragmento que cargará en la pantalla que se visualiza
-     *
      * @param fragment que mostrará en pantalla
      */
     private void replaceFragment(Fragment fragment) {
@@ -118,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Metodo que asigna el menú principal a la activity
-     *
      * @param menu que asignamos
      * @return true si se ha añadido correctamente. False en caso contrario
      */
@@ -129,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Método que asigna la funcionalidad a cada elemento del meú
-     *
      * @param item del menú que pulsa el usuario
      * @return
      */
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Metodo que carga todas las categoriasArrayList con sus correspondientes bebeidas en la aplicacion.
-     * <p>
+     *
      * ACTUALMENTE ES UN METODO DE PRUEBA QUE CREA LOS OBJETOS
      *
      * @return
@@ -224,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Metodo que crea la lista de estadisticos.
-     *
      * @return
      */
     private EstadisticosBD cargarEstadisticos() {
@@ -247,15 +247,14 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Método que carga el usuario logeado en la main activity
-     *
      * @return
      */
-    private Usuario cargarUsuario() {
-        Usuario user = new Usuario();
+    private UsuarioBin cargarUsuario() {
+        UsuarioBin user = new UsuarioBin();
         user.setUserID("pruebas1");
         user.setNombre("Sergio");
         user.setApellidos("Santano Álvarez");
-        user.setSexo(Usuario.HOMBRE);
+        user.setSexo(UsuarioBin.HOMBRE);
         user.setCorreo("correo@prueba.es");
         user.setContraseña("1234");
         user.setNacimiento(11051997);
@@ -270,7 +269,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Metodo que carga los logros del usuario
-     *
      * @param userID
      * @return
      */
@@ -312,18 +310,6 @@ public class MainActivity extends AppCompatActivity {
 
         LogrosBD result = new LogrosBD(todos, superados);
         return result;
-    }
-
-    private  Date getDate(int day, int month, int year) {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, year);
-        cal.set(Calendar.MONTH, month);
-        cal.set(Calendar.DAY_OF_MONTH, day);
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal.getTime();
     }
 
 
