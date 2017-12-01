@@ -16,7 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.drinkme.sdm.myapplication.logic.Usuario;
+import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -34,7 +34,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     private Spinner spinnerAltura;
     private Spinner spinnerPeso;
-    private Usuario user;
+    private UsuarioBin user;
     private RadioButton rbAltura, rbPeso;
     private TextView nombreUO;
     private EditText email_t;
