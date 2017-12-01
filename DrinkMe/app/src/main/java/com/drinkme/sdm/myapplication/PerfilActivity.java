@@ -50,6 +50,9 @@ public class PerfilActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
+        /**
+         * Obtenemos el usuario del bundle
+         */
         user = bundle.getParcelable(MainActivity.USER_KEY);
 
         findViews();
@@ -57,6 +60,9 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Metodo encargado de inicializar todas las vistas
+     */
     private void findViews() {
 
         rbAltura = (RadioButton) findViewById(R.id.radioButtonAltura);
@@ -190,7 +196,7 @@ public class PerfilActivity extends AppCompatActivity {
             return true;
         }
         return super.dispatchKeyEvent(e);
-    };
+    }
 
     private void updateUserEmailForView() {
         email_t.setHint(user.getCorreo());
@@ -260,6 +266,9 @@ public class PerfilActivity extends AppCompatActivity {
         return (super.onKeyDown(keyCode, event));
     }
 
+    /**
+     * Metodo encargado de comunicar a main activity que la perfilActivity ha terminado
+     */
     private void setResultToMainActivity() {
         try {
             final Intent resultIntent = new Intent();
