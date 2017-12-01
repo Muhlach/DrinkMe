@@ -24,7 +24,7 @@ public class Nivel {
      * @param nivelID el nivel del usuario
      */
     private void asignaRango(int nivelID) {
-        if(nivelID>=1 && nivelID<5) {
+        if(nivelID>=0 && nivelID<5) {
             rangoBebedor = RANGOS_BEBEDOR[0];
         }
         else if(nivelID>=5 && nivelID<10) {

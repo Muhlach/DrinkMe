@@ -48,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_layout);
 
         /** Carga los datos de usuario, bebidasArrayList y estadisticos **/
-        currentUser = cargarUsuario();
+        Bundle bundleRecibido = getIntent().getExtras();
+        currentUser = bundleRecibido.getParcelable(LoginActivity.KEY_USUARIO_LOGEADO);
+        int aux = currentUser.getPuntosExperiencia();
+        currentUser.setPuntosExperiencia(aux);
+        cargaLogros();
         categorias = cargarCategorias();
         estadisticosBD = cargarEstadisticos();
 
@@ -245,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
         return categorias;
     }
 
+<<<<<<< HEAD
     /**
      * Método que carga el usuario logeado en la main activity
      * @return
@@ -266,12 +271,14 @@ public class MainActivity extends AppCompatActivity {
 
         return user;
     }
+=======
+>>>>>>> 29e06d0b5d17394fe853eec40be0692021adf0bf
 
     /**
      * Metodo que carga los logros del usuario
-     * @param userID
      * @return
      */
+<<<<<<< HEAD
     private LogrosBD cargaLogros(String userID) {
         Logro l = new Logro(1, "Cervecero Principiante", "");
         Logro l1 = new Logro(2, "Cervecero Avanzado", "");
@@ -283,6 +290,19 @@ public class MainActivity extends AppCompatActivity {
         Logro l7 = new Logro(3, "Coctelero Principiante", "");
         Logro l8 = new Logro(4, "Fin de Semana Cervecero", "");
         Logro l9 = new Logro(5, "Vamos de Tranquis", "");
+=======
+    public void cargaLogros() {
+        Logro l= new Logro(1, "Cervecero Principiante", "");
+        Logro l1= new Logro(2, "Cervecero Avanzado", "");
+        Logro l2= new Logro(3, "Coctelero Principiante", "");
+        Logro l3= new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l4= new Logro(5, "Vamos de Tranquis", "");
+        Logro l5= new Logro(1, "Cervecero Principiante", "");
+        Logro l6= new Logro(2, "Cervecero Avanzado", "");
+        Logro l7= new Logro(3, "Coctelero Principiante", "");
+        Logro l8= new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l9= new Logro(5, "Vamos de Tranquis", "");
+>>>>>>> 29e06d0b5d17394fe853eec40be0692021adf0bf
         l2.setSuperado(true);
         l4.setSuperado(true);
         l5.setSuperado(true);
@@ -309,7 +329,8 @@ public class MainActivity extends AppCompatActivity {
         superados.add(l9);
 
         LogrosBD result = new LogrosBD(todos, superados);
-        return result;
+
+        currentUser.setLogros(result);
     }
 
 
