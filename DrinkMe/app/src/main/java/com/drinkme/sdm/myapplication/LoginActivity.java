@@ -20,6 +20,7 @@ import com.drinkme.sdm.myapplication.utils.DatabaseInitializer;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static final String KEY_USUARIO_LOGEADO = "usuarioLogueado";
     private EditText user_et;
     private EditText password_et;
     private SharedPreferences mSharedPreferences;
@@ -73,16 +74,29 @@ public class LoginActivity extends AppCompatActivity {
             if(debug)
             deleteSharedPreferences();
             finish();
+            usuario = database.usuarioDAO().findByNombreAndContraseña(user,password);
             launchMainActivity();
         }
     }
 
     private void launchMainActivity(){
+        UsuarioBin usuarioLogeado = convierteUsuarioABin(usuario);
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-       // intent.putExtra("database",database);
+        intent.putExtra(KEY_USUARIO_LOGEADO,usuarioLogeado);
         startActivity(intent);
     }
 
+    private UsuarioBin convierteUsuarioABin(Usuario usuario) {
+        UsuarioBin result = new UsuarioBin();
+        result.setNombre(usuario.getNombre());
+        result.setApellidos(usuario.getApellidos());
+        result.setCorreo(usuario.getEmail());
+        result.setContraseña(usuario.getContrasena());
+        result.setAltura(usuario.getAltura());
+        result.setPeso(usuario.getPeso());
+        result.setPuntosExperiencia(usuario.getPuntuacion());
+        return result;
+    }
 
     public void botonCrearCuentaOnClick(View v){
         Intent intent = new Intent(LoginActivity.this, CrearCuentaActivity.class);

@@ -40,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_layout);
 
         /** Carga los datos de usuario, bebidasArrayList y estadisticos **/
-        currentUser = cargarUsuario();
+        Bundle bundleRecibido = getIntent().getExtras();
+        currentUser = bundleRecibido.getParcelable(LoginActivity.KEY_USUARIO_LOGEADO);
+        int aux = currentUser.getPuntosExperiencia();
+        currentUser.setPuntosExperiencia(aux);
+        cargaLogros();
         categorias = cargarCategorias();
         estadisticosBD = cargarEstadisticos();
 
@@ -218,34 +222,12 @@ public class MainActivity extends AppCompatActivity {
         return categorias;
     }
 
-    /**
-     * Método que carga el usuario logeado en la main activity
-     * @return
-     */
-    private UsuarioBin cargarUsuario() {
-        UsuarioBin user = new UsuarioBin();
-        user.setUserID("pruebas1");
-        user.setNombre("Sergio");
-        user.setApellidos("Santano Álvarez");
-        user.setSexo(UsuarioBin.HOMBRE);
-        user.setCorreo("correo@prueba.es");
-        user.setContraseña("1234");
-        user.setNacimiento(new Date(1996,3,9));
-        user.setPuntosExperiencia(400);
-        user.setPeso(80);
-        user.setAltura(175);
-        user.setLogros(new LogrosBD());
-        user.setLogros(cargaLogros(user.getUserID()));
-
-        return user;
-    }
 
     /**
      * Metodo que carga los logros del usuario
-     * @param userID
      * @return
      */
-    private LogrosBD cargaLogros(String userID) {
+    public void cargaLogros() {
         Logro l= new Logro(1, "Cervecero Principiante", "");
         Logro l1= new Logro(2, "Cervecero Avanzado", "");
         Logro l2= new Logro(3, "Coctelero Principiante", "");
@@ -270,7 +252,8 @@ public class MainActivity extends AppCompatActivity {
         superados.add(l2);superados.add(l4);superados.add(l5);superados.add(l7);superados.add(l9);
 
         LogrosBD result = new LogrosBD(todos, superados);
-        return result;
+
+        currentUser.setLogros(result);
     }
 
 

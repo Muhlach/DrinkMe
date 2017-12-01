@@ -98,7 +98,10 @@ public class CrearCuentaActivity extends AppCompatActivity {
             Integer meses = spinnerMes.getSelectedItemPosition()+1;
             Integer anio = Integer.parseInt(spinnerAno.getSelectedItem().toString());
             int fecha_i = dias * 1000000 + meses * 10000 + anio;
-            Usuario user = new Usuario(nombre, apellidos, correo, password, fecha_i, spinnerSex.getSelectedItem().toString(), Integer.parseInt(spinnerAltura.getSelectedItem().toString()), Integer.parseInt(spinnerPeso.getSelectedItem().toString()));
+            Usuario user = new Usuario(nombre, apellidos, correo, password, fecha_i,
+                    spinnerSex.getSelectedItem().toString(),
+                    Integer.parseInt(spinnerAltura.getSelectedItem().toString()),
+                    Integer.parseInt(spinnerPeso.getSelectedItem().toString()), 0);
 
             if(debug)
             Toast.makeText(getApplicationContext(),user.toString(),Toast.LENGTH_LONG).show();

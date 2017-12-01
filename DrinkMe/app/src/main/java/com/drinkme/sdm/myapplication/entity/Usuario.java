@@ -30,12 +30,11 @@ public class Usuario {
     private int altura;
     @ColumnInfo(name = "peso")
     private int peso;
-    @ColumnInfo(name = "nivel")
-    private int nivel;
     @ColumnInfo(name = "puntuacion")
     private int puntuacion;
 
-    public Usuario(String nombre, String apellidos, String email, String contrasena, int fecha, String sexo, int altura, int peso) {
+    public Usuario(String nombre, String apellidos, String email, String contrasena,
+                   int fecha, String sexo, int altura, int peso, int puntuacion) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
@@ -44,6 +43,7 @@ public class Usuario {
         this.sexo = sexo;
         this.altura = altura;
         this.peso = peso;
+        this.puntuacion = puntuacion;
     }
     public Usuario(){}
 
@@ -88,10 +88,6 @@ public class Usuario {
         this.peso = peso;
     }
 
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
-    }
-
     public void setPuntuacion(int puntuacion) {
         this.puntuacion = puntuacion;
     }
@@ -129,9 +125,6 @@ public class Usuario {
         return peso;
     }
 
-    public int getNivel() {
-        return nivel;
-    }
 
     public int getPuntuacion() {
         return puntuacion;
