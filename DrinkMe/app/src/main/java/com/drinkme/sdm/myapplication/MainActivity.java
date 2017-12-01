@@ -4,18 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.drinkme.sdm.myapplication.logic.Bebida;
 import com.drinkme.sdm.myapplication.logic.Categoria;
@@ -23,7 +16,7 @@ import com.drinkme.sdm.myapplication.logic.Estadistico;
 import com.drinkme.sdm.myapplication.logic.EstadisticosBD;
 import com.drinkme.sdm.myapplication.logic.Logro;
 import com.drinkme.sdm.myapplication.logic.LogrosBD;
-import com.drinkme.sdm.myapplication.logic.Usuario;
+import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String ESTADISTICOS_KEY = "estadisticos";
 
 
-    Usuario currentUser;
+    UsuarioBin currentUser;
     EstadisticosBD estadisticosBD;
     ArrayList<Categoria> categorias;
 
@@ -229,12 +222,12 @@ public class MainActivity extends AppCompatActivity {
      * Método que carga el usuario logeado en la main activity
      * @return
      */
-    private Usuario cargarUsuario() {
-        Usuario user = new Usuario();
+    private UsuarioBin cargarUsuario() {
+        UsuarioBin user = new UsuarioBin();
         user.setUserID("pruebas1");
         user.setNombre("Sergio");
         user.setApellidos("Santano Álvarez");
-        user.setSexo(Usuario.HOMBRE);
+        user.setSexo(UsuarioBin.HOMBRE);
         user.setCorreo("correo@prueba.es");
         user.setContraseña("1234");
         user.setNacimiento(new Date(1996,3,9));

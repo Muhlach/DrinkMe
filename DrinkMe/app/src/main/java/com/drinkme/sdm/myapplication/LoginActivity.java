@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Usuario;
+import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 import com.drinkme.sdm.myapplication.utils.DatabaseInitializer;
 
 public class LoginActivity extends AppCompatActivity {
@@ -100,8 +101,11 @@ public class LoginActivity extends AppCompatActivity {
             launchMainActivity();
             finish();
         }
-        else
-            Toast.makeText(getApplicationContext(),"Datos incorrectos", Toast.LENGTH_SHORT);
+        else {
+            Toast.makeText(getApplicationContext(), "Datos incorrectos", Toast.LENGTH_SHORT).show();
+            password_et.requestFocus();
+            password_et.setText("");
+        }
     }
 
     /**
@@ -117,8 +121,9 @@ public class LoginActivity extends AppCompatActivity {
             usuario = usuarioActivo;
             return true;
         }
-
         return false;
+
+
     }
 
     private void saveInSharedPreferences(String user, String password){

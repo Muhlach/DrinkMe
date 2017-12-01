@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by ssant on 24/11/2017.
  */
 
-public class Usuario implements Parcelable {
+public class UsuarioBin implements Parcelable {
 
     public final static boolean HOMBRE = true;
     public final static boolean MUJER = false;
@@ -26,11 +26,11 @@ public class Usuario implements Parcelable {
     private LogrosBD logros;
 
 
-    public Usuario() {
+    public UsuarioBin() {
 
     }
 
-    protected Usuario(Parcel in) {
+    protected UsuarioBin(Parcel in) {
         userID = in.readString();
         nombre = in.readString();
         apellidos = in.readString();
@@ -42,15 +42,15 @@ public class Usuario implements Parcelable {
         puntosExperiencia = in.readInt();
     }
 
-    public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {
+    public static final Creator<UsuarioBin> CREATOR = new Creator<UsuarioBin>() {
         @Override
-        public Usuario createFromParcel(Parcel in) {
-            return new Usuario(in);
+        public UsuarioBin createFromParcel(Parcel in) {
+            return new UsuarioBin(in);
         }
 
         @Override
-        public Usuario[] newArray(int size) {
-            return new Usuario[size];
+        public UsuarioBin[] newArray(int size) {
+            return new UsuarioBin[size];
         }
     };
 

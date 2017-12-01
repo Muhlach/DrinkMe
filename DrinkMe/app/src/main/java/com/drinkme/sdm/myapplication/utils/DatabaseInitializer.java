@@ -30,12 +30,12 @@ public class DatabaseInitializer {
     }
 
     private static void populateWithTestData(MyDatabase db) {
-/*       Usuario user = new Usuario();
+/*       UsuarioBin user = new UsuarioBin();
         user.setNombre("Ajay");
         user.setApellidos("Saini");
         addUser(db, user);
 
-        List<Usuario> userList = db.usuarioDAO().getAll();
+        List<UsuarioBin> userList = db.usuarioDAO().getAll();
         Log.d(DatabaseInitializer.TAG, "Rows Count: " + userList.size());*/
     }
     public static boolean comprobarLogin(String nombre, String contraseña){
