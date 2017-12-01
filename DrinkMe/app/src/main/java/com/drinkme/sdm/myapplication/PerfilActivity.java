@@ -187,12 +187,18 @@ public class PerfilActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * metodo encargado de actualizar el correo
+     * @param e
+     * @return
+     */
     @Override
     public boolean dispatchKeyEvent(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
             email_t.setEnabled(false);
             email_t.setSelected(false);
             rbEmail.setChecked(false);
+            user.setCorreo(email_t.getText().toString());
             return true;
         }
         return super.dispatchKeyEvent(e);
