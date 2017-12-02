@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.perfil) {
+        if (id == R.id.perfil){
             Intent perfilIntent = new Intent(this, PerfilActivity.class);
             perfilIntent.putExtra(USER_KEY, currentUser);
             startActivityForResult(perfilIntent, REQUEST_CODE_FOR_PERFIL_ACTIVITY);
@@ -198,18 +198,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Bebida> bebidasCoctel = new ArrayList<Bebida>();
         ArrayList<Bebida> bebidasChupito = new ArrayList<Bebida>();
 
-        bebidasCerveza.add(b);
-        bebidasCerveza.add(b1);
-        bebidasCerveza.add(b2);
-        bebidasVino.add(b3);
-        bebidasVino.add(b4);
-        bebidasVino.add(b5);
-        bebidasCoctel.add(b7);
-        bebidasCoctel.add(b8);
-        bebidasCoctel.add(b9);
-        bebidasChupito.add(b10);
-        bebidasChupito.add(b11);
-        bebidasChupito.add(b12);
+        bebidasCerveza.add(b);bebidasCerveza.add(b1);bebidasCerveza.add(b2);
+        bebidasVino.add(b3);bebidasVino.add(b4);bebidasVino.add(b5);
+        bebidasCoctel.add(b7);bebidasCoctel.add(b8);bebidasCoctel.add(b9);
+        bebidasChupito.add(b10);bebidasChupito.add(b11);bebidasChupito.add(b12);
 
         //Asignamos los arrays a las categoriasArrayList
         vino.setBebidas(bebidasVino);
@@ -249,48 +241,11 @@ public class MainActivity extends AppCompatActivity {
         return categorias;
     }
 
-<<<<<<< HEAD
-    /**
-     * Método que carga el usuario logeado en la main activity
-     * @return
-     */
-    private UsuarioBin cargarUsuario() {
-        UsuarioBin user = new UsuarioBin();
-        user.setUserID("pruebas1");
-        user.setNombre("Sergio");
-        user.setApellidos("Santano Álvarez");
-        user.setSexo(UsuarioBin.HOMBRE);
-        user.setCorreo("correo@prueba.es");
-        user.setContraseña("1234");
-        user.setNacimiento(11051997);
-        user.setPuntosExperiencia(400);
-        user.setPeso(80);
-        user.setAltura(175);
-        user.setLogros(new LogrosBD());
-        user.setLogros(cargaLogros(user.getUserID()));
-
-        return user;
-    }
-=======
->>>>>>> 29e06d0b5d17394fe853eec40be0692021adf0bf
 
     /**
      * Metodo que carga los logros del usuario
      * @return
      */
-<<<<<<< HEAD
-    private LogrosBD cargaLogros(String userID) {
-        Logro l = new Logro(1, "Cervecero Principiante", "");
-        Logro l1 = new Logro(2, "Cervecero Avanzado", "");
-        Logro l2 = new Logro(3, "Coctelero Principiante", "");
-        Logro l3 = new Logro(4, "Fin de Semana Cervecero", "");
-        Logro l4 = new Logro(5, "Vamos de Tranquis", "");
-        Logro l5 = new Logro(1, "Cervecero Principiante", "");
-        Logro l6 = new Logro(2, "Cervecero Avanzado", "");
-        Logro l7 = new Logro(3, "Coctelero Principiante", "");
-        Logro l8 = new Logro(4, "Fin de Semana Cervecero", "");
-        Logro l9 = new Logro(5, "Vamos de Tranquis", "");
-=======
     public void cargaLogros() {
         Logro l= new Logro(1, "Cervecero Principiante", "");
         Logro l1= new Logro(2, "Cervecero Avanzado", "");
@@ -302,7 +257,6 @@ public class MainActivity extends AppCompatActivity {
         Logro l7= new Logro(3, "Coctelero Principiante", "");
         Logro l8= new Logro(4, "Fin de Semana Cervecero", "");
         Logro l9= new Logro(5, "Vamos de Tranquis", "");
->>>>>>> 29e06d0b5d17394fe853eec40be0692021adf0bf
         l2.setSuperado(true);
         l4.setSuperado(true);
         l5.setSuperado(true);
@@ -310,23 +264,11 @@ public class MainActivity extends AppCompatActivity {
         l9.setSuperado(true);
 
         ArrayList<Logro> todos = new ArrayList<Logro>();
-        todos.add(l);
-        todos.add(l1);
-        todos.add(l2);
-        todos.add(l3);
-        todos.add(l4);
-        todos.add(l5);
-        todos.add(l6);
-        todos.add(l7);
-        todos.add(l8);
-        todos.add(l9);
+        todos.add(l);todos.add(l1);todos.add(l2);todos.add(l3);todos.add(l4);todos.add(l5);
+        todos.add(l6);todos.add(l7);todos.add(l8);todos.add(l9);
 
         ArrayList<Logro> superados = new ArrayList<Logro>();
-        superados.add(l2);
-        superados.add(l4);
-        superados.add(l5);
-        superados.add(l7);
-        superados.add(l9);
+        superados.add(l2);superados.add(l4);superados.add(l5);superados.add(l7);superados.add(l9);
 
         LogrosBD result = new LogrosBD(todos, superados);
 
