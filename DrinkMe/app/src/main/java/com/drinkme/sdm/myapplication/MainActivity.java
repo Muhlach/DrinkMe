@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
         currentUser = bundleRecibido.getParcelable(LoginActivity.KEY_USUARIO_LOGEADO);
         int aux = currentUser.getPuntosExperiencia();
         currentUser.setPuntosExperiencia(aux);
-        cargaLogros();
+        LogrosBD logros = cargaLogros();
+        currentUser.setLogros(logros);
         categorias = cargarCategorias();
         estadisticosBD = cargarEstadisticos();
 
@@ -242,35 +243,11 @@ public class MainActivity extends AppCompatActivity {
         return categorias;
     }
 
-<<<<<<< HEAD
-    /**
-     * Método que carga el usuario logeado en la main activity
-     * @return
-     */
-    private Usuario cargarUsuario() {
-        Usuario user = new Usuario();
-        user.setUserID("pruebas1");
-        user.setNombre("Sergio");
-        user.setApellidos("Santano Álvarez");
-        user.setSexo(Usuario.HOMBRE);
-        user.setCorreo("correo@prueba.es");
-        user.setContraseña("1234");
-        user.setNacimiento(new Date(1996,3,9));
-        user.setPuntosExperiencia(400);
-        user.setPeso(80);
-        user.setAltura(175);
-        user.setLogros(cargaLogros());
-
-        return user;
-    }
-=======
->>>>>>> developer
 
     /**
      * Metodo que carga los logros del usuario
      * @return
      */
-<<<<<<< HEAD
     private LogrosBD cargaLogros() {
         Resources res = getResources();
         int[] ids = res.getIntArray(R.array.logros_id);
@@ -280,49 +257,21 @@ public class MainActivity extends AppCompatActivity {
         LogrosBD result = new LogrosBD(ids, nombres, descripciones, puntos);
 
         ArrayList superados = new ArrayList();
-        superados.add(1); superados.add(25);
-        superados.add(2); superados.add(27);
-        superados.add(14); superados.add(10);
+        superados.add(1);
+        superados.add(25);
+        superados.add(2);
+        superados.add(27);
+        superados.add(14);
+        superados.add(10);
         superados.add(9);
 
 
-        for(Logro l : result.getTodosLogros()){
-            if(superados.contains(l.getLogroID())){
+        for (Logro l : result.getTodosLogros()) {
+            if (superados.contains(l.getLogroID())) {
                 l.setSuperado(true);
                 result.añadirLogro(result.getLogrosSuperados(), l);
             }
         }
         return result;
-=======
-    public void cargaLogros() {
-        Logro l= new Logro(1, "Cervecero Principiante", "");
-        Logro l1= new Logro(2, "Cervecero Avanzado", "");
-        Logro l2= new Logro(3, "Coctelero Principiante", "");
-        Logro l3= new Logro(4, "Fin de Semana Cervecero", "");
-        Logro l4= new Logro(5, "Vamos de Tranquis", "");
-        Logro l5= new Logro(1, "Cervecero Principiante", "");
-        Logro l6= new Logro(2, "Cervecero Avanzado", "");
-        Logro l7= new Logro(3, "Coctelero Principiante", "");
-        Logro l8= new Logro(4, "Fin de Semana Cervecero", "");
-        Logro l9= new Logro(5, "Vamos de Tranquis", "");
-        l2.setSuperado(true);
-        l4.setSuperado(true);
-        l5.setSuperado(true);
-        l7.setSuperado(true);
-        l9.setSuperado(true);
-
-        ArrayList<Logro> todos = new ArrayList<Logro>();
-        todos.add(l);todos.add(l1);todos.add(l2);todos.add(l3);todos.add(l4);todos.add(l5);
-        todos.add(l6);todos.add(l7);todos.add(l8);todos.add(l9);
-
-        ArrayList<Logro> superados = new ArrayList<Logro>();
-        superados.add(l2);superados.add(l4);superados.add(l5);superados.add(l7);superados.add(l9);
-
-        LogrosBD result = new LogrosBD(todos, superados);
-
-        currentUser.setLogros(result);
->>>>>>> developer
     }
-
-
 }

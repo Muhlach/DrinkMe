@@ -53,6 +53,7 @@ public class DialogSeleccion extends DialogFragment{
                 else {
                     precio = Double.valueOf(precioStr);
                     //TODO: Aquí se debe implementar el registro de la consumición
+                    //registrarConsumicion(b, Double.valueOf(precioStr));
                     String r = b.toString() + "  " + precio;
                     Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
                     dismiss();
@@ -95,5 +96,10 @@ public class DialogSeleccion extends DialogFragment{
         }
 
         return result;
+    }
+
+
+    private void registrarConsumicion(Bebida bebida, double precio) {
+
     }
 }

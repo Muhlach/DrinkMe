@@ -64,11 +64,6 @@ public class LoginActivity extends AppCompatActivity {
             password_et = (EditText) findViewById(R.id.editTextPassword);
             checkBox = (CheckBox) findViewById(R.id.checkBoxMantenerSesion);
         }else {
-<<<<<<< HEAD
-            if(debug)
-                deleteSharedPreferences();
-=======
->>>>>>> developer
             finish();
             usuario = database.usuarioDAO().findByNombreAndContraseña(user,password);
             launchMainActivity();
