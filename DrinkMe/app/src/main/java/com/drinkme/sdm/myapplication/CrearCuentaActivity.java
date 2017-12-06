@@ -60,14 +60,14 @@ public class CrearCuentaActivity extends AppCompatActivity {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerAltura.setAdapter(adapter2);
         final List<String> listAltura = Arrays.asList(getResources().getStringArray(R.array.altura_array));
-        spinnerAltura.setSelection(listAltura.size()/2);
+        spinnerAltura.setSelection(listAltura.size() / 2);
 
         spinnerPeso = (Spinner) findViewById(R.id.spinnerPeso);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.peso_array, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPeso.setAdapter(adapter3);
         final List<String> listPeso = Arrays.asList(getResources().getStringArray(R.array.ano_array));
-        spinnerPeso.setSelection(listPeso.size()/2);
+        spinnerPeso.setSelection(listPeso.size() / 2);
 
         spinnerDia = (Spinner) findViewById(R.id.spinnerDia);
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this, R.array.dia_array, android.R.layout.simple_spinner_item);
@@ -84,7 +84,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerAno.setAdapter(adapter6);
         final List<String> listAno = Arrays.asList(getResources().getStringArray(R.array.ano_array));
-        spinnerAno.setSelection(listAno.size()-20);
+        spinnerAno.setSelection(listAno.size() - 20);
     }
 
     public void onClickCrearCuentas(View v) {
@@ -101,19 +101,18 @@ public class CrearCuentaActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show();
         else if (!password.equalsIgnoreCase(repassword))
             Toast.makeText(getApplicationContext(), "Comprueba tu password", Toast.LENGTH_SHORT).show();
-        else{
+        else {
 
-            Integer dias = Integer.parseInt(spinnerDia.getSelectedItem().toString());
-            Integer meses = spinnerMes.getSelectedItemPosition()+1;
-            Integer anio = Integer.parseInt(spinnerAno.getSelectedItem().toString());
-            int fecha_i = dias * 1000000 + meses * 10000 + anio;
-            Usuario user = new Usuario(nombre, apellidos, correo, password, fecha_i,
+            String fecha = spinnerDia.getSelectedItem().toString().concat("/").concat(String.valueOf(spinnerMes.getSelectedItemPosition() + 1).concat("/").concat(spinnerAno.getSelectedItem().toString()));
+
+            //TODO:hacer fecha tipo string NO int en entity.Usuario
+            Usuario user = new Usuario(nombre, apellidos, correo, password, 1,
                     spinnerSex.getSelectedItem().toString(),
                     Integer.parseInt(spinnerAltura.getSelectedItem().toString()),
                     Integer.parseInt(spinnerPeso.getSelectedItem().toString()), 0);
 
-            if(debug)
-            Toast.makeText(getApplicationContext(),user.toString(),Toast.LENGTH_LONG).show();
+            if (debug)
+                Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
 
             /**
              *
@@ -123,9 +122,6 @@ public class CrearCuentaActivity extends AppCompatActivity {
             this.finish();
 
             //insertar en la bbdd;
-
-
-
 
 
         }

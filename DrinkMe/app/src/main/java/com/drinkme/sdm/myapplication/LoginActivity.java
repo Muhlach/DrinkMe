@@ -86,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
         result.setAltura(usuario.getAltura());
         result.setPeso(usuario.getPeso());
         result.setPuntosExperiencia(usuario.getPuntuacion());
+        result.setNacimiento(usuario.getFecha());
         return result;
     }
 

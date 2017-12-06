@@ -177,9 +177,7 @@ public class PerfilActivity extends AppCompatActivity {
 
             TextView fecha = (TextView) findViewById(R.id.textViewFechaNaci);
 
-            String date_s = String.valueOf(user.getNacimiento());
-
-            fecha.setText(fecha.getText().toString().concat(" ").concat(date_s.substring(0, 2).concat("/").concat(date_s.substring(2, 4).concat("/").concat(date_s.substring(4)))));
+            fecha.setText(user.getNacimiento());
 
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
