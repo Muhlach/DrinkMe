@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewActualizarUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="26dp"
+            android:text="Vas a actualizar tu usuario"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/amarilloBase"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="71dp"
+            tools:layout_editor_absoluteY="74dp" />
+
+        <TextView
+            android:id="@+id/textViewEstaEsUserActual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Este es tu usuario actual:"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="71dp"
+            tools:layout_editor_absoluteY="125dp" />
+
+        <TextView
+            android:id="@+id/textViewUsuarioActual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@color/grisClaro"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewEscribeAContinuacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="Escribe tu nuevo usuario:"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="72dp"
+            tools:layout_editor_absoluteY="159dp" />
+
+        <EditText
+            android:id="@+id/editTextNewUO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            android:textColor="@color/grisClaro" />
+
+        <Button
+            android:id="@+id/buttonFPAAceptar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:paddingStart="16dp"
+            android:text="Aceptar"
+            android:textAlignment="center"
+            android:textColor="@color/amarilloBase"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

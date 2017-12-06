@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import com.drinkme.sdm.myapplication.Adapters.AdapterLogros;
 import com.drinkme.sdm.myapplication.logic.Logro;
-import com.drinkme.sdm.myapplication.logic.Usuario;
-
-import org.w3c.dom.Text;
+import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 
 import java.util.ArrayList;
 
@@ -26,7 +24,7 @@ public class LogrosFragment extends Fragment {
     ArrayList<Logro> logros;
     ListView listViewLogros;
     Button btnMasLogros;
-    Usuario currentUser;
+    UsuarioBin currentUser;
     TextView txNivel, txNombre, txRango, txProgreso;
     ProgressBar progressBar;
 

@@ -40,38 +40,6 @@
 
 
     <string-array name="ano_array">
-        <item>1900</item>
-        <item>1901</item>
-        <item>1902</item>
-        <item>1903</item>
-        <item>1904</item>
-        <item>1905</item>
-        <item>1906</item>
-        <item>1907</item>
-        <item>1908</item>
-        <item>1909</item>
-        <item>1910</item>
-        <item>1911</item>
-        <item>1912</item>
-        <item>1913</item>
-        <item>1914</item>
-        <item>1915</item>
-        <item>1916</item>
-        <item>1917</item>
-        <item>1918</item>
-        <item>1919</item>
-        <item>1920</item>
-        <item>1921</item>
-        <item>1922</item>
-        <item>1923</item>
-        <item>1924</item>
-        <item>1925</item>
-        <item>1926</item>
-        <item>1927</item>
-        <item>1928</item>
-        <item>1929</item>
-        <item>1930</item>
-        <item>1931</item>
         <item>1932</item>
         <item>1933</item>
         <item>1934</item>
@@ -152,11 +120,6 @@
         <item>2009</item>
         <item>2010</item>
         <item>2011</item>
-        <item>2012</item>
-        <item>2013</item>
-        <item>2014</item>
-        <item>2015</item>
-        <item>2016</item>
 
            
     </string-array>
@@ -200,150 +163,152 @@
 
     <string-array name="altura_array">
                
+        <item>110</item>
+        <item>111</item>
+        <item>112</item>
+        <item>113</item>
+        <item>114</item>
+        <item>115</item>
+        <item>116</item>
+        <item>117</item>
+        <item>118</item>
+        <item>119</item>
+        <item>120</item>
+        <item>121</item>
+        <item>122</item>
+        <item>123</item>
+        <item>124</item>
+        <item>125</item>
+        <item>126</item>
+        <item>127</item>
+        <item>128</item>
+        <item>129</item>
+        <item>130</item>
+        <item>131</item>
+        <item>132</item>
+        <item>133</item>
+        <item>134</item>
+        <item>135</item>
+        <item>136</item>
+        <item>137</item>
+        <item>138</item>
+        <item>139</item>
+        <item>140</item>
+        <item>141</item>
+        <item>142</item>
+        <item>143</item>
+        <item>144</item>
+        <item>145</item>
+        <item>146</item>
+        <item>147</item>
+        <item>148</item>
+        <item>149</item>
         <item>150</item>
-               
         <item>151</item>
-         
         <item>152</item>
-               
         <item>153</item>
-         
         <item>154</item>
-               
         <item>155</item>
-         
         <item>156</item>
-               
         <item>157</item>
-         
         <item>158</item>
-               
         <item>159</item>
-           
         <item>160</item>
-               
         <item>161</item>
-         
         <item>162</item>
-               
         <item>163</item>
-         
         <item>164</item>
-               
         <item>165</item>
-         
         <item>166</item>
-               
         <item>167</item>
-         
         <item>168</item>
-               
         <item>169</item>
-                 
-        <item>160</item>
-               
-        <item>161</item>
-         
-        <item>162</item>
-               
-        <item>163</item>
-         
-        <item>164</item>
-               
-        <item>165</item>
-         
-        <item>166</item>
-               
-        <item>167</item>
-         
-        <item>168</item>
-               
-        <item>169</item>
-                 
         <item>170</item>
-               
         <item>171</item>
-         
         <item>172</item>
-               
         <item>173</item>
-         
         <item>174</item>
-               
         <item>175</item>
-         
         <item>176</item>
-               
         <item>177</item>
-         
         <item>178</item>
-               
         <item>179</item>
-                 
         <item>180</item>
-               
         <item>181</item>
-         
         <item>182</item>
-               
         <item>183</item>
-         
         <item>184</item>
-               
         <item>185</item>
-         
         <item>186</item>
-               
         <item>187</item>
-         
         <item>188</item>
-               
         <item>189</item>
-                 
         <item>190</item>
-               
         <item>191</item>
-         
         <item>192</item>
-               
         <item>193</item>
-         
         <item>194</item>
-               
         <item>195</item>
-         
         <item>196</item>
-               
         <item>197</item>
-         
         <item>198</item>
-               
         <item>199</item>
-                 
         <item>200</item>
-               
         <item>201</item>
-         
         <item>202</item>
-               
         <item>203</item>
-         
         <item>204</item>
-               
         <item>205</item>
-         
         <item>206</item>
-               
         <item>207</item>
-         
         <item>208</item>
-               
         <item>209</item>
+        <item>210</item>
+        <item>211</item>
+        <item>212</item>
+        <item>213</item>
+        <item>214</item>
+        <item>215</item>
+        <item>216</item>
+        <item>217</item>
+        <item>218</item>
+        <item>219</item>
+        <item>220</item>
+        <item>221</item>
+        <item>222</item>
+        <item>223</item>
+        <item>224</item>
+        <item>225</item>
+        <item>226</item>
+        <item>227</item>
+        <item>228</item>
+        <item>229</item>
+        <item>230</item>
            
     </string-array>
 
     <string-array name="peso_array">
                
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
         <item>40</item>
         <item>41</item>
         <item>42</item>
@@ -425,25 +390,6 @@
         <item>118</item>
         <item>119</item>
         <item>120</item>
-        <item>121</item>
-        <item>122</item>
-        <item>123</item>
-        <item>124</item>
-        <item>125</item>
-        <item>126</item>
-        <item>127</item>
-        <item>128</item>
-        <item>129</item>
-        <item>130</item>
-        <item>131</item>
-        <item>132</item>
-        <item>133</item>
-        <item>134</item>
-        <item>135</item>
-        <item>136</item>
-        <item>137</item>
-        <item>138</item>
-        <item>139</item>
            
     </string-array>
 

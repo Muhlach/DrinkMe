@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by ssant on 24/11/2017.
  */
 
-public class Usuario implements Parcelable {
+public class UsuarioBin implements Parcelable {
 
     public final static boolean HOMBRE = true;
     public final static boolean MUJER = false;
@@ -18,7 +18,7 @@ public class Usuario implements Parcelable {
     private String userID, nombre, apellidos;
     private String correo, contraseña;
     private boolean sexo;
-    private Date nacimiento;
+    private int nacimiento;
     private int altura, peso;
     private int puntosExperiencia;
     private NivelBD nivelBD;
@@ -26,11 +26,11 @@ public class Usuario implements Parcelable {
     private LogrosBD logros;
 
 
-    public Usuario() {
+    public UsuarioBin() {
 
     }
 
-    protected Usuario(Parcel in) {
+    protected UsuarioBin(Parcel in) {
         userID = in.readString();
         nombre = in.readString();
         apellidos = in.readString();
@@ -40,17 +40,18 @@ public class Usuario implements Parcelable {
         altura = in.readInt();
         peso = in.readInt();
         puntosExperiencia = in.readInt();
+        nacimiento = in.readInt();
     }
 
-    public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {
+    public static final Creator<UsuarioBin> CREATOR = new Creator<UsuarioBin>() {
         @Override
-        public Usuario createFromParcel(Parcel in) {
-            return new Usuario(in);
+        public UsuarioBin createFromParcel(Parcel in) {
+            return new UsuarioBin(in);
         }
 
         @Override
-        public Usuario[] newArray(int size) {
-            return new Usuario[size];
+        public UsuarioBin[] newArray(int size) {
+            return new UsuarioBin[size];
         }
     };
 
@@ -112,11 +113,11 @@ public class Usuario implements Parcelable {
         this.sexo = sexo;
     }
 
-    public Date getNacimiento() {
+    public int getNacimiento() {
         return nacimiento;
     }
 
-    public void setNacimiento(Date nacimiento) {
+    public void setNacimiento(int nacimiento) {
         this.nacimiento = nacimiento;
     }
 
@@ -194,5 +195,25 @@ public class Usuario implements Parcelable {
         parcel.writeInt(altura);
         parcel.writeInt(peso);
         parcel.writeInt(puntosExperiencia);
+        parcel.writeInt(nacimiento);
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "userID='" + userID + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", correo='" + correo + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", sexo=" + sexo +
+                ", nacimiento=" + nacimiento +
+                ", altura=" + altura +
+                ", peso=" + peso +
+                ", puntosExperiencia=" + puntosExperiencia +
+                ", nivelBD=" + nivelBD +
+                ", nivel=" + nivel +
+                ", logros=" + logros +
+                '}';
     }
 }

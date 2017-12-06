@@ -24,7 +24,7 @@ import com.drinkme.sdm.myapplication.logic.Estadistico;
 import com.drinkme.sdm.myapplication.logic.EstadisticosBD;
 import com.drinkme.sdm.myapplication.logic.Logro;
 import com.drinkme.sdm.myapplication.logic.LogrosBD;
-import com.drinkme.sdm.myapplication.logic.Usuario;
+import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,9 +36,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String USER_KEY = "usuario";
     public static final String LOGROS_KEY = "lista_logros";
     public static final String ESTADISTICOS_KEY = "estadisticos";
+    public static final int REQUEST_CODE_FOR_PERFIL_ACTIVITY = 1;
 
-
-    Usuario currentUser;
+    private boolean debug = true;
+    UsuarioBin currentUser;
     EstadisticosBD estadisticosBD;
     ArrayList<Categoria> categorias;
 
@@ -48,7 +49,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_layout);
 
         /** Carga los datos de usuario, bebidasArrayList y estadisticos **/
-        currentUser = cargarUsuario();
+        Bundle bundleRecibido = getIntent().getExtras();
+        currentUser = bundleRecibido.getParcelable(LoginActivity.KEY_USUARIO_LOGEADO);
+        int aux = currentUser.getPuntosExperiencia();
+        currentUser.setPuntosExperiencia(aux);
+        cargaLogros();
         categorias = cargarCategorias();
         estadisticosBD = cargarEstadisticos();
 
@@ -139,10 +144,21 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.perfil){
             Intent perfilIntent = new Intent(this, PerfilActivity.class);
             perfilIntent.putExtra(USER_KEY, currentUser);
-            startActivity(perfilIntent);
+            startActivityForResult(perfilIntent, REQUEST_CODE_FOR_PERFIL_ACTIVITY);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            final Bundle mBundle = data.getExtras();
+            currentUser = mBundle.getParcelable(PerfilActivity.KEY_FOR_USER_IN_PA);
+            if (debug)
+                Toast.makeText(getApplicationContext(),currentUser.toString(),Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
@@ -226,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
         return categorias;
     }
 
+<<<<<<< HEAD
     /**
      * Método que carga el usuario logeado en la main activity
      * @return
@@ -246,11 +263,14 @@ public class MainActivity extends AppCompatActivity {
 
         return user;
     }
+=======
+>>>>>>> developer
 
     /**
      * Metodo que carga los logros del usuario
      * @return
      */
+<<<<<<< HEAD
     private LogrosBD cargaLogros() {
         Resources res = getResources();
         int[] ids = res.getIntArray(R.array.logros_id);
@@ -273,6 +293,35 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return result;
+=======
+    public void cargaLogros() {
+        Logro l= new Logro(1, "Cervecero Principiante", "");
+        Logro l1= new Logro(2, "Cervecero Avanzado", "");
+        Logro l2= new Logro(3, "Coctelero Principiante", "");
+        Logro l3= new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l4= new Logro(5, "Vamos de Tranquis", "");
+        Logro l5= new Logro(1, "Cervecero Principiante", "");
+        Logro l6= new Logro(2, "Cervecero Avanzado", "");
+        Logro l7= new Logro(3, "Coctelero Principiante", "");
+        Logro l8= new Logro(4, "Fin de Semana Cervecero", "");
+        Logro l9= new Logro(5, "Vamos de Tranquis", "");
+        l2.setSuperado(true);
+        l4.setSuperado(true);
+        l5.setSuperado(true);
+        l7.setSuperado(true);
+        l9.setSuperado(true);
+
+        ArrayList<Logro> todos = new ArrayList<Logro>();
+        todos.add(l);todos.add(l1);todos.add(l2);todos.add(l3);todos.add(l4);todos.add(l5);
+        todos.add(l6);todos.add(l7);todos.add(l8);todos.add(l9);
+
+        ArrayList<Logro> superados = new ArrayList<Logro>();
+        superados.add(l2);superados.add(l4);superados.add(l5);superados.add(l7);superados.add(l9);
+
+        LogrosBD result = new LogrosBD(todos, superados);
+
+        currentUser.setLogros(result);
+>>>>>>> developer
     }
 
 

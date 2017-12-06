@@ -1,5 +1,6 @@
 package com.drinkme.sdm.myapplication;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Usuario;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class CrearCuentaActivity extends AppCompatActivity {
 
@@ -25,6 +30,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
      * Para debugear
      */
     private boolean debug = true;
+    MyDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crear_cuenta);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         findViews();
+        database =  MyDatabase.getDatabase(getApplicationContext());
     }
 
     private void findViews() {
@@ -52,11 +59,15 @@ public class CrearCuentaActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.altura_array, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerAltura.setAdapter(adapter2);
+        final List<String> listAltura = Arrays.asList(getResources().getStringArray(R.array.altura_array));
+        spinnerAltura.setSelection(listAltura.size()/2);
 
         spinnerPeso = (Spinner) findViewById(R.id.spinnerPeso);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.peso_array, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPeso.setAdapter(adapter3);
+        final List<String> listPeso = Arrays.asList(getResources().getStringArray(R.array.ano_array));
+        spinnerPeso.setSelection(listPeso.size()/2);
 
         spinnerDia = (Spinner) findViewById(R.id.spinnerDia);
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this, R.array.dia_array, android.R.layout.simple_spinner_item);
@@ -72,6 +83,8 @@ public class CrearCuentaActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this, R.array.ano_array, android.R.layout.simple_spinner_item);
         adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerAno.setAdapter(adapter6);
+        final List<String> listAno = Arrays.asList(getResources().getStringArray(R.array.ano_array));
+        spinnerAno.setSelection(listAno.size()-20);
     }
 
     public void onClickCrearCuentas(View v) {
@@ -94,7 +107,11 @@ public class CrearCuentaActivity extends AppCompatActivity {
             Integer meses = spinnerMes.getSelectedItemPosition()+1;
             Integer anio = Integer.parseInt(spinnerAno.getSelectedItem().toString());
             int fecha_i = dias * 1000000 + meses * 10000 + anio;
-            Usuario user = new Usuario(nombre, apellidos, correo, password, fecha_i, spinnerSex.getSelectedItem().toString(), Integer.parseInt(spinnerAltura.getSelectedItem().toString()), Integer.parseInt(spinnerPeso.getSelectedItem().toString()));
+            Usuario user = new Usuario(nombre, apellidos, correo, password, fecha_i,
+                    spinnerSex.getSelectedItem().toString(),
+                    Integer.parseInt(spinnerAltura.getSelectedItem().toString()),
+                    Integer.parseInt(spinnerPeso.getSelectedItem().toString()), 0);
+
             if(debug)
             Toast.makeText(getApplicationContext(),user.toString(),Toast.LENGTH_LONG).show();
 
@@ -102,9 +119,8 @@ public class CrearCuentaActivity extends AppCompatActivity {
              *
              * El objeto usuario ya está creado, debería insertarse en la BBDD
              */
-
-
-
+            database.usuarioDAO().insertAll(user);
+            this.finish();
 
             //insertar en la bbdd;
 

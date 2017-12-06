@@ -22,7 +22,7 @@ public class NivelBD {
      */
     private void generarNiveles() {
         //Añadimos los demás niveles
-        int puntosMinimo=0;
+        int puntosMinimo=-1;
         int puntosMaximo=30;
         int aumentoPuntos = 50;
 
