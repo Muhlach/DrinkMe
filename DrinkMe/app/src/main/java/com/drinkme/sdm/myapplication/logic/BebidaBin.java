@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by ssant on 09/11/2017.
  */
 
-public class Bebida implements Parcelable{
+public class BebidaBin implements Parcelable{
     private String bebName;
     private int kcal, azucar;
     private double alcohol, precio;
@@ -15,9 +15,9 @@ public class Bebida implements Parcelable{
     private int puntosBebida;
 
 
-    public Bebida(){}
+    public BebidaBin(){}
 
-    public Bebida(String bebName, int kcal, int azucar, double alcohol, int volumenTotal, int volumenAlcohol, int puntosBebida) {
+    public BebidaBin(String bebName, int kcal, int azucar, double alcohol, int volumenTotal, int volumenAlcohol, int puntosBebida) {
         this.bebName = bebName;
         this.kcal = kcal;
         this.azucar = azucar;
@@ -28,7 +28,7 @@ public class Bebida implements Parcelable{
 
     }
 
-    protected Bebida(Parcel in) {
+    protected BebidaBin(Parcel in) {
         bebName = in.readString();
         kcal = in.readInt();
         azucar = in.readInt();
@@ -56,15 +56,15 @@ public class Bebida implements Parcelable{
         return 0;
     }
 
-    public static final Creator<Bebida> CREATOR = new Creator<Bebida>() {
+    public static final Creator<BebidaBin> CREATOR = new Creator<BebidaBin>() {
         @Override
-        public Bebida createFromParcel(Parcel in) {
-            return new Bebida(in);
+        public BebidaBin createFromParcel(Parcel in) {
+            return new BebidaBin(in);
         }
 
         @Override
-        public Bebida[] newArray(int size) {
-            return new Bebida[size];
+        public BebidaBin[] newArray(int size) {
+            return new BebidaBin[size];
         }
     };
 

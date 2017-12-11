@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.drinkme.sdm.myapplication.logic.Categoria;
+import com.drinkme.sdm.myapplication.logic.CategoriaBin;
 import com.drinkme.sdm.myapplication.R;
 
 import java.util.ArrayList;
@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class AdapterCategorias extends BaseAdapter {
 
     protected Activity activity;
-    protected ArrayList<Categoria> items;
+    protected ArrayList<CategoriaBin> items;
 
-    public AdapterCategorias (Activity activity, ArrayList<Categoria> items) {
+    public AdapterCategorias (Activity activity, ArrayList<CategoriaBin> items) {
         this.activity = activity;
         this.items = items;
     }
@@ -37,7 +37,7 @@ public class AdapterCategorias extends BaseAdapter {
         items.clear();
     }
 
-    public void addAll(ArrayList<Categoria> categorias) {
+    public void addAll(ArrayList<CategoriaBin> categorias) {
         for (int i = 0; i<categorias.size(); i++) {
             items.add(categorias.get(i));
         }
@@ -63,7 +63,7 @@ public class AdapterCategorias extends BaseAdapter {
             view = inf.inflate(R.layout.listview_categorias, null);
         }
 
-        Categoria dir = items.get(i);
+        CategoriaBin dir = items.get(i);
         TextView titulo = (TextView) view.findViewById(R.id.nombreCategoria);
         titulo.setText(dir.getCatName());
 

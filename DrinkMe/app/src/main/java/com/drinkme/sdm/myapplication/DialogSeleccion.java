@@ -11,7 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.drinkme.sdm.myapplication.logic.Bebida;
+import com.drinkme.sdm.myapplication.logic.BebidaBin;
 
 import java.util.ArrayList;
 
@@ -25,8 +25,8 @@ public class DialogSeleccion extends DialogFragment{
     TextView txPrecio;
     View view;
     Button guardar, cancelar;
-    Bebida bebidaSeleccionada;
-    ArrayList<Bebida> bebidasArrayList;
+    BebidaBin bebidaSeleccionada;
+    ArrayList<BebidaBin> bebidasArrayList;
     double precio;
 
     public DialogSeleccion(){}
@@ -44,7 +44,7 @@ public class DialogSeleccion extends DialogFragment{
             public void onClick(View view) {
 
                 //Cogemos la bebida seleccionada y el precio introducido
-                Bebida b = (Bebida) spinnerBebida.getSelectedItem();
+                BebidaBin b = (BebidaBin) spinnerBebida.getSelectedItem();
                 String precioStr = txPrecio.getText().toString();
 
                 //Comprobamos que se haya seleccionado una bebida y que se haya introducido precio
@@ -79,17 +79,17 @@ public class DialogSeleccion extends DialogFragment{
 
 
     private void cargaBebidas() {
-        Bebida[] bebidas = creaArray();
-        ArrayAdapter<Bebida> adapterBebida = new ArrayAdapter<Bebida>(getActivity(),
+        BebidaBin[] bebidas = creaArray();
+        ArrayAdapter<BebidaBin> adapterBebida = new ArrayAdapter<BebidaBin>(getActivity(),
                 android.R.layout.simple_spinner_item, bebidas);
         adapterBebida.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerBebida.setAdapter(adapterBebida);
     }
 
-    private Bebida[] creaArray() {
-        Bebida[] result = new Bebida[bebidasArrayList.size()];
+    private BebidaBin[] creaArray() {
+        BebidaBin[] result = new BebidaBin[bebidasArrayList.size()];
         int counter = 0;
-        for(Bebida beb : bebidasArrayList) {
+        for(BebidaBin beb : bebidasArrayList) {
             result[counter] = beb;
             counter++;
         }

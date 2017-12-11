@@ -11,8 +11,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.drinkme.sdm.myapplication.Adapters.AdapterEstadisticas;
-import com.drinkme.sdm.myapplication.logic.Bebida;
-import com.drinkme.sdm.myapplication.logic.Categoria;
+import com.drinkme.sdm.myapplication.logic.BebidaBin;
+import com.drinkme.sdm.myapplication.logic.CategoriaBin;
 import com.drinkme.sdm.myapplication.logic.Estadistico;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class EstadisticasFragment extends Fragment {
     private static final String TODAS = "Todas";
     View view;
     ArrayList<Estadistico> estadisticos;
-    ArrayList<Categoria> categoriasArrayList;
+    ArrayList<CategoriaBin> categoriasArrayList;
     ListView listViewEstadisticos;
 
     Spinner spinnerCategoria, spinnerBebida, spinnerTiempo;
@@ -53,14 +53,14 @@ public class EstadisticasFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String categoriaSeleccionada = (String) adapterView.getItemAtPosition(i);
                 if(categoriaSeleccionada.equals(TODAS)){
-                    ArrayList<Bebida> todasBebidas = new ArrayList<Bebida>();
-                    for(Categoria c:categoriasArrayList) {
+                    ArrayList<BebidaBin> todasBebidas = new ArrayList<BebidaBin>();
+                    for(CategoriaBin c:categoriasArrayList) {
                         todasBebidas.addAll(c.getBebidas());
                     }
                     cargaArrayBebidas(todasBebidas);
                 }
                 else{
-                    Categoria categoria = findCategoriaPorNombre(categoriaSeleccionada);
+                    CategoriaBin categoria = findCategoriaPorNombre(categoriaSeleccionada);
                     cargaArrayBebidas(categoria.getBebidas());
                 }
             }
@@ -117,7 +117,7 @@ public class EstadisticasFragment extends Fragment {
         }
         return result;
     }
-    private void cargaArrayBebidas(ArrayList<Bebida> listaBebidas) {
+    private void cargaArrayBebidas(ArrayList<BebidaBin> listaBebidas) {
         String[] result = new String[listaBebidas.size()+1];
         result[0] = TODAS;
         for(int i=1; i<result.length; i++){
@@ -131,10 +131,10 @@ public class EstadisticasFragment extends Fragment {
 
     }
 
-    private Categoria findCategoriaPorNombre(String categoriaSeleccionada) {
-        Categoria result = null;
+    private CategoriaBin findCategoriaPorNombre(String categoriaSeleccionada) {
+        CategoriaBin result = null;
 
-        for(Categoria c : categoriasArrayList) {
+        for(CategoriaBin c : categoriasArrayList) {
             if(c.getCatName().equals(categoriaSeleccionada))
                 result = c;
         }

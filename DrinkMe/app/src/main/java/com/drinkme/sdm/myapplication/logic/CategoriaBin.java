@@ -3,7 +3,6 @@ package com.drinkme.sdm.myapplication.logic;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.content.res.TypedArrayUtils;
 
 import java.util.ArrayList;
 
@@ -11,35 +10,35 @@ import java.util.ArrayList;
  * Created by ssant on 01/11/2017.
  */
 
-public class Categoria implements Parcelable{
+public class CategoriaBin implements Parcelable{
 
     private String catName;
     private Drawable catImg;
-    private ArrayList<Bebida> bebidas;
+    private ArrayList<BebidaBin> bebidas;
 
-    public Categoria() {
+    public CategoriaBin() {
 
     }
 
-    public Categoria(String catName, Drawable catImg, ArrayList<Bebida> bebidas) {
+    public CategoriaBin(String catName, Drawable catImg, ArrayList<BebidaBin> bebidas) {
         this.catName = catName;
         this.catImg = catImg;
         this.bebidas = bebidas;
     }
 
-    protected Categoria(Parcel in) {
+    protected CategoriaBin(Parcel in) {
         catName = in.readString();
     }
 
-    public static final Creator<Categoria> CREATOR = new Creator<Categoria>() {
+    public static final Creator<CategoriaBin> CREATOR = new Creator<CategoriaBin>() {
         @Override
-        public Categoria createFromParcel(Parcel in) {
-            return new Categoria(in);
+        public CategoriaBin createFromParcel(Parcel in) {
+            return new CategoriaBin(in);
         }
 
         @Override
-        public Categoria[] newArray(int size) {
-            return new Categoria[size];
+        public CategoriaBin[] newArray(int size) {
+            return new CategoriaBin[size];
         }
     };
 
@@ -58,11 +57,11 @@ public class Categoria implements Parcelable{
         this.catImg = img;
     }
 
-    public ArrayList<Bebida> getBebidas() {
+    public ArrayList<BebidaBin> getBebidas() {
         return bebidas;
     }
 
-    public void setBebidas(ArrayList<Bebida> bebidas) {
+    public void setBebidas(ArrayList<BebidaBin> bebidas) {
         this.bebidas = bebidas;
     }
 
@@ -71,7 +70,7 @@ public class Categoria implements Parcelable{
      * @param bebida que se va a añadir
      * @return true si se añade correctamente, false de lo contrario
      */
-    public boolean añadirBebida(Bebida bebida) {
+    public boolean añadirBebida(BebidaBin bebida) {
         if(bebida==null || bebidas==null || existeBebida(bebida))
             return false;
         else{
@@ -86,8 +85,8 @@ public class Categoria implements Parcelable{
      * @param bebida que se comprueba
      * @return true si existe, falso de lo contrario
      */
-    private boolean existeBebida(Bebida bebida) {
-        for(Bebida b : bebidas) {
+    private boolean existeBebida(BebidaBin bebida) {
+        for(BebidaBin b : bebidas) {
             if(b.getBebName().toLowerCase().equals(bebida.getBebName().toLowerCase()))
                 return true;
         }

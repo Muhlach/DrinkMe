@@ -4,21 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.drinkme.sdm.myapplication.logic.Bebida;
-import com.drinkme.sdm.myapplication.logic.Categoria;
+import com.drinkme.sdm.myapplication.entity.Categoria;
+import com.drinkme.sdm.myapplication.logic.BebidaBin;
+import com.drinkme.sdm.myapplication.logic.CategoriaBin;
 import com.drinkme.sdm.myapplication.logic.Estadistico;
 import com.drinkme.sdm.myapplication.logic.EstadisticosBD;
 import com.drinkme.sdm.myapplication.logic.Logro;
@@ -26,7 +21,6 @@ import com.drinkme.sdm.myapplication.logic.LogrosBD;
 import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean debug = true;
     UsuarioBin currentUser;
     EstadisticosBD estadisticosBD;
-    ArrayList<Categoria> categorias;
+    ArrayList<CategoriaBin> categorias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +154,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    private ArrayList<CategoriaBin> cargarDesdeBD() {
+        ArrayList<CategoriaBin> categorias = new ArrayList<CategoriaBin>();
+        return categorias;
+    }
+
     /**
      * Metodo que carga todas las categoriasArrayList con sus correspondientes bebeidas en la aplicacion.
      *
@@ -167,36 +167,36 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return
      */
-    private ArrayList<Categoria> cargarCategorias() {
-        ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+    private ArrayList<CategoriaBin> cargarCategorias() {
+        ArrayList<CategoriaBin> categorias = new ArrayList<CategoriaBin>();
         //Creamos las categoriasArrayList
-        Categoria vino = new Categoria("Vino", getResources().getDrawable(R.drawable.ic_vino_64), null);
-        Categoria cerveza = new Categoria("Cerveza", getResources().getDrawable(R.drawable.ic_cerveza_64), null);
-        Categoria copa = new Categoria("Copa", getResources().getDrawable(R.drawable.ic_copa_64), null);
-        Categoria chupito = new Categoria("Chupito", getResources().getDrawable(R.drawable.ic_chupito_64), null);
+        CategoriaBin vino = new CategoriaBin("Vino", getResources().getDrawable(R.drawable.ic_vino_64), null);
+        CategoriaBin cerveza = new CategoriaBin("Cerveza", getResources().getDrawable(R.drawable.ic_cerveza_64), null);
+        CategoriaBin copa = new CategoriaBin("Copa", getResources().getDrawable(R.drawable.ic_copa_64), null);
+        CategoriaBin chupito = new CategoriaBin("Chupito", getResources().getDrawable(R.drawable.ic_chupito_64), null);
 
         //Creamos las bebidasArrayList
-        Bebida b = new Bebida("Caña Rubia", 0, 0, 0, 0, 0, 1);
-        Bebida b1 = new Bebida("Caña Tostada", 0, 0, 0, 0, 0, 1);
-        Bebida b2 = new Bebida("Caña de Trigo", 0, 0, 0, 0, 0, 1);
+        BebidaBin b = new BebidaBin("Caña Rubia", 0, 0, 0, 0, 0, 1);
+        BebidaBin b1 = new BebidaBin("Caña Tostada", 0, 0, 0, 0, 0, 1);
+        BebidaBin b2 = new BebidaBin("Caña de Trigo", 0, 0, 0, 0, 0, 1);
 
-        Bebida b3 = new Bebida("Copa de Tinto", 0, 0, 0, 0, 0, 1);
-        Bebida b4 = new Bebida("Copa de Blanco", 0, 0, 0, 0, 0, 1);
-        Bebida b5 = new Bebida("Copa de Espumoso", 0, 0, 0, 0, 0, 1);
+        BebidaBin b3 = new BebidaBin("Copa de Tinto", 0, 0, 0, 0, 0, 1);
+        BebidaBin b4 = new BebidaBin("Copa de Blanco", 0, 0, 0, 0, 0, 1);
+        BebidaBin b5 = new BebidaBin("Copa de Espumoso", 0, 0, 0, 0, 0, 1);
 
-        Bebida b7 = new Bebida("Copa de Vodka", 0, 0, 0, 0, 0, 1);
-        Bebida b8 = new Bebida("Copa de Ginebra", 0, 0, 0, 0, 0, 1);
-        Bebida b9 = new Bebida("Copa de Ron", 0, 0, 0, 0, 0, 1);
+        BebidaBin b7 = new BebidaBin("Copa de Vodka", 0, 0, 0, 0, 0, 1);
+        BebidaBin b8 = new BebidaBin("Copa de Ginebra", 0, 0, 0, 0, 0, 1);
+        BebidaBin b9 = new BebidaBin("Copa de Ron", 0, 0, 0, 0, 0, 1);
 
-        Bebida b10 = new Bebida("Chupito de Jagger", 0, 0, 0, 0, 0, 1);
-        Bebida b11 = new Bebida("Chupito de Whiskey", 0, 0, 0, 0, 0, 1);
-        Bebida b12 = new Bebida("Chupito de Absenta", 0, 0, 0, 0, 0, 1);
+        BebidaBin b10 = new BebidaBin("Chupito de Jagger", 0, 0, 0, 0, 0, 1);
+        BebidaBin b11 = new BebidaBin("Chupito de Whiskey", 0, 0, 0, 0, 0, 1);
+        BebidaBin b12 = new BebidaBin("Chupito de Absenta", 0, 0, 0, 0, 0, 1);
 
         //Creamos los arrays de bebidasArrayList
-        ArrayList<Bebida> bebidasCerveza = new ArrayList<Bebida>();
-        ArrayList<Bebida> bebidasVino = new ArrayList<Bebida>();
-        ArrayList<Bebida> bebidasCoctel = new ArrayList<Bebida>();
-        ArrayList<Bebida> bebidasChupito = new ArrayList<Bebida>();
+        ArrayList<BebidaBin> bebidasCerveza = new ArrayList<BebidaBin>();
+        ArrayList<BebidaBin> bebidasVino = new ArrayList<BebidaBin>();
+        ArrayList<BebidaBin> bebidasCoctel = new ArrayList<BebidaBin>();
+        ArrayList<BebidaBin> bebidasChupito = new ArrayList<BebidaBin>();
 
         bebidasCerveza.add(b);bebidasCerveza.add(b1);bebidasCerveza.add(b2);
         bebidasVino.add(b3);bebidasVino.add(b4);bebidasVino.add(b5);
@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
         return new EstadisticosBD(estadisticos);
     }
 
-    public ArrayList<Categoria> getCategorias() {
+    public ArrayList<CategoriaBin> getCategorias() {
         return categorias;
     }
 

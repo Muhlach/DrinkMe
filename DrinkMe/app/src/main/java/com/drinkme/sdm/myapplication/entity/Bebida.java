@@ -16,20 +16,29 @@ public class Bebida {
     private int id;
     @ColumnInfo(name = "nombre")
     private String nombre;
-    @ColumnInfo(name = "graduacion")
-    private String graduacion;
+    @ColumnInfo(name = "volumenTotal")
+    private int volumenTotal;
+    @ColumnInfo(name = "volumenAlcohol")
+    private int volumenAlcohol;
     @ColumnInfo(name = "alcohol")
-    private String alcohol;
+    private double alcohol;
     @ColumnInfo(name = "kcal")
     private int kcal;
+    @ColumnInfo(name = "azucar")
+    private int azucar;
+    @ColumnInfo(name="puntos")
+    private int puntos;
     @ColumnInfo(name = "idCategoria")
     private int idCategoria;
 
-    public Bebida(String nombre, String graduacion, String alcohol, int kcal, int idCategoria) {
+    public Bebida(String nombre, int volumenTotal, int volumenAlcohol, double alcohol, int kcal, int azucar, int puntos, int idCategoria) {
         this.nombre = nombre;
-        this.graduacion = graduacion;
+        this.volumenTotal = volumenTotal;
+        this.volumenAlcohol = volumenAlcohol;
         this.alcohol = alcohol;
         this.kcal = kcal;
+        this.azucar = azucar;
+        this.puntos = puntos;
         this.idCategoria = idCategoria;
     }
 
@@ -41,40 +50,31 @@ public class Bebida {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public int getVolumenTotal() {
+        return volumenTotal;
     }
 
-    public String getGraduacion() {
-        return graduacion;
+    public int getVolumenAlcohol() {
+        return volumenAlcohol;
     }
 
-    public void setGraduacion(String graduacion) {
-        this.graduacion = graduacion;
-    }
-
-    public String getAlcohol() {
+    public double getAlcohol() {
         return alcohol;
-    }
-
-    public void setAlcohol(String alcohol) {
-        this.alcohol = alcohol;
     }
 
     public int getKcal() {
         return kcal;
     }
 
-    public void setKcal(int kcal) {
-        this.kcal = kcal;
+    public int getAzucar() {
+        return azucar;
+    }
+
+    public int getPuntos() {
+        return puntos;
     }
 
     public int getIdCategoria() {
         return idCategoria;
     }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
 }

@@ -17,6 +17,7 @@ import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Usuario;
 import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 import com.drinkme.sdm.myapplication.utils.DatabaseInitializer;
+import com.drinkme.sdm.myapplication.utils.ToBin;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -71,24 +72,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void launchMainActivity(){
-        UsuarioBin usuarioLogeado = convierteUsuarioABin(usuario);
+        ToBin worker = new ToBin();
+        UsuarioBin usuarioLogeado = worker.usuarioToBin(usuario);
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.putExtra(KEY_USUARIO_LOGEADO,usuarioLogeado);
         startActivity(intent);
     }
 
-    private UsuarioBin convierteUsuarioABin(Usuario usuario) {
-        UsuarioBin result = new UsuarioBin();
-        result.setNombre(usuario.getNombre());
-        result.setApellidos(usuario.getApellidos());
-        result.setCorreo(usuario.getEmail());
-        result.setContraseña(usuario.getContrasena());
-        result.setAltura(usuario.getAltura());
-        result.setPeso(usuario.getPeso());
-        result.setPuntosExperiencia(usuario.getPuntuacion());
-        result.setNacimiento(usuario.getFecha());
-        return result;
-    }
 
     public void botonCrearCuentaOnClick(View v){
         Intent intent = new Intent(LoginActivity.this, CrearCuentaActivity.class);

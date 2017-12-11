@@ -14,29 +14,26 @@ import android.arch.persistence.room.PrimaryKey;
 public class Categoria {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @ColumnInfo(name = "descripcion")
-    private String descripcion;
+    @ColumnInfo(name = "nombre")
+    private String nombre;
     @ColumnInfo(name = "imagen")
     private String imagen;
-    @ColumnInfo(name = "puntuacion")
-    private String puntuacion;
 
-    public Categoria(String descripcion, String imagen, String puntuacion) {
-        this.descripcion = descripcion;
+    public Categoria(String descripcion, String imagen) {
+        this.nombre = descripcion;
         this.imagen = imagen;
-        this.puntuacion = puntuacion;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String descripcion) {
+        this.nombre = descripcion;
     }
 
     public String getImagen() {
@@ -47,12 +44,5 @@ public class Categoria {
         this.imagen = imagen;
     }
 
-    public String getPuntuacion() {
-        return puntuacion;
-    }
-
-    public void setPuntuacion(String puntuacion) {
-        this.puntuacion = puntuacion;
-    }
 
 }

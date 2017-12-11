@@ -9,9 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.drinkme.sdm.myapplication.Adapters.AdapterCategorias;
-import com.drinkme.sdm.myapplication.logic.Categoria;
+import com.drinkme.sdm.myapplication.logic.CategoriaBin;
 
-import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 
 
@@ -19,7 +18,7 @@ public class BeberFragment extends Fragment{
 
 
     ListView listViewCategorias;
-    ArrayList<Categoria> categorias;
+    ArrayList<CategoriaBin> categorias;
     View view;
 
     public BeberFragment() {}
@@ -41,7 +40,7 @@ public class BeberFragment extends Fragment{
         listViewCategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Categoria categoriaSeleccionada = (Categoria) adapterView.getItemAtPosition(i);
+                CategoriaBin categoriaSeleccionada = (CategoriaBin) adapterView.getItemAtPosition(i);
                 Bundle bundleBebidas = new Bundle();
                 bundleBebidas.putParcelableArrayList(MainActivity.BEBIDAS_KEY, categoriaSeleccionada.getBebidas());
                 DialogSeleccion dialog = new DialogSeleccion();
