@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.drinkme.sdm.myapplication.database.MyDatabase;
+import com.drinkme.sdm.myapplication.entity.Bebida;
 import com.drinkme.sdm.myapplication.entity.Categoria;
 import com.drinkme.sdm.myapplication.logic.BebidaBin;
 import com.drinkme.sdm.myapplication.logic.CategoriaBin;
@@ -35,19 +37,29 @@ public class MainActivity extends AppCompatActivity {
     UsuarioBin currentUser;
     EstadisticosBD estadisticosBD;
     ArrayList<CategoriaBin> categorias;
+    MyDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-        /** Carga los datos de usuario, bebidasArrayList y estadisticos **/
+        //Instanciar base de datos
+        database = MyDatabase.getDatabase(getApplicationContext());
+
+        /** Carga los datos de usuario**/
         Bundle bundleRecibido = getIntent().getExtras();
         currentUser = bundleRecibido.getParcelable(LoginActivity.KEY_USUARIO_LOGEADO);
         int aux = currentUser.getPuntosExperiencia();
         currentUser.setPuntosExperiencia(aux);
+
+        /** Carga los logros**/
         cargaLogros();
+
+        /** Carga las categorias**/
         categorias = cargarCategorias();
+
+        /** Carga los estadisticos**/
         estadisticosBD = cargarEstadisticos();
 
         /** Carga el fragment inicial **/
@@ -168,15 +180,20 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private ArrayList<CategoriaBin> cargarCategorias() {
+        //TODO: Aqui hacer mapeo e introducir en la base de datos
+        if(database.bebidaDAO().getAll().isEmpty() && database.categoriaDAO().getAll().isEmpty()){
+
+        }
+
         ArrayList<CategoriaBin> categorias = new ArrayList<CategoriaBin>();
         //Creamos las categoriasArrayList
-        CategoriaBin vino = new CategoriaBin("Vino", getResources().getDrawable(R.drawable.ic_vino_64), null);
-        CategoriaBin cerveza = new CategoriaBin("Cerveza", getResources().getDrawable(R.drawable.ic_cerveza_64), null);
-        CategoriaBin copa = new CategoriaBin("Copa", getResources().getDrawable(R.drawable.ic_copa_64), null);
-        CategoriaBin chupito = new CategoriaBin("Chupito", getResources().getDrawable(R.drawable.ic_chupito_64), null);
+        Categoria vino = new Categoria("Vino", null);
+        Categoria cerveza = new Categoria("Cerveza", null);
+        Categoria copa = new Categoria("Copa", null);
+        Categoria chupito = new Categoria("Chupito", null);
 
         //Creamos las bebidasArrayList
-        BebidaBin b = new BebidaBin("Caña Rubia", 0, 0, 0, 0, 0, 1);
+        BebidaBin  b = new BebidaBin("Caña Rubia", 0, 0, 0, 0, 0, 1);
         BebidaBin b1 = new BebidaBin("Caña Tostada", 0, 0, 0, 0, 0, 1);
         BebidaBin b2 = new BebidaBin("Caña de Trigo", 0, 0, 0, 0, 0, 1);
 
