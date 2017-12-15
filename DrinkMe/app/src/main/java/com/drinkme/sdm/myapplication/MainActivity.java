@@ -168,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private ArrayList<CategoriaBin> cargarCategorias() {
+
+
         ArrayList<CategoriaBin> categorias = new ArrayList<CategoriaBin>();
         //Creamos las categoriasArrayList
         CategoriaBin vino = new CategoriaBin("Vino", getResources().getDrawable(R.drawable.ic_vino_64), null);

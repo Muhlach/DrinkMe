@@ -77,4 +77,42 @@ public class Bebida {
     public int getIdCategoria() {
         return idCategoria;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setVolumenTotal(int volumenTotal) {
+        this.volumenTotal = volumenTotal;
+    }
+
+    public void setVolumenAlcohol(int volumenAlcohol) {
+        this.volumenAlcohol = volumenAlcohol;
+    }
+
+    public void setAlcohol(double alcohol) {
+        this.alcohol = alcohol;
+    }
+
+    public void setKcal(int kcal) {
+        this.kcal = kcal;
+    }
+
+    public void setAzucar(int azucar) {
+        this.azucar = azucar;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+
 }

@@ -42,7 +42,7 @@ public class ToBin {
 
     public CategoriaBin categoriaToBin(Categoria categoria) {
         CategoriaBin result = new CategoriaBin();
-        result.setCatName(categoria.getNombre());
+        result.setCatName(categoria.getDescripcion());
         return result;
     }
 
