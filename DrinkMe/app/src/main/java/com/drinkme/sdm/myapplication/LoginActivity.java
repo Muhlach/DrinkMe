@@ -1,5 +1,6 @@
 package com.drinkme.sdm.myapplication;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.drinkme.sdm.myapplication.database.MyDatabase;
@@ -64,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             user_et = (EditText) findViewById(R.id.editTextUser);
             password_et = (EditText) findViewById(R.id.editTextPassword);
             checkBox = (CheckBox) findViewById(R.id.checkBoxMantenerSesion);
+            hiloDeAnimacion();
         }else {
             finish();
             usuario = database.usuarioDAO().findByNombreAndContraseña(user,password);
@@ -120,6 +123,75 @@ public class LoginActivity extends AppCompatActivity {
         return false;
 
 
+    }
+
+    private void hiloDeAnimacion() {
+        final ImageView imageView = (ImageView) findViewById(R.id.imageView4);
+
+        //https://developer.android.com/guide/components/processes-and-threads.html
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    imageView.post(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            imageView.animate()
+                                    .scaleXBy(0.5f)
+                                    .scaleYBy(0.5f)
+                                    // .translationX(0)
+                                    // .translationY(0)
+                                    .setDuration(500)
+                                    .setListener(new Animator.AnimatorListener() {
+                                        @Override
+                                        public void onAnimationStart(Animator animation) {
+
+                                        }
+
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            imageView.animate()
+                                                    .scaleXBy(-0.5f).scaleYBy(-0.5f)
+                                                    .setDuration(500)
+                                                    .setListener(new Animator.AnimatorListener() {
+                                                        @Override
+                                                        public void onAnimationStart(Animator animation) {
+                                                        }
+
+                                                        @Override
+                                                        public void onAnimationEnd(Animator animation) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onAnimationCancel(Animator animation) {
+                                                        }
+
+                                                        @Override
+                                                        public void onAnimationRepeat(Animator animation) {
+                                                        }
+                                                    }).start();
+                                        }
+
+                                        @Override
+                                        public void onAnimationCancel(Animator animation) {
+                                        }
+
+                                        @Override
+                                        public void onAnimationRepeat(Animator animation) {
+                                        }
+                                    }).start();
+                        }
+                    });
+                    try {
+                        Thread.sleep(2200);
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        });
+        thread.start();
     }
 
     private void saveInSharedPreferences(String user, String password){

@@ -180,10 +180,14 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private ArrayList<CategoriaBin> cargarCategorias() {
+<<<<<<< HEAD
         //TODO: Aqui hacer mapeo e introducir en la base de datos
         if(database.bebidaDAO().getAll().isEmpty() && database.categoriaDAO().getAll().isEmpty()){
 
         }
+=======
+
+>>>>>>> 20d6c40fa79a018a146a0b8360ee0e2aed22d991
 
         ArrayList<CategoriaBin> categorias = new ArrayList<CategoriaBin>();
         //Creamos las categoriasArrayList
