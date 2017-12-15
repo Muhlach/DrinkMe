@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,8 +16,7 @@ import android.widget.Toast;
 import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Usuario;
 import com.drinkme.sdm.myapplication.logic.UsuarioBin;
-import com.drinkme.sdm.myapplication.utils.DatabaseInitializer;
-import com.drinkme.sdm.myapplication.utils.ToBin;
+import com.drinkme.sdm.myapplication.utils.ToBean;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -75,8 +72,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void launchMainActivity(){
-        ToBin worker = new ToBin();
-        UsuarioBin usuarioLogeado = worker.usuarioToBin(usuario);
+        ToBean worker = new ToBean();
+        UsuarioBin usuarioLogeado = worker.usuarioToBean(usuario);
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.putExtra(KEY_USUARIO_LOGEADO,usuarioLogeado);
         startActivity(intent);

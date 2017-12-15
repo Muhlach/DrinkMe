@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class CategoriaBin implements Parcelable{
 
+    private int id;
     private String catName;
     private Drawable catImg;
     private ArrayList<BebidaBin> bebidas;
@@ -20,7 +21,8 @@ public class CategoriaBin implements Parcelable{
 
     }
 
-    public CategoriaBin(String catName, Drawable catImg, ArrayList<BebidaBin> bebidas) {
+    public CategoriaBin(int id, String catName, Drawable catImg, ArrayList<BebidaBin> bebidas) {
+        this.id = id;
         this.catName = catName;
         this.catImg = catImg;
         this.bebidas = bebidas;
@@ -63,6 +65,14 @@ public class CategoriaBin implements Parcelable{
 
     public void setBebidas(ArrayList<BebidaBin> bebidas) {
         this.bebidas = bebidas;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**

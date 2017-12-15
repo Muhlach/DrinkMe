@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nombres de las bebidas #################################################################-->
+    <string-array name="nombres_bebidas">
+        <!-- Bebidas de la categoria Cerveza -->
+        <item>Corto de Caña</item>
+        <item>Caña Rubia</item>
+        <item>Caña Tostada</item>
+        <item>Pinta Rubia</item>
+        <item>Pinta Tostada</item>
+        <item>Clara / Caña con limón</item>
+        <item>Botellin (Mahou, Estrella...)</item>
+        <item>Botellin Reserva Especial (Volt-Damm, 1906...)</item>
+        <item>Botellin Desperados o similar</item>
+        <item>Botellin Radler o similar</item>
+        <item>Botellin de Trigo</item>
+        <item>Pinta de Trigo</item>
+        <item>Guiness</item>
+
+        <!-- Bebidas de la categoria VINO -->
+        <item>Vino Tinto</item>
+        <item>Vino Tinto Dulce</item>
+        <item>Vino Tinto Seco</item>
+        <item>Vino Rosado</item>
+        <item>Vino Blanco</item>
+        <item>Vino Blanco Dulce</item>
+        <item>Vino de Oporto</item>
+        <item>Vino Espumoso</item>
+        <item>Cava / Champán</item>
+        <item>Sangría / Tinto de Verano</item>
+        <item>Kalimotxo</item>
+
+        <!-- Bebidas de la categoria COPA -->
+        <item>Cóctel de Ginebra (Beefeater, Bombay, Seagrams, Buldog...)</item>
+        <item>Cóctel de Vodka (Eristoff, Absolut, SKYY...)</item>
+        <item>Cóctel de Ron (Barceló, Brugal, Bacardí...)</item>
+        <item>Cóctel de Whisky (JB, Chivas, Ballantines, Jack Daniels...)</item>
+        <item>Cóctel de Jäggermeister</item>
+        <item>Cóctel de Tequila</item>
+        <item>Cóctel de Licor 43</item>
+        <item>Otras copas (Coñac, Brandy)</item>
+        <item>Vermouth (Martini, Yzaguirre...)</item>
+
+        <!-- Bebidas de la categoria CHUPITO -->
+        <item>Golpe de Tequila</item>
+        <item>Vodka</item>
+        <item>Ginebra</item>
+        <item>Jäggermeister</item>
+        <item>Jäggermeister con RedBull</item>
+        <item>Absenta</item>
+        <item>Mezcla de Alcoholes</item>
+        <item>Alcohol y mezcla</item>
+        <item>Orujo</item>
+        <item>Crema de Orujo / Baileys</item>
+        <item>Licores de Frutas (manzana, avellana, platano...)</item>
+
+    </string-array>
+
+    <!-- Volumen total de las bebidas ###########################################################-->
+    <integer-array name="volumen_total">
+        <!-- Bebidas de la categoria Cerveza -->
+        <item>200</item>
+        <item>333</item>
+        <item>333</item>
+        <item>500</item>
+        <item>500</item>
+        <item>333</item>
+        <item>333</item>
+        <item>333</item>
+        <item>333</item>
+        <item>333</item>
+        <item>333</item>
+        <item>500</item>
+        <item>500</item>
+
+        <!-- Bebidas de la categoria VINO -->
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>250</item>
+        <item>500</item>
+
+        <!-- Bebidas de la categoria COPA -->
+        <item>70</item>
+        <item>70</item>
+        <item>70</item>
+        <item>70</item>
+        <item>70</item>
+        <item>70</item>
+        <item>70</item>
+        <item>50</item>
+        <item>70</item>
+
+        <!-- Bebidas de la categoria CHUPITO -->
+        <item>30</item>
+        <item>30</item>
+        <item>30</item>
+        <item>30</item>
+        <item>30</item>
+        <item>30</item>
+        <item>30</item>
+        <item>30</item>
+        <item>30</item>
+        <item>40</item>
+        <item>40</item>
+    </integer-array>
+
+    <!-- Volumen alcohol de las bebidas #########################################################-->
+    <integer-array name="volumen_alcohol">
+        <!-- Bebidas de la categoria Cerveza -->
+        <item>200</item>
+        <item>333</item>
+        <item>333</item>
+        <item>500</item>
+        <item>500</item>
+        <item>200</item>
+        <item>333</item>
+        <item>333</item>
+        <item>333</item>
+        <item>333</item>
+        <item>333</item>
+        <item>500</item>
+        <item>500</item>
+
+        <!-- Bebidas de la categoria VINO -->
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>120</item>
+        <item>250</item>
+        <item>250</item>
+
+        <!-- Bebidas de la categoria COPA -->
+        <item>50</item>
+        <item>50</item>
+        <item>50</item>
+        <item>50</item>
+        <item>50</item>
+        <item>50</item>
+        <item>50</item>
+        <item>50</item>
+        <item>70</item>
+
+        <!-- Bebidas de la categoria CHUPITO -->
+        <item>30</item>
+        <item>30</item>
+        <item>30</item>
+        <item>30</item>
+        <item>15</item>
+        <item>30</item>
+        <item>30</item>
+        <item>15</item>
+        <item>30</item>
+        <item>40</item>
+        <item>40</item>
+
+    </integer-array>
+
+    <!-- Alcohol de las bebidas #############################3###################################-->
+    <string-array name="alcohol">
+        <!-- Bebidas de la categoria Cerveza -->
+        <item>5</item>
+        <item>5</item>
+        <item>7</item>
+        <item>5</item>
+        <item>7</item>
+        <item>5</item>
+        <item>5.5</item>
+        <item>7</item>
+        <item>6</item>
+        <item>2</item>
+        <item>5.5</item>
+        <item>5.5</item>
+        <item>4.5</item>
+
+        <!-- Bebidas de la categoria VINO -->
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>16</item>
+        <item>12</item>
+        <item>14</item>
+        <item>10</item>
+        <item>13</item>
+
+        <!-- Bebidas de la categoria COPA -->
+        <item>42</item>
+        <item>40</item>
+        <item>38</item>
+        <item>40</item>
+        <item>35</item>
+        <item>40</item>
+        <item>31</item>
+        <item>40</item>
+        <item>15</item>
+
+        <!-- Bebidas de la categoria CHUPITO -->
+        <item>45</item>
+        <item>40</item>
+        <item>42</item>
+        <item>35</item>
+        <item>35</item>
+        <item>85</item>
+        <item>60</item>
+        <item>60</item>
+        <item>50</item>
+        <item>17</item>
+        <item>30</item>
+
+    </string-array>
+
+    <!-- Kcal de las bebidas ####################################################################-->
+    <integer-array name="kcal">
+        <!-- Bebidas de la categoria Cerveza -->
+        <item>86</item>
+        <item>143</item>
+        <item>183</item>
+        <item>215</item>
+        <item>275</item>
+        <item>203</item>
+        <item>150</item>
+        <item>183</item>
+        <item>196</item>
+        <item>107</item>
+        <item>157</item>
+        <item>235</item>
+        <item>175</item>
+
+        <!-- Bebidas de la categoria VINO -->
+        <item>120</item>
+        <item>115</item>
+        <item>120</item>
+        <item>101</item>
+        <item>116</item>
+        <item>116</item>
+        <item>227</item>
+        <item>269</item>
+        <item>108</item>
+        <item>390</item>
+        <item>612</item>
+
+        <!-- Bebidas de la categoria COPA -->
+        <item>200</item>
+        <item>177</item>
+        <item>177</item>
+        <item>190</item>
+        <item>190</item>
+        <item>150</item>
+        <item>215</item>
+        <item>110</item>
+        <item>87</item>
+
+        <!-- Bebidas de la categoria CHUPITO -->
+        <item>57</item>
+        <item>70</item>
+        <item>79</item>
+        <item>75</item>
+        <item>81</item>
+        <item>105</item>
+        <item>78</item>
+        <item>85</item>
+        <item>113</item>
+        <item>132</item>
+        <item>100</item>
+
+    </integer-array>
+
+    <!-- Azucar de las bebidas ##################################################################-->
+    <integer-array name="azucar">
+        <!-- Bebidas de la categoria Cerveza -->
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <!-- Bebidas de la categoria VINO -->
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <!-- Bebidas de la categoria COPA -->
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <!-- Bebidas de la categoria CHUPITO -->
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+    </integer-array>
+
+    <!-- Puntos de las bebidas ##################################################################-->
+    <integer-array name="puntos">
+        <!-- Bebidas de la categoria Cerveza -->
+        <item>5</item>
+        <item>10</item>
+        <item>12</item>
+        <item>15</item>
+        <item>15</item>
+        <item>5</item>
+        <item>10</item>
+        <item>12</item>
+        <item>10</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>10</item>
+
+        <!-- Bebidas de la categoria VINO -->
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>8</item>
+
+        <!-- Bebidas de la categoria COPA -->
+        <item>20</item>
+        <item>20</item>
+        <item>20</item>
+        <item>20</item>
+        <item>20</item>
+        <item>20</item>
+        <item>20</item>
+        <item>20</item>
+        <item>15</item>
+
+        <!-- Bebidas de la categoria CHUPITO -->
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+
+    </integer-array>
+
+    <!-- ID de la categoria de las bebidas ######################################################-->
+    <integer-array name="id_categoria">
+        <!-- Bebidas de la categoria Cerveza -->
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+
+        <!-- Bebidas de la categoria VINO -->
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+
+        <!-- Bebidas de la categoria COPA -->
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+
+        <!-- Bebidas de la categoria CHUPITO -->
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+
+    </integer-array>
+
+
+</resources>

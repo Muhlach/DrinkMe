@@ -29,4 +29,7 @@ public interface CategoriaDAO {
 
     @Delete
     void delete(Categoria categoria);
+
+    @Insert
+    void insertCollection(List<Categoria> cats);
 }

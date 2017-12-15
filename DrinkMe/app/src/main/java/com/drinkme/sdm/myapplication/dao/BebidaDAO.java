@@ -32,4 +32,7 @@ public interface BebidaDAO {
 
     @Delete
     void delete(Bebida bebida);
+
+    @Insert
+    void insertCollection(List<Bebida> bebs);
 }

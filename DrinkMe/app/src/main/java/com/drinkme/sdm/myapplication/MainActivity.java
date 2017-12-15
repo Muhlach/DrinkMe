@@ -1,6 +1,7 @@
 package com.drinkme.sdm.myapplication;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,15 +15,16 @@ import android.widget.Toast;
 import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Bebida;
 import com.drinkme.sdm.myapplication.entity.Categoria;
-import com.drinkme.sdm.myapplication.logic.BebidaBin;
 import com.drinkme.sdm.myapplication.logic.CategoriaBin;
 import com.drinkme.sdm.myapplication.logic.Estadistico;
 import com.drinkme.sdm.myapplication.logic.EstadisticosBD;
 import com.drinkme.sdm.myapplication.logic.Logro;
 import com.drinkme.sdm.myapplication.logic.LogrosBD;
 import com.drinkme.sdm.myapplication.logic.UsuarioBin;
+import com.drinkme.sdm.myapplication.utils.ToBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         cargaLogros();
 
         /** Carga las categorias**/
-        categorias = cargarCategorias();
+        categorias = cargarCategoriasyBebidas();
 
         /** Carga los estadisticos**/
         estadisticosBD = cargarEstadisticos();
@@ -166,79 +168,86 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Carga las bebidas y categorias en la aplicacion desde la base de datos. En caso de que la
+     * base de datos no tenga ninguna bebida cargada, las genera
+     * @return ArrayList de categorias con respectivas bebidas
+     */
+    public ArrayList<CategoriaBin> cargarCategoriasyBebidas(){
+        /** Si la base de datos no tiene bebidas ni categorias cargadas, las cargamos */
+        if(database.bebidaDAO().getAll().isEmpty() && database.categoriaDAO().getAll().isEmpty()){
+            generarCategoriasBD();
+            generarBebidasBD();
+        }
 
-    private ArrayList<CategoriaBin> cargarDesdeBD() {
-        ArrayList<CategoriaBin> categorias = new ArrayList<CategoriaBin>();
+        /** Obtenemos la arraylist de Bean para nuestra app */
+        ToBean worker = new ToBean();
+        ArrayList<CategoriaBin> categorias = worker.obtenerCategoriasBean(database.categoriaDAO().getAll(),
+                database.bebidaDAO().getAll());
+
+        /** Cargamos las imagenes */
+        for(CategoriaBin c : categorias) {
+            switch (c.getId()){
+                case 1:
+                    c.setCatImg(getResources().getDrawable(R.drawable.ic_cerveza_128, null));
+                    break;
+                case 2:
+                    c.setCatImg(getResources().getDrawable(R.drawable.ic_vino_128, null));
+                    break;
+                case 3:
+                    c.setCatImg(getResources().getDrawable(R.drawable.ic_copa_128, null));
+                    break;
+                case 4:
+                    c.setCatImg(getResources().getDrawable(R.drawable.ic_chupito_128, null));
+                    break;
+            }
+        }
+
+
         return categorias;
     }
 
     /**
-     * Metodo que carga todas las categoriasArrayList con sus correspondientes bebeidas en la aplicacion.
-     *
-     * ACTUALMENTE ES UN METODO DE PRUEBA QUE CREA LOS OBJETOS
-     *
-     * @return
+     * Genera y añade a la base de datos las bebidas en funcion de los ficheros XML para que
+     * sea facil añadir nuevas
      */
-    private ArrayList<CategoriaBin> cargarCategorias() {
-<<<<<<< HEAD
-        //TODO: Aqui hacer mapeo e introducir en la base de datos
-        if(database.bebidaDAO().getAll().isEmpty() && database.categoriaDAO().getAll().isEmpty()){
+    private void generarBebidasBD() {
+        Resources res = getResources();
+        String[] nombres = res.getStringArray(R.array.nombres_bebidas);
+        int[] volumenTotal = res.getIntArray(R.array.volumen_total);
+        int[] volumenAlcohol = res.getIntArray(R.array.volumen_alcohol);
+        String[] alcohol = res.getStringArray(R.array.alcohol);
+        int[] kcal = res.getIntArray(R.array.kcal);
+        int[] azucar = res.getIntArray(R.array.azucar);
+        int[] puntos = res.getIntArray(R.array.puntos);
+        int[] idCategoria = res.getIntArray(R.array.id_categoria);
 
+        List<Bebida> bebs = new ArrayList<Bebida>();
+        Bebida b;
+        for(int i=0; i<nombres.length; i++) {
+            b = new Bebida(nombres[i], volumenTotal[i], volumenAlcohol[i], Double.valueOf(alcohol[i]), kcal[i],
+                    azucar[i], puntos[i], idCategoria[i]);
+            bebs.add(b);
         }
-=======
+        database.bebidaDAO().insertCollection(bebs);
 
->>>>>>> 20d6c40fa79a018a146a0b8360ee0e2aed22d991
-
-        ArrayList<CategoriaBin> categorias = new ArrayList<CategoriaBin>();
-        //Creamos las categoriasArrayList
-        Categoria vino = new Categoria("Vino", null);
-        Categoria cerveza = new Categoria("Cerveza", null);
-        Categoria copa = new Categoria("Copa", null);
-        Categoria chupito = new Categoria("Chupito", null);
-
-        //Creamos las bebidasArrayList
-        BebidaBin  b = new BebidaBin("Caña Rubia", 0, 0, 0, 0, 0, 1);
-        BebidaBin b1 = new BebidaBin("Caña Tostada", 0, 0, 0, 0, 0, 1);
-        BebidaBin b2 = new BebidaBin("Caña de Trigo", 0, 0, 0, 0, 0, 1);
-
-        BebidaBin b3 = new BebidaBin("Copa de Tinto", 0, 0, 0, 0, 0, 1);
-        BebidaBin b4 = new BebidaBin("Copa de Blanco", 0, 0, 0, 0, 0, 1);
-        BebidaBin b5 = new BebidaBin("Copa de Espumoso", 0, 0, 0, 0, 0, 1);
-
-        BebidaBin b7 = new BebidaBin("Copa de Vodka", 0, 0, 0, 0, 0, 1);
-        BebidaBin b8 = new BebidaBin("Copa de Ginebra", 0, 0, 0, 0, 0, 1);
-        BebidaBin b9 = new BebidaBin("Copa de Ron", 0, 0, 0, 0, 0, 1);
-
-        BebidaBin b10 = new BebidaBin("Chupito de Jagger", 0, 0, 0, 0, 0, 1);
-        BebidaBin b11 = new BebidaBin("Chupito de Whiskey", 0, 0, 0, 0, 0, 1);
-        BebidaBin b12 = new BebidaBin("Chupito de Absenta", 0, 0, 0, 0, 0, 1);
-
-        //Creamos los arrays de bebidasArrayList
-        ArrayList<BebidaBin> bebidasCerveza = new ArrayList<BebidaBin>();
-        ArrayList<BebidaBin> bebidasVino = new ArrayList<BebidaBin>();
-        ArrayList<BebidaBin> bebidasCoctel = new ArrayList<BebidaBin>();
-        ArrayList<BebidaBin> bebidasChupito = new ArrayList<BebidaBin>();
-
-        bebidasCerveza.add(b);bebidasCerveza.add(b1);bebidasCerveza.add(b2);
-        bebidasVino.add(b3);bebidasVino.add(b4);bebidasVino.add(b5);
-        bebidasCoctel.add(b7);bebidasCoctel.add(b8);bebidasCoctel.add(b9);
-        bebidasChupito.add(b10);bebidasChupito.add(b11);bebidasChupito.add(b12);
-
-        //Asignamos los arrays a las categoriasArrayList
-        vino.setBebidas(bebidasVino);
-        cerveza.setBebidas(bebidasCerveza);
-        copa.setBebidas(bebidasCoctel);
-        chupito.setBebidas(bebidasChupito);
-
-
-        //Añadimos las categoriasArrayList al array y hacemos return
-        categorias.add(vino);
-        categorias.add(cerveza);
-        categorias.add(copa);
-        categorias.add(chupito);
-
-        return categorias;
     }
+
+    /**
+     * Genera y añade a la base de datos las categoriasen funcion de los ficheros XML para que
+     * sea facil añadir nuevas
+     */
+    private void generarCategoriasBD() {
+        String[] nombres = getResources().getStringArray(R.array.nombres_categorias);
+        List<Categoria> cats = new ArrayList<Categoria>();
+        Categoria c;
+        for(int i = 0; i<nombres.length; i++){
+            c = new Categoria(nombres[i], null);
+            cats.add(c);
+        }
+        database.categoriaDAO().insertCollection(cats);
+    }
+
 
     /**
      * Metodo que crea la lista de estadisticos.
@@ -268,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     public void cargaLogros() {
-        Logro l= new Logro(1, "Cervecero Principiante", "");
+        Logro  l= new Logro(1, "Cervecero Principiante", "");
         Logro l1= new Logro(2, "Cervecero Avanzado", "");
         Logro l2= new Logro(3, "Coctelero Principiante", "");
         Logro l3= new Logro(4, "Fin de Semana Cervecero", "");

@@ -13,11 +13,12 @@ public class BebidaBin implements Parcelable{
     private double alcohol, precio;
     private int volumenTotal, volumenAlcohol; //el volumen se medirá en mL
     private int puntosBebida;
+    private int idCategoria;
 
 
     public BebidaBin(){}
 
-    public BebidaBin(String bebName, int kcal, int azucar, double alcohol, int volumenTotal, int volumenAlcohol, int puntosBebida) {
+    public BebidaBin(String bebName, int kcal, int azucar, double alcohol, int volumenTotal, int volumenAlcohol, int puntosBebida, int idCategoria) {
         this.bebName = bebName;
         this.kcal = kcal;
         this.azucar = azucar;
@@ -25,6 +26,7 @@ public class BebidaBin implements Parcelable{
         this.volumenTotal = volumenTotal;
         this.volumenAlcohol = volumenAlcohol;
         this.puntosBebida = puntosBebida;
+        this.idCategoria = idCategoria;
 
     }
 
@@ -37,6 +39,7 @@ public class BebidaBin implements Parcelable{
         volumenTotal = in.readInt();
         volumenAlcohol = in.readInt();
         puntosBebida = in.readInt();
+        idCategoria = in.readInt();
     }
 
     @Override
@@ -49,6 +52,7 @@ public class BebidaBin implements Parcelable{
         dest.writeInt(volumenTotal);
         dest.writeInt(volumenAlcohol);
         dest.writeInt(puntosBebida);
+        dest.writeInt(idCategoria);
     }
 
     @Override
@@ -132,6 +136,13 @@ public class BebidaBin implements Parcelable{
         this.puntosBebida = puntosBebida;
     }
 
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
 
     @Override
     public String toString() {
