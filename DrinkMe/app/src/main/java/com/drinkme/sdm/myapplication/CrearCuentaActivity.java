@@ -39,6 +39,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         findViews();
         database =  MyDatabase.getDatabase(getApplicationContext());
+        getSupportActionBar().setTitle("Rellena todos los datos");
     }
 
     private void findViews() {

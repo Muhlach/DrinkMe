@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         if(user == null || password == null){
             setContentView(R.layout.activity_login);
             setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            getSupportActionBar().hide();
             user_et = (EditText) findViewById(R.id.editTextUser);
             password_et = (EditText) findViewById(R.id.editTextPassword);
             checkBox = (CheckBox) findViewById(R.id.checkBoxMantenerSesion);
