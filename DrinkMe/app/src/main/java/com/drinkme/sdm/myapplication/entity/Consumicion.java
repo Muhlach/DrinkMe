@@ -26,11 +26,11 @@ public class Consumicion {
     @ColumnInfo(name = "idBebida")
     private int idBebida;
     @ColumnInfo(name = "precio")
-    private String  precio;
+    private double  precio;
     @ColumnInfo(name = "fecha")
     private int fecha;
 
-    public Consumicion(int idUsuario, int idBebida, String precio, int fecha) {
+    public Consumicion(int idUsuario, int idBebida, double precio, int fecha) {
         this.idUsuario = idUsuario;
         this.idBebida = idBebida;
         this.precio = precio;
@@ -61,11 +61,11 @@ public class Consumicion {
         this.idBebida = idBebida;
     }
 
-    public String getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(String precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 

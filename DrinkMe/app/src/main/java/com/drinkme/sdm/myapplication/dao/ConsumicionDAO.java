@@ -9,6 +9,7 @@ import android.arch.persistence.room.Update;
 import com.drinkme.sdm.myapplication.entity.Bebida;
 import com.drinkme.sdm.myapplication.entity.Consumicion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ public interface ConsumicionDAO {
     @Query("SELECT * FROM consumicion WHERE idBebida LIKE :idBebida")
     List<Consumicion> findByBebida(String idBebida);
 
+
     @Insert
     void insertAll(Consumicion... consumicion);
 
@@ -38,4 +40,16 @@ public interface ConsumicionDAO {
 
     @Insert
     void insertCollection(List<Consumicion> consumicion);
+
+    @Query("SELECT count(*) FROM consumicion WHERE idUsuario LIKE :idUsuario")
+    int cuentaRegistros(int idUsuario);
+
+    @Query("SELECT * FROM consumicion WHERE fecha BETWEEN :fechaInicio AND :fechaFin")
+    ArrayList<Consumicion> getAllPorFecha(int fechaInicio, int fechaFin);
+
+    @Query("SELECT * FROM consumicion WHERE idCategoria LIKE :categoria AND fecha BETWEEN :fechaInicio AND :fechaFin")
+    ArrayList<Consumicion> getAllPorCategoria(int categoria, int fecha, int fecha1);
+
+    @Query("SELECT * FROM consumicion WHERE idBebida LIKE :categoria AND fecha BETWEEN :fechaInicio AND :fechaFin")
+    ArrayList<Consumicion> getAllPorBebida(int bebida, int fecha, int fecha1);
 }

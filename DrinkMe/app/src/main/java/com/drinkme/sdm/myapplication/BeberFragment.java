@@ -6,19 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.drinkme.sdm.myapplication.Adapters.AdapterCategorias;
 import com.drinkme.sdm.myapplication.logic.CategoriaBin;
+import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 
 import java.util.ArrayList;
 
 
 public class BeberFragment extends Fragment{
 
-
     ListView listViewCategorias;
     ArrayList<CategoriaBin> categorias;
+    UsuarioBin user;
     View view;
 
     public BeberFragment() {}
@@ -29,6 +31,7 @@ public class BeberFragment extends Fragment{
         view = inflater.inflate(R.layout.fragment_beber, container, false);
         Bundle bundle = getArguments();
         categorias = bundle.getParcelableArrayList(MainActivity.KEY_CATEGORIAS);
+        user = bundle.getParcelable(MainActivity.USER_KEY);
         cargarCategorías();
         return view;
     }
@@ -43,6 +46,7 @@ public class BeberFragment extends Fragment{
                 CategoriaBin categoriaSeleccionada = (CategoriaBin) adapterView.getItemAtPosition(i);
                 Bundle bundleBebidas = new Bundle();
                 bundleBebidas.putParcelableArrayList(MainActivity.BEBIDAS_KEY, categoriaSeleccionada.getBebidas());
+                bundleBebidas.putParcelable(MainActivity.USER_KEY, user);
                 DialogSeleccion dialog = new DialogSeleccion();
                 dialog.setArguments(bundleBebidas);
                 dialog.show(getFragmentManager(), "personal");

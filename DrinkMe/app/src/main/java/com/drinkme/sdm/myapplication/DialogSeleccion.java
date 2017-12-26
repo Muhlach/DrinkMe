@@ -11,7 +11,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.drinkme.sdm.myapplication.dao.BebidaDAO;
+import com.drinkme.sdm.myapplication.dao.ConsumicionDAO;
+import com.drinkme.sdm.myapplication.dao.UsuarioDAO;
+import com.drinkme.sdm.myapplication.database.MyDatabase;
+import com.drinkme.sdm.myapplication.entity.Consumicion;
 import com.drinkme.sdm.myapplication.logic.BebidaBin;
+import com.drinkme.sdm.myapplication.logic.UsuarioBin;
+import com.drinkme.sdm.myapplication.utils.FechaUtils;
 
 import java.util.ArrayList;
 
@@ -27,6 +34,7 @@ public class DialogSeleccion extends DialogFragment{
     Button guardar, cancelar;
     BebidaBin bebidaSeleccionada;
     ArrayList<BebidaBin> bebidasArrayList;
+    UsuarioBin user;
     double precio;
 
     public DialogSeleccion(){}
@@ -39,6 +47,12 @@ public class DialogSeleccion extends DialogFragment{
         txPrecio = (TextView) view.findViewById(R.id.txDialogPrecio);
 
         guardar = (Button) view.findViewById(R.id.btnDialogGuardar);
+
+        Bundle bundleRecibido = this.getArguments();
+        bebidasArrayList = bundleRecibido.getParcelableArrayList(MainActivity.BEBIDAS_KEY);
+        user = bundleRecibido.getParcelable(MainActivity.USER_KEY);
+        cargaBebidas();
+
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +67,8 @@ public class DialogSeleccion extends DialogFragment{
                 else {
                     precio = Double.valueOf(precioStr);
                     //TODO: Aquí se debe implementar el registro de la consumición
-                    String r = b.toString() + "  " + precio;
+                    int registros = guardarConsumicion(b, precio);
+                    String r = b.toString() + "  " + precio + ". Hay: " + registros + " bebidas registradas.";
                     Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
                     dismiss();
                 }
@@ -70,11 +85,26 @@ public class DialogSeleccion extends DialogFragment{
             }
         });
 
-
-        Bundle bundleRecibido = getArguments();
-        bebidasArrayList = bundleRecibido.getParcelableArrayList(MainActivity.BEBIDAS_KEY);
-        cargaBebidas();
         return view;
+    }
+
+    /**
+     * Metodo que registra en la base de datos una consumición
+     * @param b bebida que selecciona el usuario
+     * @param precio precio de la consumicion
+     */
+    private int guardarConsumicion(BebidaBin b, double precio) {
+        MyDatabase db = MyDatabase.getDatabase(getActivity());
+        UsuarioDAO usuarioDAO = db.usuarioDAO();
+        BebidaDAO bebidaDAO = db.bebidaDAO();
+        ConsumicionDAO consumicionDAO = db.consumicionDAO();
+        int bebidaId = bebidaDAO.findByNombre(b.getBebName()).getId();
+        int usuarioId = usuarioDAO.findByNombre(user.getNombre()).getId();
+        int fecha = FechaUtils.getToday();
+
+        Consumicion consumicion = new Consumicion(usuarioId, bebidaId, precio, fecha);
+        consumicionDAO.insertAll(consumicion);
+        return consumicionDAO.cuentaRegistros(usuarioId);
     }
 
 

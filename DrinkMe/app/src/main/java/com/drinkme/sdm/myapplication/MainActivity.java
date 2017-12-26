@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_beber:
 
                     b.putParcelableArrayList(KEY_CATEGORIAS, categorias);
+                    b.putParcelable(USER_KEY, currentUser);
                     fragment = new BeberFragment();
                     fragment.setArguments(b);
                     break;
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
     private void setInitialFragment() {
         Bundle b = new Bundle();
         b.putParcelableArrayList(KEY_CATEGORIAS, categorias);
+        b.putParcelable(USER_KEY, currentUser);
         BeberFragment fragment = new BeberFragment();
         fragment.setArguments(b);
 
