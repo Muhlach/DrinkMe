@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    
+
     //TODO debería actualizar el usuario en la base de datos pero no lo hace?
     @Override
     protected void onDestroy() {
