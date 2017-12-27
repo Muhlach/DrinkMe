@@ -76,7 +76,8 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:paddingTop="10dp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/grisOscuro" />
 
         <TextView
             android:id="@+id/textView9"
@@ -97,7 +98,8 @@
             android:ems="10"
             android:inputType="textPassword"
             android:paddingTop="10dp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/grisOscuro" />
 
     </LinearLayout>
 
@@ -138,7 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.12"
-                android:text="Mantener Sesion"
+                android:text="Mantener Sesión"
                 android:textColor="@color/grisClaro" />
         </LinearLayout>
 
@@ -158,7 +160,6 @@
             android:textAlignment="center"
             android:textColor="@color/granateBase"
             android:textSize="18sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

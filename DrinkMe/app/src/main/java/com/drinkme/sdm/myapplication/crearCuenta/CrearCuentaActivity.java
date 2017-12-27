@@ -1,17 +1,14 @@
-package com.drinkme.sdm.myapplication;
+package com.drinkme.sdm.myapplication.crearCuenta;
 
-import android.app.DialogFragment;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import com.drinkme.sdm.myapplication.crearCuenta.*;
+import com.drinkme.sdm.myapplication.R;
 import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Usuario;
-
 import java.util.ArrayList;
 
 /**
@@ -20,13 +17,17 @@ import java.util.ArrayList;
 
 public class CrearCuentaActivity extends AppCompatActivity {
 
-    boolean debug = true;
-    MyDatabase database;
+    private boolean debug = true;
+    private MyDatabase database;
     private int indexCurretFragment = 0;
-    ArrayList<Fragment> fragments;
-    Usuario user;
-    String nombre, apellidos, contrasena, email, fecha, sexo;
-    int altura, peso;
+    private ArrayList<Fragment> fragments;
+
+    /**
+     * Creamos un usuario; cada fragment inicializa los fields del usuario
+     */
+    private Usuario user;
+    private String nombre, apellidos, contrasena, email, fecha, sexo;
+    private int altura, peso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,9 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
         user = new Usuario();
 
+        /**
+         * Rellenamos el arrayList de fragments
+         */
         fragments = new ArrayList<>();
         fragments.add(new Nombre_apellidos_fragment());
         fragments.add(new UO_password_fragment());
@@ -51,6 +55,9 @@ public class CrearCuentaActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Metodo encargado de cambiar el fragment
+     */
     public void nextFragmet() {
         Fragment fragment = fragments.get(indexCurretFragment);
         ++indexCurretFragment;
@@ -92,23 +99,17 @@ public class CrearCuentaActivity extends AppCompatActivity {
         this.peso = peso;
     }
 
+    //TODO fecha
+    /**
+     * Este método es llamado por el último fragment
+     */
     public void createUser() {
         Usuario user = new Usuario(nombre, apellidos, email, contrasena, 1, sexo, altura,
                 peso, 0);
 
+        database.usuarioDAO().insertAll(user);
+
         if (debug)
             Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
-
-        /**
-         *
-         * El objeto usuario ya está creado, debería insertarse en la BBDD
-         */
-        database.usuarioDAO().insertAll(user);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.wtf("----", "wtf");
     }
 }

@@ -17,7 +17,7 @@ public class UsuarioBin implements Parcelable {
 
     private String userID, nombre, apellidos;
     private String correo, contraseña;
-    private boolean sexo;
+    private String sexo;
     private String nacimiento;
     private int altura, peso;
     private int puntosExperiencia;
@@ -36,7 +36,7 @@ public class UsuarioBin implements Parcelable {
         apellidos = in.readString();
         correo = in.readString();
         contraseña = in.readString();
-        sexo = in.readByte() != 0;
+        sexo = in.readString();
         altura = in.readInt();
         peso = in.readInt();
         puntosExperiencia = in.readInt();
@@ -105,11 +105,11 @@ public class UsuarioBin implements Parcelable {
         this.contraseña = contraseña;
     }
 
-    public boolean isSexo() {
+    public String isSexo() {
         return sexo;
     }
 
-    public void setSexo(boolean sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
@@ -191,7 +191,7 @@ public class UsuarioBin implements Parcelable {
         parcel.writeString(apellidos);
         parcel.writeString(correo);
         parcel.writeString(contraseña);
-        parcel.writeByte((byte) (sexo ? 1 : 0));
+        parcel.writeString(sexo);
         parcel.writeInt(altura);
         parcel.writeInt(peso);
         parcel.writeInt(puntosExperiencia);

@@ -22,7 +22,7 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" />
-        <activity android:name=".CrearCuentaActivity" />
+        <activity android:name=".crearCuenta.CrearCuentaActivity" />
         <activity
             android:name=".PerfilActivity"
             android:label="Perfil"

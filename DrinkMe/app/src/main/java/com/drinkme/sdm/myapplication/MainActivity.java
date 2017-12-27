@@ -309,9 +309,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    //TODO debería actualizar el usuario en la base de datos pero no lo hace?
+    //TODO se debería actualizar el usuario en la base de datos antes de cerrar la app, porque puede haberse actualizado
     @Override
     protected void onDestroy() {
+
+        /**
+         * Este código no funciona
+         */
         Toast.makeText(this,"Fin",Toast.LENGTH_LONG).show();
         database.usuarioDAO().update(new ToEntity().convertUser(currentUser));
         super.onDestroy();
