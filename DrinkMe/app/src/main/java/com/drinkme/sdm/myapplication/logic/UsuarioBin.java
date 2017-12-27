@@ -17,8 +17,8 @@ public class UsuarioBin implements Parcelable {
 
     private String userID, nombre, apellidos;
     private String correo, contraseña;
-    private boolean sexo;
-    private int nacimiento;
+    private String sexo;
+    private String nacimiento;
     private int altura, peso;
     private int puntosExperiencia;
     private NivelBD nivelBD;
@@ -36,11 +36,11 @@ public class UsuarioBin implements Parcelable {
         apellidos = in.readString();
         correo = in.readString();
         contraseña = in.readString();
-        sexo = in.readByte() != 0;
+        sexo = in.readString();
         altura = in.readInt();
         peso = in.readInt();
         puntosExperiencia = in.readInt();
-        nacimiento = in.readInt();
+        nacimiento = in.readString();
     }
 
     public static final Creator<UsuarioBin> CREATOR = new Creator<UsuarioBin>() {
@@ -105,19 +105,19 @@ public class UsuarioBin implements Parcelable {
         this.contraseña = contraseña;
     }
 
-    public boolean isSexo() {
+    public String isSexo() {
         return sexo;
     }
 
-    public void setSexo(boolean sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    public int getNacimiento() {
+    public String getNacimiento() {
         return nacimiento;
     }
 
-    public void setNacimiento(int nacimiento) {
+    public void setNacimiento(String nacimiento) {
         this.nacimiento = nacimiento;
     }
 
@@ -191,11 +191,11 @@ public class UsuarioBin implements Parcelable {
         parcel.writeString(apellidos);
         parcel.writeString(correo);
         parcel.writeString(contraseña);
-        parcel.writeByte((byte) (sexo ? 1 : 0));
+        parcel.writeString(sexo);
         parcel.writeInt(altura);
         parcel.writeInt(peso);
         parcel.writeInt(puntosExperiencia);
-        parcel.writeInt(nacimiento);
+        parcel.writeString(nacimiento);
     }
 
     @Override

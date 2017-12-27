@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by javie on 18/11/2017.
  */
-
+//TODO es más cómodo tratar fecha como un tipo String como: "22/09/1997" , hay que añadir una columna para el NombreDeUsuario aka UserID, ahora solo tenemos nombre y apellidos
 @Entity(tableName = "usuarios")
 public class Usuario {
 
