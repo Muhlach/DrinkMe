@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import com.drinkme.sdm.myapplication.R;
  * Created by alex on 26/12/2017.
  */
 
-public class Altura_peso_fragment extends DialogFragment {
+public class Altura_peso_fragment extends Fragment {
 
     View view;
     Button aceptar;
@@ -28,32 +29,11 @@ public class Altura_peso_fragment extends DialogFragment {
     private EditText altura_et, peso_et;
     String altura, peso;
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Dialog dialog = getDialog();
-        if (dialog != null)
-        {
-            int width = ViewGroup.LayoutParams.MATCH_PARENT;
-            int height = ViewGroup.LayoutParams.MATCH_PARENT;
-            dialog.getWindow().setLayout(width, height);
-        }
-
-    }
-
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        return dialog;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_altura_peso, container);
+        view = inflater.inflate(R.layout.fragment_altura_peso, container, false);
         activity = (CrearCuentaActivity) getActivity();
         aceptar = (Button) view.findViewById(R.id.buttonNext45);
 
@@ -69,9 +49,8 @@ public class Altura_peso_fragment extends DialogFragment {
                 if (check()) {
                     activity.setAltura(Integer.parseInt(altura));
                     activity.setPeso(Integer.parseInt(peso));
-                    activity.nextFragmet();
                     activity.createUser();
-                    dismiss();
+                    activity.nextFragmet();
                 }
             }
         });

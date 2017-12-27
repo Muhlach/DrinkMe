@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/amarilloBase">
+    android:background="@color/amarilloClaro">
 
 
     <Button
@@ -61,7 +61,8 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Altura en centimetros"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="@color/granateBase" />
 
         </LinearLayout>
 
@@ -88,7 +89,8 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Peso en kilogramos"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="@color/granateBase" />
 
         </LinearLayout>
     </LinearLayout>
@@ -112,19 +114,20 @@
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:text="DrinkMe proporciona estadísticas sobre las kilocalorías que consumes"
+        android:text="DrinkMe proporciona estadísticas sobre las kilocalorías que consumes."
         android:textColor="@color/grisOscuro"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/buttonNext45"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        app:layout_constraintVertical_bias="0.48000002" />
 
 </android.support.constraint.ConstraintLayout>

@@ -27,7 +27,9 @@ public class ToBean {
         result.setAltura(usuario.getAltura());
         result.setPeso(usuario.getPeso());
         result.setPuntosExperiencia(usuario.getPuntuacion());
-        result.setNacimiento(usuario.getFecha());
+
+        //TODO
+        //result.setNacimiento(usuario.getFecha());
         return result;
     }
 

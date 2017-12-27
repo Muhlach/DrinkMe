@@ -22,6 +22,7 @@ import com.drinkme.sdm.myapplication.logic.Logro;
 import com.drinkme.sdm.myapplication.logic.LogrosBD;
 import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 import com.drinkme.sdm.myapplication.utils.ToBean;
+import com.drinkme.sdm.myapplication.utils.ToEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -306,4 +307,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    
+    //TODO debería actualizar el usuario en la base de datos pero no lo hace?
+    @Override
+    protected void onDestroy() {
+        Toast.makeText(this,"Fin",Toast.LENGTH_LONG).show();
+        database.usuarioDAO().update(new ToEntity().convertUser(currentUser));
+        super.onDestroy();
+    }
 }

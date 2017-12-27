@@ -54,22 +54,18 @@ public class PerfilActivity extends AppCompatActivity {
     private void findViews() {
 
         altura_et = findViewById(R.id.et_altura);
-        altura_et.setHint(String.valueOf(user.getAltura()));
         altura_et.setText(String.valueOf(user.getAltura()));
 
         peso_et = findViewById(R.id.et_peso);
-        peso_et.setHint(String.valueOf(user.getAltura()));
         peso_et.setText(String.valueOf(user.getAltura()));
 
 
         //TODO el nombre de usuario uo
-        nombreUO_et =  findViewById(R.id.et_uo);
-        nombreUO_et.setHint(user.getUserID());
+        nombreUO_et = findViewById(R.id.et_uo);
         nombreUO_et.setText(user.getUserID());
 
         email_et = (EditText) findViewById(R.id.editTextEmail);
         email_et.setText(user.getCorreo().toString());
-        email_et.setHint(user.getCorreo().toString());
 
 
         nombre = findViewById(R.id.tv_nombre);
@@ -77,7 +73,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         fecha = findViewById(R.id.textViewFechaNaci);
         //TODO fecha string;
-       // fecha.setText(fecha.getText().toString().concat(" ").concat(user.getNacimiento()));
+        // fecha.setText(fecha.getText().toString().concat(" ").concat(user.getNacimiento()));
 
         email_et.setEnabled(false);
         altura_et.setEnabled(false);
@@ -139,24 +135,31 @@ public class PerfilActivity extends AppCompatActivity {
      */
     private void setResultToMainActivity() {
 
-        user.setAltura(Integer.parseInt(altura_et.getText().toString()));
-        user.setPeso(Integer.parseInt(peso_et.getText().toString()));
-        user.setCorreo(email_et.getText().toString());
-        //TODO
-        user.setUserID(nombreUO_et.getText().toString());
 
-        try {
-            final Intent resultIntent = new Intent();
-            Bundle resultBundle = new Bundle();
-            resultBundle.putParcelable(KEY_FOR_USER_IN_PA, user);
-            resultIntent.putExtras(resultBundle);
-            setResult(RESULT_OK, resultIntent);
-            finish();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-            setResult(RESULT_CANCELED);
-            finish();
-        }
+        if (!altura_et.getText().toString().isEmpty() && !peso_et.getText().toString().isEmpty() && !email_et.getText().toString().isEmpty() && !nombreUO_et.getText().toString().isEmpty()) {
+
+            user.setAltura(Integer.parseInt(altura_et.getText().toString()));
+            user.setPeso(Integer.parseInt(peso_et.getText().toString()));
+            user.setCorreo(email_et.getText().toString());
+            //TODO
+            user.setUserID(nombreUO_et.getText().toString());
+
+            try {
+                final Intent resultIntent = new Intent();
+                Bundle resultBundle = new Bundle();
+                resultBundle.putParcelable(KEY_FOR_USER_IN_PA, user);
+                resultIntent.putExtras(resultBundle);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                setResult(RESULT_CANCELED);
+                finish();
+            }
+
+        }else
+            Toast.makeText(this,"Comprueba los datos", Toast.LENGTH_LONG).show();
+
     }
 
     void onClickVolver(View v) {

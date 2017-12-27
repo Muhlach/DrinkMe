@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     tools:context="com.drinkme.sdm.myapplication.PerfilActivity">
 
     <LinearLayout
@@ -13,10 +14,14 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35000002">
 
         <EditText
             android:id="@+id/et_uo"
@@ -26,20 +31,24 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:paddingBottom="8dp"
-            android:paddingTop="20dp"
+            android:paddingTop="30dp"
             android:text="Name"
+            android:textAlignment="center"
             android:textColor="@color/grisOscuro"
             android:textColorHint="@color/grisOscuro"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tv_nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingBottom="20dp"
+            android:paddingBottom="30dp"
+            android:paddingTop="20dp"
             android:text="TextView"
-            android:textSize="18sp" />
+            android:textAlignment="center"
+            android:textColor="@color/grisOscuro"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textViewFechaNaci"
@@ -47,7 +56,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
             android:text="Fecha de nacimiento:"
-            android:textColor="@color/grisClaro"
+            android:textColor="@color/grisOscuro"
             android:textSize="14sp" />
 
         <LinearLayout
@@ -64,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="8dp"
                 android:text="Email:"
+                android:textColor="@color/grisOscuro"
                 android:textSize="14sp" />
 
             <EditText
@@ -73,7 +83,8 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/grisClaro" />
+                android:textColor="@color/grisOscuro"
+                android:textColorHint="@color/grisClaro" />
 
         </LinearLayout>
 
@@ -91,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="8dp"
                 android:text="Altura:"
+                android:textColor="@color/grisOscuro"
                 android:textSize="14sp" />
 
             <EditText
@@ -99,7 +111,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="@color/grisOscuro" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,7 +120,7 @@
                 android:paddingRight="8dp"
                 android:text="cm."
                 android:textAlignment="center"
-                android:textColor="@color/grisClaro"
+                android:textColor="@color/grisOscuro"
                 android:textSize="14sp"
                 tools:layout_editor_absoluteX="161dp"
                 tools:layout_editor_absoluteY="182dp" />
@@ -128,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="8dp"
                 android:text="Peso:"
+                android:textColor="@color/grisOscuro"
                 android:textSize="14sp" />
 
             <EditText
@@ -136,7 +150,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="@color/grisOscuro" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -145,31 +160,30 @@
                 android:paddingRight="8dp"
                 android:text="kg."
                 android:textAlignment="center"
-                android:textColor="@color/grisClaro"
+                android:textColor="@color/grisOscuro"
                 android:textSize="14sp"
                 tools:layout_editor_absoluteX="161dp"
                 tools:layout_editor_absoluteY="182dp" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:background="@android:color/background_light"
-            android:onClick="onClickVolver"
-            android:text="VOLVER"
-            android:textColor="@color/granateBase"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="1"
+        android:background="@color/marronClaro"
+        android:onClick="onClickVolver"
+        android:text="VOLVER"
+        android:textColor="@color/granateBase"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 </android.support.constraint.ConstraintLayout>

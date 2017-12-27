@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/amarilloBase">
+    android:background="@color/amarilloClaro">
 
     <Button
         android:id="@+id/buttonNext69"
@@ -15,6 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Siguiente"
+        android:textColor="@color/granateBase"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
@@ -30,7 +31,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="La cuenta ha sido creada con éxito"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="La cuenta ha sido creada con éxito."
         android:textColor="@color/granateBase"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,6 +50,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:text="Ya eres uno más en Drinkme!"
         android:textColor="@color/grisOscuro"
         android:textSize="18sp"
@@ -55,4 +60,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0" />
+
 </android.support.constraint.ConstraintLayout>

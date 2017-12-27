@@ -5,10 +5,9 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.widget.Toast;
-
-import com.drinkme.sdm.myapplication.R;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import com.drinkme.sdm.myapplication.crearCuenta.*;
 import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Usuario;
@@ -24,7 +23,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
     boolean debug = true;
     MyDatabase database;
     private int indexCurretFragment = 0;
-    ArrayList<DialogFragment> fragments;
+    ArrayList<Fragment> fragments;
     Usuario user;
     String nombre, apellidos, contrasena, email, fecha, sexo;
     int altura, peso;
@@ -32,7 +31,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_cuenta_fondo);
+        setContentView(R.layout.fragment_container_crear_cuenta);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         user = new Usuario();
@@ -44,7 +43,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         fragments.add(new Altura_peso_fragment());
         fragments.add(new OK_fragment());
 
-        getSupportActionBar().hide();
+        getSupportActionBar().setTitle("Crear cuenta");
 
         nextFragmet();
 
@@ -53,9 +52,12 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
 
     public void nextFragmet() {
-        Log.wtf("-------------", String.valueOf(indexCurretFragment));
-        fragments.get(indexCurretFragment).show(getFragmentManager(), "Numero " + indexCurretFragment);
+        Fragment fragment = fragments.get(indexCurretFragment);
         ++indexCurretFragment;
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_place, fragment);
+        fragmentTransaction.commit();
     }
 
     public void setNombre(String nombre) {

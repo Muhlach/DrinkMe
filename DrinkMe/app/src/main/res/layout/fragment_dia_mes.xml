@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/amarilloBase">
+    android:background="@color/amarilloClaro">
 
 
     <LinearLayout
@@ -43,8 +43,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Dia"
-                android:inputType="number" />
+                android:hint="Día"
+                android:inputType="number"
+                android:textColor="@color/granateBase" />
 
         </LinearLayout>
 
@@ -69,7 +70,8 @@
                 android:id="@+id/spinnerMes11"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:spinnerMode="dialog" />
 
         </LinearLayout>
 
@@ -97,7 +99,8 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Año"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="@color/granateBase" />
 
         </LinearLayout>
     </LinearLayout>
@@ -127,7 +130,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Paso 3 de 4; Fecha de nacimiento"
+        android:text="Paso 3 de 4, fecha de nacimiento:"
         android:textColor="@color/granateBase"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
