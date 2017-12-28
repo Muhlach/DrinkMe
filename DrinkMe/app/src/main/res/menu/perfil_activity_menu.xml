@@ -4,10 +4,7 @@
 
     <item
         android:id="@+id/itemEditarPassword"
-        android:title="Editar password" />
-    <item
-        android:id="@+id/itemEditarUO"
-        android:title="Editar usuario" />
+        android:title="Cambiar contraseña" />
     <item
         android:id="@+id/itemCerrarSesion"
         android:title="Cerrar Sesion" />

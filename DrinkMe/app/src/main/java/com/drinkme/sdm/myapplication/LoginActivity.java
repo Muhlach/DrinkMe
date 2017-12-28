@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.drinkme.sdm.myapplication.crearCuenta.CrearCuentaActivity;
 import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Usuario;
 import com.drinkme.sdm.myapplication.logic.UsuarioBin;
@@ -21,21 +22,26 @@ import com.drinkme.sdm.myapplication.utils.ToBean;
 public class LoginActivity extends AppCompatActivity {
 
     public static final String KEY_USUARIO_LOGEADO = "usuarioLogueado";
-    private EditText user_et;
-    private EditText password_et;
     private static SharedPreferences mSharedPreferences;
     private Usuario usuario;
-    MyDatabase database;
+    private MyDatabase database;
+
+    /**
+     * Elementos de la vista
+     */
+    private EditText user_et;
+    private EditText password_et;
+    private CheckBox checkBox;
 
     /**
      * Indica si se mantiene la sesión iniciada
      */
     private boolean holdSesion;
-    private CheckBox checkBox;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         /**
          * Antes de lanzar el login observamos si el usuario y contrasenia están ya guardados en shared preferences
@@ -48,9 +54,10 @@ public class LoginActivity extends AppCompatActivity {
 
         String password = mSharedPreferences.getString ("password", null);
 
-        super.onCreate(savedInstanceState);
+
 
         database = MyDatabase.getDatabase(getApplicationContext());
+
 
         /**
          *
@@ -60,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         if(user == null || password == null){
             setContentView(R.layout.activity_login);
             setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            getSupportActionBar().hide();
             user_et = (EditText) findViewById(R.id.editTextUser);
             password_et = (EditText) findViewById(R.id.editTextPassword);
             checkBox = (CheckBox) findViewById(R.id.checkBoxMantenerSesion);
@@ -71,6 +79,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Este método es llamado cuando pulsamos el botón de entrar, o bien porque no se carga el login
+     */
     private void launchMainActivity(){
         ToBean worker = new ToBean();
         UsuarioBin usuarioLogeado = worker.usuarioToBean(usuario);
@@ -111,15 +122,12 @@ public class LoginActivity extends AppCompatActivity {
      * @return true sí y solo sí el usuario ya está en la BBDD
      */
     private boolean checkUserAndPassword(String user, String password){
-
         Usuario usuarioActivo = database.usuarioDAO().findByNombreAndContraseña(user,password);
         if(usuarioActivo!=null){
             usuario = usuarioActivo;
             return true;
         }
         return false;
-
-
     }
 
     private void hiloDeAnimacion() {
@@ -199,7 +207,9 @@ public class LoginActivity extends AppCompatActivity {
         mEditor.commit();
     }
 
-
+    /**
+     * El método es estático porque se llama desde PerfilActivity
+     */
     public static void deleteSharedPreferences(){
         final SharedPreferences.Editor mEditor =
                 mSharedPreferences.edit();
@@ -207,6 +217,8 @@ public class LoginActivity extends AppCompatActivity {
         mEditor.putString("password",null);
         mEditor.commit();
     }
+
+
     @Override
     protected void onDestroy() {
         MyDatabase.destroyInstance();
