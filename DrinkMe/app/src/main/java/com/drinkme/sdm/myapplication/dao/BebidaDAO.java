@@ -24,6 +24,9 @@ public interface BebidaDAO {
     @Query("SELECT * FROM bebida WHERE nombre LIKE :nombre LIMIT 1")
     Bebida findByNombre(String nombre);
 
+    @Query("SELECT * FROM bebida WHERE id LIKE :id LIMIT 1")
+    Bebida findById(int id);
+
     @Insert
     void insertAll(Bebida... bebida);
 

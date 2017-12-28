@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.drinkme.sdm.myapplication.Adapters.AdapterEstadisticas;
 import com.drinkme.sdm.myapplication.database.MyDatabase;
+import com.drinkme.sdm.myapplication.entity.Bebida;
 import com.drinkme.sdm.myapplication.entity.Consumicion;
 import com.drinkme.sdm.myapplication.logic.BebidaBin;
 import com.drinkme.sdm.myapplication.logic.CategoriaBin;
@@ -20,13 +22,14 @@ import com.drinkme.sdm.myapplication.logic.Estadistico;
 import com.drinkme.sdm.myapplication.utils.FechaUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class EstadisticasFragment extends Fragment {
 
 
     private static final String TODAS = "Todas";
-    private static final int TODAS_ID = -1;
+    private static final int TODAS_ID = 0;
     public static final int SEMANA = 0;
     public static final int MES = 1;
     public static final int ANIO = 2;
@@ -37,6 +40,7 @@ public class EstadisticasFragment extends Fragment {
     ListView listViewEstadisticos;
 
     Spinner spinnerCategoria, spinnerBebida, spinnerTiempo;
+    Button btnAplicarFiltro;
 
     MyDatabase db;
 
@@ -57,9 +61,10 @@ public class EstadisticasFragment extends Fragment {
         spinnerCategoria = (Spinner) view.findViewById(R.id.cmbxCategoria);
         spinnerBebida = (Spinner) view.findViewById(R.id.cmbxBebida);
         spinnerTiempo = (Spinner) view.findViewById(R.id.cmbxTiempo);
+        btnAplicarFiltro = (Button) view.findViewById(R.id.btnAplicar);
 
         cargaSpinners();
-        cargaEstadisticos(TODAS_ID, TODAS_ID, SEMANA);
+        cargaEstadisticos(TODAS_ID, TODAS_ID, MES);
 
         spinnerCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -84,6 +89,17 @@ public class EstadisticasFragment extends Fragment {
             }
         });
 
+        btnAplicarFiltro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int categoria = spinnerCategoria.getSelectedItemPosition();
+                int bebida = spinnerBebida.getSelectedItemPosition();
+                int fecha = spinnerTiempo.getSelectedItemPosition();
+
+                cargaEstadisticos(categoria, bebida, fecha);
+            }
+        });
+
         return view;
     }
 
@@ -92,14 +108,14 @@ public class EstadisticasFragment extends Fragment {
      */
     private void cargaEstadisticos(int categoriaId, int bebidaId, int fechaId) {
         listViewEstadisticos = view.findViewById(R.id.listViewEstadisticas);
-        ArrayList<Consumicion> consumicionesFiltradas = obtenConsumicionesFiltradasBD(categoriaId, bebidaId, fechaId);
+        List<Consumicion> consumicionesFiltradas = obtenConsumicionesFiltradasBD(categoriaId, bebidaId, fechaId);
         calculaEstadisticos(consumicionesFiltradas, estadisticos);
         AdapterEstadisticas adapter = new AdapterEstadisticas(getActivity(), estadisticos);
         listViewEstadisticos.setAdapter(adapter);
     }
 
-    private ArrayList<Consumicion> obtenConsumicionesFiltradasBD(int categoriaId, int bebidaId, int fechaId) {
-        ArrayList<Consumicion> result = new ArrayList<Consumicion>();
+    private List<Consumicion> obtenConsumicionesFiltradasBD(int categoriaId, int bebidaId, int fechaId) {
+        List<Consumicion> result = new ArrayList<Consumicion>();
         int[] fechas = FechaUtils.getRango(fechaId);
 
         if(categoriaId==TODAS_ID && bebidaId==TODAS_ID) {
@@ -107,9 +123,7 @@ public class EstadisticasFragment extends Fragment {
         }
 
         else if (bebidaId==TODAS_ID){
-            //TODO
-//            int categoria = 0;
-//            result = db.consumicionDAO().getAllPorCategoria(categoria, fechas[0], fechas[1]);
+            result = db.consumicionDAO().getAllPorCategoria(categoriaId, fechas[0], fechas[1]);
         }
 
         else {
@@ -121,7 +135,22 @@ public class EstadisticasFragment extends Fragment {
         return result;
     }
 
-    private void calculaEstadisticos(ArrayList<Consumicion> consumicionesFiltradas, ArrayList<Estadistico> estadisticos) {
+    private void calculaEstadisticos(List<Consumicion> consumicionesFiltradas, ArrayList<Estadistico> estadisticos) {
+        //Calculo de L total
+        double result = calculaLitrosTotales(consumicionesFiltradas);
+        estadisticos.get(0).setValor(result);
+
+        //Calculo de L de alcohol
+        result = calculaLitrosAlcohol(consumicionesFiltradas);
+        estadisticos.get(1).setValor(result);
+
+        //Calcuo de kcal ingeridas
+        int kal = calculaKcal(consumicionesFiltradas);
+        estadisticos.get(2).setValor(result);
+
+        //Calculo de dinero gastado
+        result = calculaDinero(consumicionesFiltradas);
+        estadisticos.get(3).setValor(result);
     }
 
     private void cargaSpinners() {
@@ -182,6 +211,62 @@ public class EstadisticasFragment extends Fragment {
 
         return result;
     }
+
+    /**
+     * Calcula el total de los litros en una lista de consumiciones
+     * @param consumiciones
+     * @return
+     */
+    private double calculaLitrosAlcohol (List<Consumicion> consumiciones) {
+        int result = 0;
+        for (Consumicion c : consumiciones) {
+            Bebida b = db.bebidaDAO().findById(c.getIdBebida());
+            result = result + b.getVolumenAlcohol();
+        }
+        return result;
+    }
+
+    /**
+     * Calcula los litros de alcohol en una lista de consumiciones
+     * @param consumiciones
+     * @return
+     */
+    private double calculaLitrosTotales (List<Consumicion> consumiciones) {
+        int result = 0;
+        for (Consumicion c : consumiciones) {
+            Bebida b = db.bebidaDAO().findById(c.getIdBebida());
+            result = result + b.getVolumenTotal();
+        }
+        return result;
+    }
+
+    /**
+     * Calcula las Kcal en una lista de consumiciones
+     * @param consumiciones
+     * @return
+     */
+    private int calculaKcal(List<Consumicion> consumiciones) {
+        int result = 0;
+        for (Consumicion c : consumiciones) {
+            Bebida b = db.bebidaDAO().findById(c.getIdBebida());
+            result = result + b.getKcal();
+        }
+        return result;
+    }
+
+    /**
+     * Calcula el dinero gastado en una lista de consumiciones
+     * @param consumiciones
+     * @return
+     */
+    private double calculaDinero(List<Consumicion> consumiciones) {
+        double result = 0;
+        for(Consumicion c : consumiciones) {
+            result = result + c.getPrecio();
+        }
+        return result;
+    }
+
 
 
 }

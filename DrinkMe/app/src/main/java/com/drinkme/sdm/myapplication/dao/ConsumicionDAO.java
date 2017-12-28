@@ -45,11 +45,12 @@ public interface ConsumicionDAO {
     int cuentaRegistros(int idUsuario);
 
     @Query("SELECT * FROM consumicion WHERE fecha BETWEEN :fechaInicio AND :fechaFin")
-    ArrayList<Consumicion> getAllPorFecha(int fechaInicio, int fechaFin);
+    List<Consumicion> getAllPorFecha(int fechaInicio, int fechaFin);
 
-    @Query("SELECT * FROM consumicion WHERE idCategoria LIKE :categoria AND fecha BETWEEN :fechaInicio AND :fechaFin")
-    ArrayList<Consumicion> getAllPorCategoria(int categoria, int fecha, int fecha1);
+    @Query("SELECT * FROM consumicion,bebida WHERE idBebida=bebida.id AND idCategoria LIKE :categoria " +
+            "AND fecha BETWEEN :fechaInicio AND :fechaFin")
+    List<Consumicion> getAllPorCategoria(int categoria, int fechaInicio, int fechaFin);
 
-    @Query("SELECT * FROM consumicion WHERE idBebida LIKE :categoria AND fecha BETWEEN :fechaInicio AND :fechaFin")
-    ArrayList<Consumicion> getAllPorBebida(int bebida, int fecha, int fecha1);
+    @Query("SELECT * FROM consumicion WHERE idBebida LIKE :bebida AND fecha BETWEEN :fechaInicio AND :fechaFin")
+    List<Consumicion> getAllPorBebida(int bebida, int fechaInicio, int fechaFin);
 }

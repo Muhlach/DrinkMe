@@ -66,8 +66,10 @@ public class DialogSeleccion extends DialogFragment{
                     Toast.makeText(getActivity(), "Debes introducir un precio", Toast.LENGTH_SHORT).show();
                 else {
                     precio = Double.valueOf(precioStr);
-                    //TODO: Aquí se debe implementar el registro de la consumición
                     int registros = guardarConsumicion(b, precio);
+                    //TODO: Implementar actualizacion de datos de experiencia, nivel y logros
+                    user.actualizarPuntosExperiencia(b.getPuntosBebida());
+                    user.actualizarNivel();
                     String r = b.toString() + "  " + precio + ". Hay: " + registros + " bebidas registradas.";
                     Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
                     dismiss();
