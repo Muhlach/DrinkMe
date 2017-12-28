@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
+import android.media.VolumeShaper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -25,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private static SharedPreferences mSharedPreferences;
     private Usuario usuario;
     private MyDatabase database;
+    private MediaPlayer mediaPlayer;
 
     /**
      * Elementos de la vista
@@ -68,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
             setContentView(R.layout.activity_login);
             setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             getSupportActionBar().hide();
+            mediaPlayer = MediaPlayer.create(this,R.raw.dms);
             user_et = (EditText) findViewById(R.id.editTextUser);
             password_et = (EditText) findViewById(R.id.editTextPassword);
             checkBox = (CheckBox) findViewById(R.id.checkBoxMantenerSesion);
@@ -105,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
         if(checkUserAndPassword(user, password)){
             if(holdSesion)
             saveInSharedPreferences(user, password);
+            soundEffect();
             launchMainActivity();
             finish();
         }
@@ -113,6 +119,16 @@ public class LoginActivity extends AppCompatActivity {
             password_et.requestFocus();
             password_et.setText("");
         }
+    }
+
+
+    private void soundEffect() {
+        try {
+            mediaPlayer.prepare();
+        }catch (Exception e ){
+            Log.wtf("MediaPlayer", "MediaPlayer Fail");
+        }
+        mediaPlayer.start();
     }
 
     /**

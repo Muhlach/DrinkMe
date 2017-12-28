@@ -1,7 +1,9 @@
 package com.drinkme.sdm.myapplication;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ public class DialogSeleccion extends DialogFragment{
     BebidaBin bebidaSeleccionada;
     ArrayList<BebidaBin> bebidasArrayList;
     double precio;
+    private MediaPlayer mediaPlayer;
 
     public DialogSeleccion(){}
 
@@ -37,6 +40,8 @@ public class DialogSeleccion extends DialogFragment{
 
         spinnerBebida = (Spinner) view.findViewById(R.id.cmbxDialogBebidas);
         txPrecio = (TextView) view.findViewById(R.id.txDialogPrecio);
+
+        mediaPlayer = MediaPlayer.create(getActivity(),R.raw.drinkme_sample);
 
         guardar = (Button) view.findViewById(R.id.btnDialogGuardar);
         guardar.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +60,7 @@ public class DialogSeleccion extends DialogFragment{
                     //TODO: Aquí se debe implementar el registro de la consumición
                     String r = b.toString() + "  " + precio;
                     Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
+                    soundEffect();
                     dismiss();
                 }
             }
@@ -77,6 +83,15 @@ public class DialogSeleccion extends DialogFragment{
         return view;
     }
 
+
+    private void soundEffect() {
+        try {
+            mediaPlayer.prepare();
+        }catch (Exception e ){
+            Log.wtf("MediaPlayer", "MediaPlayer Fail");
+        }
+        mediaPlayer.start();
+    }
 
     private void cargaBebidas() {
         BebidaBin[] bebidas = creaArray();
