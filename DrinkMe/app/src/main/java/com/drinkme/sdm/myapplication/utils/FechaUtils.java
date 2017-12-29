@@ -70,4 +70,9 @@ public class FechaUtils {
         //TODO: Impelementar la funcion para obtener el inicio y fin de la semana en la que el usuario realiza la consumicion
 
     }
+
+    public static int getHora() {
+        //TODO: Obtiene la hora actual en formato INT
+        return 0;
+    }
 }

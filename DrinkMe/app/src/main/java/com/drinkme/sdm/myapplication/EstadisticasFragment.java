@@ -127,9 +127,9 @@ public class EstadisticasFragment extends Fragment {
         }
 
         else {
-            //TODO
-//            int bebida = 0;
-//            result = db.consumicionDAO().getAllPorBebida(bebida, fechas[0], fechas[1]);
+            String nombreBebida = (String) spinnerBebida.getItemAtPosition(bebidaId);
+            int bebida = db.bebidaDAO().findByNombre(nombreBebida).getId();
+            result = db.consumicionDAO().getAllPorBebida(bebida, fechas[0], fechas[1]);
         }
 
         return result;

@@ -163,7 +163,7 @@ public class UsuarioBin implements Parcelable {
      * @return
      */
     public void actualizarLogros() {
-        logros.comprobarLogros(getPuntosExperiencia());
+        logros.comprobarLogros();
     }
 
     public void actualizarPuntosExperiencia(int puntosRecibidos) {

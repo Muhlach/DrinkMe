@@ -9,15 +9,16 @@ import android.os.Parcelable;
  */
 
 public class Logro implements Parcelable{
-    private int logroID;
+    private int logroID, puntos;
     private String logroName, logroDescripcion;
     private boolean superado;
     private Drawable logroImg, logroSuperadoImg;
 
-    public Logro (int logroID, String logroName, String logroDescripcion) {
+    public Logro (int logroID, String logroName, String logroDescripcion, int puntos) {
         this.logroID = logroID;
         this.logroName = logroName;
         this.logroDescripcion = logroDescripcion;
+        this.puntos = puntos;
         this.superado = false;
     }
 
@@ -25,6 +26,7 @@ public class Logro implements Parcelable{
         logroID = in.readInt();
         logroName = in.readString();
         logroDescripcion = in.readString();
+        puntos = in.readInt();
         superado = in.readByte() != 0;
     }
 
@@ -88,6 +90,14 @@ public class Logro implements Parcelable{
         this.logroSuperadoImg = logroSuperadoImg;
     }
 
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -98,6 +108,7 @@ public class Logro implements Parcelable{
         parcel.writeInt(logroID);
         parcel.writeString(logroName);
         parcel.writeString(logroDescripcion);
+        parcel.writeInt(puntos);
         parcel.writeByte((byte) (superado ? 1 : 0));
     }
 }
