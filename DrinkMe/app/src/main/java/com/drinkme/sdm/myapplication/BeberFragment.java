@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.drinkme.sdm.myapplication.Adapters.AdapterCategorias;
@@ -47,6 +46,7 @@ public class BeberFragment extends Fragment{
                 Bundle bundleBebidas = new Bundle();
                 bundleBebidas.putParcelableArrayList(MainActivity.BEBIDAS_KEY, categoriaSeleccionada.getBebidas());
                 bundleBebidas.putParcelable(MainActivity.USER_KEY, user);
+                bundleBebidas.putInt("categoriaseleccionada", i+1);
                 DialogSeleccion dialog = new DialogSeleccion();
                 dialog.setArguments(bundleBebidas);
                 dialog.show(getFragmentManager(), "personal");

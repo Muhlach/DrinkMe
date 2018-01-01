@@ -26,6 +26,8 @@ public interface UsuarioDAO {
     @Query("SELECT * FROM usuarios WHERE nombre LIKE :nombre and contrasena LIKE :contrasena LIMIT 1")
     Usuario findByNombreAndContraseña(String nombre,String contrasena);
 
+    @Query("UPDATE usuarios SET puntuacion = puntuacion + :puntos WHERE id LIKE :id")
+    void actualizaPuntosUsuario(int id, int puntos);
 
     @Insert
     void insertAll(Usuario... usuarios);

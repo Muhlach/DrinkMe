@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String LOGROS_KEY = "lista_logros";
     public static final String ESTADISTICOS_KEY = "estadisticos";
     public static final int REQUEST_CODE_FOR_PERFIL_ACTIVITY = 1;
+    public static final java.lang.String NUEVO_NIVEL = "nuevonivel";
 
     private boolean debug = true;
     UsuarioBin currentUser;

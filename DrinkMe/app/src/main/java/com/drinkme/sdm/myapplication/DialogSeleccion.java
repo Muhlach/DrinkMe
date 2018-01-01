@@ -2,6 +2,8 @@ package com.drinkme.sdm.myapplication;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +15,13 @@ import android.widget.Toast;
 
 import com.drinkme.sdm.myapplication.dao.BebidaDAO;
 import com.drinkme.sdm.myapplication.dao.ConsumicionDAO;
+import com.drinkme.sdm.myapplication.dao.LogrosDAO;
 import com.drinkme.sdm.myapplication.dao.UsuarioDAO;
 import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Consumicion;
+import com.drinkme.sdm.myapplication.entity.LogrosSuperados;
 import com.drinkme.sdm.myapplication.logic.BebidaBin;
+import com.drinkme.sdm.myapplication.logic.Logro;
 import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 import com.drinkme.sdm.myapplication.utils.FechaUtils;
 
@@ -28,6 +33,7 @@ import java.util.ArrayList;
 
 public class DialogSeleccion extends DialogFragment{
 
+    private static final int NO_SUPERA_LOGROS = 0;
     Spinner spinnerBebida;
     TextView txPrecio;
     View view;
@@ -36,12 +42,15 @@ public class DialogSeleccion extends DialogFragment{
     ArrayList<BebidaBin> bebidasArrayList;
     UsuarioBin user;
     double precio;
+    int categoria;
+    FragmentManager fragmentManager;
 
     public DialogSeleccion(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstances) {
         view = inflater.inflate(R.layout.dialog_seleccion_layout, container);
+        fragmentManager = getFragmentManager();
 
         spinnerBebida = (Spinner) view.findViewById(R.id.cmbxDialogBebidas);
         txPrecio = (TextView) view.findViewById(R.id.txDialogPrecio);
@@ -51,6 +60,7 @@ public class DialogSeleccion extends DialogFragment{
         Bundle bundleRecibido = this.getArguments();
         bebidasArrayList = bundleRecibido.getParcelableArrayList(MainActivity.BEBIDAS_KEY);
         user = bundleRecibido.getParcelable(MainActivity.USER_KEY);
+        categoria = bundleRecibido.getInt("categoriaseleccionada");
         cargaBebidas();
 
         guardar.setOnClickListener(new View.OnClickListener() {
@@ -66,10 +76,23 @@ public class DialogSeleccion extends DialogFragment{
                     Toast.makeText(getActivity(), "Debes introducir un precio", Toast.LENGTH_SHORT).show();
                 else {
                     precio = Double.valueOf(precioStr);
+                    /** Guarda en la base de datos la consumicion y actualiza experiencia usuario **/
                     int registros = guardarConsumicion(b, precio);
-                    //TODO: Implementar actualizacion de datos de experiencia, nivel y logros
-                    user.actualizarPuntosExperiencia(b.getPuntosBebida());
-                    user.actualizarNivel();
+                    /** Gestiona los logros superados **/
+                    ArrayList<Logro> logrosSuperados = user.actualizarLogros(getContext(), categoria);
+                    int recompensaLogros = accionSuperarLogros(logrosSuperados);
+
+                    /** Gestiona las subidas de nivel **/
+                    user.actualizarPuntosExperiencia(b.getPuntosBebida()+recompensaLogros);
+                    actualizaPuntosBD(b.getPuntosBebida()+recompensaLogros);
+                    boolean subeNivel = user.actualizarNivel();
+                    if(subeNivel) {
+                        Bundle bundle = new Bundle();
+                        bundle.putInt(MainActivity.NUEVO_NIVEL, user.getNivel().getNivelID());
+                        DialogSubeNivel dialog = new DialogSubeNivel();
+                        dialog.setArguments(bundle);
+                        dialog.show(fragmentManager, "tag");
+                    }
                     String r = b.toString() + "  " + precio + ". Hay: " + registros + " bebidas registradas.";
                     Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
                     dismiss();
@@ -88,6 +111,60 @@ public class DialogSeleccion extends DialogFragment{
         });
 
         return view;
+    }
+
+    private void actualizaPuntosBD(int puntos) {
+        MyDatabase db = MyDatabase.getDatabase(getActivity());
+        UsuarioDAO usuarioDAO = db.usuarioDAO();
+        int usuarioId = usuarioDAO.findByNombre(user.getNombre()).getId();
+        usuarioDAO.actualizaPuntosUsuario(usuarioId, puntos);
+    }
+
+    /**
+     * Metodo que registra los logros superados, notifica al usuario y actualiza las vistas
+     * @param logrosSuperados
+     */
+    private int accionSuperarLogros(ArrayList<Logro> logrosSuperados) {
+        //Primero comprobamos si se ha superado algún logro, en caso de no haberse superado ninguno terminamo.
+        if(logrosSuperados.size()>0) {
+            //Actualizamos los logros del objeto User
+            for(Logro l : user.getLogros().getTodosLogros()) {
+                if(logrosSuperados.contains(l)) {
+                    user.getLogros().superarLogros(logrosSuperados);
+                }
+            }
+            //Actualizamos los logros superados en la base de datos
+            MyDatabase db = MyDatabase.getDatabase(getActivity());
+            UsuarioDAO usuarioDAO = db.usuarioDAO();
+            LogrosDAO logrosDAO = db.logrosDAO();
+            int usuarioId = usuarioDAO.findByNombre(user.getNombre()).getId();
+            for(Logro l : logrosSuperados) {
+                LogrosSuperados ls = new LogrosSuperados(l.getLogroID(), usuarioId);
+                logrosDAO.insertAll(ls);
+            }
+
+            //Calculamos los puntos de experiencia que gana el usuario
+            int puntos = 0;
+            for(Logro l : logrosSuperados) {
+                puntos = puntos + l.getPuntos();
+            }
+
+            //Mostramos dialogo de logros superados
+            String[] logros = new String[logrosSuperados.size()];
+            for(int i = 0; i<logrosSuperados.size(); i++) {
+                logros[i] = logrosSuperados.get(i).getLogroName();
+            }
+            DialogoSuperarLogro dialog = new DialogoSuperarLogro();
+            Bundle bundle = new Bundle();
+            bundle.putStringArray("nombrelogrossuperados", logros);
+            bundle.putInt("puntoslogrossuperados", puntos);
+            dialog.setArguments(bundle);
+            dialog.show(getFragmentManager(), "logros");
+
+            //Devolvemos los puntos que gana el usuario
+            return puntos;
+        }
+        return NO_SUPERA_LOGROS;
     }
 
     /**

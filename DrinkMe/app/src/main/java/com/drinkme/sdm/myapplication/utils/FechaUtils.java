@@ -73,6 +73,10 @@ public class FechaUtils {
 
     public static int getHora() {
         //TODO: Obtiene la hora actual en formato INT
-        return 0;
+        Calendar fecha = Calendar.getInstance();
+        int hora = fecha.get(Calendar.HOUR_OF_DAY);
+        int minuto = fecha.get(Calendar.MINUTE);
+        int horamin = hora*100+minuto;
+        return horamin;
     }
 }

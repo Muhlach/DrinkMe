@@ -1,5 +1,6 @@
 package com.drinkme.sdm.myapplication.logic;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -162,8 +163,8 @@ public class UsuarioBin implements Parcelable {
      * Comprueba si en con el estado actual se ha cumplido algún logro nuevo
      * @return
      */
-    public void actualizarLogros() {
-        logros.comprobarLogros();
+    public ArrayList<Logro> actualizarLogros(Context context, int categoriaId) {
+        return logros.comprobarLogros(context, categoriaId);
     }
 
     public void actualizarPuntosExperiencia(int puntosRecibidos) {
