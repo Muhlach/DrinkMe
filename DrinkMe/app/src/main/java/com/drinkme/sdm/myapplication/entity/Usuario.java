@@ -1,4 +1,5 @@
 package com.drinkme.sdm.myapplication.entity;
+
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -8,7 +9,6 @@ import java.util.Date;
 /**
  * Created by javie on 18/11/2017.
  */
-//TODO es más cómodo tratar fecha como un tipo String como: "22/09/1997" , hay que añadir una columna para el NombreDeUsuario aka UserID, ahora solo tenemos nombre y apellidos
 @Entity(tableName = "usuarios")
 public class Usuario {
 
@@ -16,6 +16,8 @@ public class Usuario {
     private int id;
     @ColumnInfo(name = "nombre")
     private String nombre;
+    @ColumnInfo(name = "userID")
+    private String userID;
     @ColumnInfo(name = "apellidos")
     private String apellidos;
     @ColumnInfo(name = "email")
@@ -23,7 +25,7 @@ public class Usuario {
     @ColumnInfo(name = "contrasena")
     private String contrasena;
     @ColumnInfo(name = "fecha")
-    private int fecha;
+    private String fecha;
     @ColumnInfo(name = "sexo")
     private String sexo;
     @ColumnInfo(name = "altura")
@@ -34,7 +36,7 @@ public class Usuario {
     private int puntuacion;
 
     public Usuario(String nombre, String apellidos, String email, String contrasena,
-                   int fecha, String sexo, int altura, int peso, int puntuacion) {
+                   String fecha, String sexo, int altura, int peso, int puntuacion, String userID) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
@@ -44,8 +46,11 @@ public class Usuario {
         this.altura = altura;
         this.peso = peso;
         this.puntuacion = puntuacion;
+        this.userID = userID;
     }
-    public Usuario(){}
+
+    public Usuario() {
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -70,10 +75,6 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
-    }
-
-    public void setFecha(int fecha) {
-        this.fecha = fecha;
     }
 
     public void setSexo(String sexo) {
@@ -109,7 +110,7 @@ public class Usuario {
         return contrasena;
     }
 
-    public int getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
@@ -130,18 +131,32 @@ public class Usuario {
         return puntuacion;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
 
     @Override
     public String toString() {
-        return "UsuarioBin{" +
-                "nombre='" + nombre + '\'' +
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", userID='" + userID + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", email='" + email + '\'' +
                 ", contrasena='" + contrasena + '\'' +
-                ", fecha=" + fecha +
+                ", fecha='" + fecha + '\'' +
                 ", sexo='" + sexo + '\'' +
                 ", altura=" + altura +
                 ", peso=" + peso +
+                ", puntuacion=" + puntuacion +
                 '}';
     }
 }

@@ -57,23 +57,19 @@ public class PerfilActivity extends AppCompatActivity {
         altura_et.setText(String.valueOf(user.getAltura()));
 
         peso_et = findViewById(R.id.et_peso);
-        peso_et.setText(String.valueOf(user.getAltura()));
+        peso_et.setText(String.valueOf(user.getPeso()));
 
-
-        //TODO el nombre de usuario uo
         nombreUO_et = findViewById(R.id.et_uo);
         nombreUO_et.setText(user.getUserID());
 
         email_et = (EditText) findViewById(R.id.editTextEmail);
         email_et.setText(user.getCorreo().toString());
 
-
         nombre = findViewById(R.id.tv_nombre);
         nombre.setText(user.getNombre().concat(" ").concat(user.getApellidos()));
 
         fecha = findViewById(R.id.textViewFechaNaci);
-        //TODO fecha string;
-        // fecha.setText(fecha.getText().toString().concat(" ").concat(user.getNacimiento()));
+        fecha.setText(fecha.getText().toString().concat(" ").concat(user.getNacimiento()));
 
         email_et.setEnabled(false);
         altura_et.setEnabled(false);
@@ -141,7 +137,6 @@ public class PerfilActivity extends AppCompatActivity {
             user.setAltura(Integer.parseInt(altura_et.getText().toString()));
             user.setPeso(Integer.parseInt(peso_et.getText().toString()));
             user.setCorreo(email_et.getText().toString());
-            //TODO
             user.setUserID(nombreUO_et.getText().toString());
 
             try {

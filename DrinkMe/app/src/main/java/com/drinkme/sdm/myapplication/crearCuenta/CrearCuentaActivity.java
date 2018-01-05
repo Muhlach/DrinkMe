@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+
 import com.drinkme.sdm.myapplication.R;
 import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.entity.Usuario;
+
 import java.util.ArrayList;
 
 /**
@@ -26,7 +28,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
      * Creamos un usuario; cada fragment inicializa los fields del usuario
      */
     private Usuario user;
-    private String nombre, apellidos, contrasena, email, fecha, sexo;
+    private String nombre, apellidos, contrasena, email, fecha, sexo, userID;
     private int altura, peso;
 
     @Override
@@ -91,6 +93,10 @@ public class CrearCuentaActivity extends AppCompatActivity {
         this.sexo = sexo;
     }
 
+    public void setUsuarioID(String uo) {
+        this.userID = uo;
+    }
+
     public void setAltura(int altura) {
         this.altura = altura;
     }
@@ -99,13 +105,12 @@ public class CrearCuentaActivity extends AppCompatActivity {
         this.peso = peso;
     }
 
-    //TODO fecha
     /**
      * Este método es llamado por el último fragment
      */
     public void createUser() {
-        Usuario user = new Usuario(nombre, apellidos, email, contrasena, 1, sexo, altura,
-                peso, 0);
+        Usuario user = new Usuario(nombre, apellidos, email, contrasena, fecha, sexo, altura,
+                peso, 0, userID);
 
         database.usuarioDAO().insertAll(user);
 

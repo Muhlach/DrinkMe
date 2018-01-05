@@ -22,7 +22,6 @@ import com.drinkme.sdm.myapplication.logic.Logro;
 import com.drinkme.sdm.myapplication.logic.LogrosBD;
 import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 import com.drinkme.sdm.myapplication.utils.ToBean;
-import com.drinkme.sdm.myapplication.utils.ToEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -306,18 +305,9 @@ public class MainActivity extends AppCompatActivity {
         currentUser.setLogros(result);
     }
 
-
-
-
-    //TODO se debería actualizar el usuario en la base de datos antes de cerrar la app, porque puede haberse actualizado
     @Override
     protected void onDestroy() {
-
-        /**
-         * Este código no funciona
-         */
-        Toast.makeText(this,"Fin",Toast.LENGTH_LONG).show();
-        database.usuarioDAO().update(new ToEntity().convertUser(currentUser));
+        database.usuarioDAO().updateUser(currentUser.getNombre(), currentUser.getCorreo(), currentUser.getAltura(), currentUser.getPeso(), currentUser.getContraseña(), currentUser.getUserID());
         super.onDestroy();
     }
 }

@@ -90,7 +90,12 @@ public class DialogSeleccion extends DialogFragment{
         }catch (Exception e ){
             Log.wtf("MediaPlayer", "MediaPlayer Fail");
         }
-        mediaPlayer.start();
+
+        try {
+            mediaPlayer.start();
+        }catch (Exception e ){
+            Log.wtf("MediaPlayer", "MediaPlayer Fail");
+        }
     }
 
     private void cargaBebidas() {
