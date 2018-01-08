@@ -1,9 +1,10 @@
 package com.drinkme.sdm.myapplication;
 
 import android.os.Bundle;
+import android.media.MediaPlayer;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class DialogSeleccion extends DialogFragment{
     double precio;
     int categoria;
     FragmentManager fragmentManager;
+    private MediaPlayer mediaPlayer;
 
     public DialogSeleccion(){}
 
@@ -54,6 +56,8 @@ public class DialogSeleccion extends DialogFragment{
 
         spinnerBebida = (Spinner) view.findViewById(R.id.cmbxDialogBebidas);
         txPrecio = (TextView) view.findViewById(R.id.txDialogPrecio);
+
+        mediaPlayer = MediaPlayer.create(getActivity(),R.raw.drinkme_sample);
 
         guardar = (Button) view.findViewById(R.id.btnDialogGuardar);
 
@@ -95,6 +99,7 @@ public class DialogSeleccion extends DialogFragment{
                     }
                     String r = b.toString() + "  " + precio + ". Hay: " + registros + " bebidas registradas.";
                     Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
+                    soundEffect();
                     dismiss();
                 }
             }
@@ -111,6 +116,17 @@ public class DialogSeleccion extends DialogFragment{
         });
 
         return view;
+    }
+
+    private void soundEffect() {
+        try{
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (Exception e) {
+            Log.wtf("MediaPlayer", "MediaPlayer Fail");
+        }
+
+
     }
 
     private void actualizaPuntosBD(int puntos) {
