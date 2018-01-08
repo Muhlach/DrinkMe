@@ -17,24 +17,30 @@ import com.drinkme.sdm.myapplication.entity.Usuario;
 @Dao
 public interface UsuarioDAO {
 
+    /*
     @Query("SELECT * FROM usuarios")
     List<Usuario> getAll();
-
+*/
     @Query("SELECT * FROM usuarios WHERE nombre LIKE :nombre LIMIT 1")
     Usuario findByNombre(String nombre);
-
-    @Query("SELECT * FROM usuarios WHERE nombre LIKE :nombre and contrasena LIKE :contrasena LIMIT 1")
-    Usuario findByNombreAndContraseña(String nombre,String contrasena);
+    
+    @Query("SELECT * FROM usuarios WHERE userID LIKE :nombre and contrasena LIKE :contrasena LIMIT 1")
+    Usuario findByNombreAndContraseña(String nombre, String contrasena);
 
     @Query("UPDATE usuarios SET puntuacion = puntuacion + :puntos WHERE id LIKE :id")
     void actualizaPuntosUsuario(int id, int puntos);
 
+    @Query("UPDATE usuarios SET email = :correo, altura = :altura, peso = :peso, contrasena = :password, userID = :userID  WHERE nombre LIKE :nombre")
+    void updateUser(String nombre, String correo, int altura, int peso, String password, String userID);
+
     @Insert
     void insertAll(Usuario... usuarios);
 
+/*
     @Update
     void update(Usuario usuario);
 
     @Delete
     void delete(Usuario usuario);
+    */
 }

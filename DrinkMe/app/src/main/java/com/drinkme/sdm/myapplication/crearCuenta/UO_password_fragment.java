@@ -48,8 +48,7 @@ public class UO_password_fragment extends Fragment {
                 if (check()){
                     crearCuentaActivity.setContrasena(password);
                     crearCuentaActivity.setEmail(correo);
-                    //TODO: establecer el uo al user
-                   // crearCuentaActivity.setUsuario(usuario);
+                    crearCuentaActivity.setUsuarioID(usuario);
                     crearCuentaActivity.nextFragmet();
                 }
             }

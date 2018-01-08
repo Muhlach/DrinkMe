@@ -1,5 +1,6 @@
 package com.drinkme.sdm.myapplication;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.media.MediaPlayer;
 import android.support.v4.app.DialogFragment;
@@ -121,11 +122,17 @@ public class DialogSeleccion extends DialogFragment{
     private void soundEffect() {
         try{
             mediaPlayer.prepare();
-            mediaPlayer.start();
+
         } catch (Exception e) {
             Log.wtf("MediaPlayer", "MediaPlayer Fail");
         }
 
+        try{
+            mediaPlayer.start();
+
+        } catch (Exception e) {
+            Log.wtf("MediaPlayer", "MediaPlayer Fail");
+        }
 
     }
 

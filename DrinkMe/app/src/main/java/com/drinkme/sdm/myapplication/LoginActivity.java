@@ -8,8 +8,11 @@ import android.media.VolumeShaper;
 import android.util.Log;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
+import android.media.VolumeShaper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -56,10 +59,6 @@ public class LoginActivity extends AppCompatActivity {
 
         String user = mSharedPreferences.getString ("user", null);
 
-        String password = mSharedPreferences.getString ("password", null);
-
-
-
         database = MyDatabase.getDatabase(getApplicationContext());
 
 
@@ -68,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
          * Si usuario o contrasenia están null, quiere decir que la sesión no está iniciada
          */
 
-        if(user == null || password == null){
+        if(user == null){
             setContentView(R.layout.activity_login);
             setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             getSupportActionBar().hide();
@@ -79,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             hiloDeAnimacion();
         }else {
             finish();
-            usuario = database.usuarioDAO().findByNombreAndContraseña(user,password);
+            usuario = database.usuarioDAO().findByNombre(user);
             launchMainActivity();
         }
     }
@@ -109,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(checkUserAndPassword(user, password)){
             if(holdSesion)
-            saveInSharedPreferences(user, password);
+                saveInSharedPreferences(usuario.getNombre());
             soundEffect();
             launchMainActivity();
             finish();
@@ -124,7 +123,14 @@ public class LoginActivity extends AppCompatActivity {
     private void soundEffect() {
         try{
             mediaPlayer.prepare();
+
+        } catch (Exception e) {
+            Log.wtf("MediaPlayer", "MediaPlayer Fail");
+        }
+
+        try{
             mediaPlayer.start();
+
         } catch (Exception e) {
             Log.wtf("MediaPlayer", "MediaPlayer Fail");
         }
@@ -214,11 +220,10 @@ public class LoginActivity extends AppCompatActivity {
         thread.start();
     }
 
-    private void saveInSharedPreferences(String user, String password){
+    private void saveInSharedPreferences(String user){
         final SharedPreferences.Editor mEditor =
                 mSharedPreferences.edit();
         mEditor.putString("user", user);
-        mEditor.putString("password",password);
         mEditor.commit();
     }
 
@@ -229,10 +234,8 @@ public class LoginActivity extends AppCompatActivity {
         final SharedPreferences.Editor mEditor =
                 mSharedPreferences.edit();
         mEditor.putString("user", null);
-        mEditor.putString("password",null);
         mEditor.commit();
     }
-
 
     @Override
     protected void onDestroy() {
