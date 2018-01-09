@@ -3,6 +3,7 @@ package com.drinkme.sdm.myapplication.utils;
 import com.drinkme.sdm.myapplication.EstadisticasFragment;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by ssant on 26/12/2017.
@@ -67,8 +68,14 @@ public class FechaUtils {
     }
 
     private static void desglosaFechaSemana(int[] result) {
-        //TODO: Impelementar la funcion para obtener el inicio y fin de la semana en la que el usuario realiza la consumicion
+        Calendar fecha = Calendar.getInstance();
+        int ano = fecha.get(Calendar.YEAR);
 
+        int[] diaYmes = getFirstDayOfTheWeekInTheMonthAndHisMonth(fecha.getTime());
+        result[1] = formateaAInt(diaYmes[0], diaYmes[1] , ano);
+
+        int[] diaYmes2 = getLastDayOfTheWeekInTheMonthAndHisMonth(fecha.getTime());
+        result[2] = formateaAInt(diaYmes2[0], diaYmes2[1] , ano);
     }
 
     public static int getHora() {
@@ -77,5 +84,54 @@ public class FechaUtils {
         int minuto = fecha.get(Calendar.MINUTE);
         int horamin = hora*100+minuto;
         return horamin;
+    }
+
+    /**
+     *
+     * @param date
+     * @return result[1] -> day ///////// result[2] -> month
+     */
+    private  static int[]  getLastDayOfTheWeekInTheMonthAndHisMonth(Date date) {
+        boolean inside = false;
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(date);
+        while (calendar2.get(Calendar.DAY_OF_WEEK) - 1 < 6 && calendar2.get(Calendar.DAY_OF_WEEK) - 1 != 0) {
+            calendar2.add(Calendar.DATE, 1);
+            inside = true;
+        }
+
+        if (calendar2.get(Calendar.DAY_OF_WEEK) - 1 == 6)
+            inside = true;
+
+        int result[] = new int[2];
+        if (inside) {
+            result[0] = (calendar2.get(Calendar.DAY_OF_MONTH) + 1);
+        } else {
+            result[0] = calendar2.get(Calendar.DAY_OF_MONTH);
+        }
+
+        result[1] = (calendar2.get(Calendar.MONTH) + 1);
+
+        return result;
+    }
+
+    /**
+     *
+     * @param date
+     * @return result[1] -> day ///////// result[2] -> month
+     */
+    private static int[] getFirstDayOfTheWeekInTheMonthAndHisMonth(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        while (calendar.get(Calendar.DAY_OF_WEEK) - 1 > 1 || calendar.get(Calendar.DAY_OF_WEEK) - 1 == 0) {
+            calendar.add(Calendar.DATE, -1);
+        }
+
+        int result[] = new int[2];
+
+        result[0] = calendar.get(Calendar.DAY_OF_MONTH);
+        result[1] = (calendar.get(Calendar.MONTH) + 1);
+
+        return result;
     }
 }
