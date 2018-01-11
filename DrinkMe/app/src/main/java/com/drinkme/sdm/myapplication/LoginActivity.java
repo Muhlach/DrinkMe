@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
          * Antes de lanzar el login observamos si el usuario y contrasenia están ya guardados en shared preferences
          */
 
-         mSharedPreferences =
+        mSharedPreferences =
                 getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
         String user = mSharedPreferences.getString ("user", null);
