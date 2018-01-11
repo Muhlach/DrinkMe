@@ -25,6 +25,8 @@ public class MasLogrosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mas_logros);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         listaLogros = (ListView) findViewById(R.id.listViewTodosLogros);
         txDescripcion = (TextView) findViewById(R.id.txDescripcionLogro);
         txNombre = (TextView) findViewById(R.id.txNombreDescripcion);
