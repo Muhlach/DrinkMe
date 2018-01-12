@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(checkUserAndPassword(user, password)){
             if(holdSesion)
-                saveInSharedPreferences(usuario.getNombre());
+                saveInSharedPreferences(usuario.getUserID());
             soundEffect();
             launchMainActivity();
             finish();
