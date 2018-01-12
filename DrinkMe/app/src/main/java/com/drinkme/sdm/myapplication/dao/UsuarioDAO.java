@@ -21,7 +21,7 @@ public interface UsuarioDAO {
     @Query("SELECT * FROM usuarios")
     List<Usuario> getAll();
 */
-    @Query("SELECT * FROM usuarios WHERE nombre LIKE :nombre LIMIT 1")
+    @Query("SELECT * FROM usuarios WHERE userID LIKE :nombre LIMIT 1")
     Usuario findByNombre(String nombre);
 
     @Query("SELECT * FROM usuarios WHERE userID LIKE :nombre and contrasena LIKE :contrasena LIMIT 1")

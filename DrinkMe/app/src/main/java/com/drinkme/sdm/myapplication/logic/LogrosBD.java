@@ -23,6 +23,8 @@ public class LogrosBD {
     private final static int FECHA_MAX = 99999999;
 
     private ArrayList<Logro> todosLogros, logrosSuperados;
+    private boolean[] logro16 = new boolean[4];
+    private boolean[] logro17 = new boolean[4];
 
     public LogrosBD(int[] ids, String[] nombres, String[] descripciones, int[] puntos) {
         this.todosLogros = creaTodosLogros(ids, nombres, descripciones, puntos);
@@ -105,25 +107,26 @@ public class LogrosBD {
      *
      * @return
      */
-    public ArrayList<Logro> comprobarLogros(Context context, int categoriaId, ArrayList<Logro> logrosYaSuperados) {
+    public ArrayList<Logro> comprobarLogros(Context context, int categoriaId,
+                                            ArrayList<Logro> logrosYaSuperados, String nombreusuario) {
         ArrayList<Logro> logrosSuperados = new ArrayList<Logro>();
         MyDatabase bd = MyDatabase.getDatabase(context);
-        int consumicionesActualesPorCategoria = bd.consumicionDAO().getAllPorCategoria(categoriaId, FECHA_MIN, FECHA_MAX).size();
-//        int cervezasActuales = bd.consumicionDAO().getAllPorCategoria(CERVEZA_ID, FECHA_MIN, FECHA_MAX).size();
-//        int vinosActuales = bd.consumicionDAO().getAllPorCategoria(VINO_ID, FECHA_MIN, FECHA_MAX).size();
-//        int copasActuales = bd.consumicionDAO().getAllPorCategoria(COPA_ID, FECHA_MIN, FECHA_MAX).size();
-//        int chupuitosActuales = bd.consumicionDAO().getAllPorCategoria(CHUPITO_ID, FECHA_MIN, FECHA_MAX).size();
+        int userId = bd.usuarioDAO().findByNombre(nombreusuario).getId();
+        int consumicionesActualesPorCategoria = bd.consumicionDAO().getAllPorCategoria(categoriaId, FECHA_MIN, FECHA_MAX, userId).size();
         int hoy = FechaUtils.getToday();
-        int consumicionesHoy = bd.consumicionDAO().getAllPorFecha(hoy, hoy).size();
+        int consumicionesHoy = bd.consumicionDAO().getAllPorFecha(hoy, hoy, userId).size();
         int hora = FechaUtils.getHora();
 
         /**Comprobamos en primer lugar los logros de cada categoria **/
+        //TODO: Modificar los valores de las consumiciones cuando terminemos de debugear
         switch (categoriaId) {
             case CERVEZA_ID:
                 if(consumicionesActualesPorCategoria==5)
                     logrosSuperados.add(getLogroById(0));
-                else if(consumicionesActualesPorCategoria==10)
+                else if(consumicionesActualesPorCategoria==10) {
                     logrosSuperados.add(getLogroById(1));
+                    logro16[CERVEZA_ID-1] = true;
+                }
                 else if(consumicionesActualesPorCategoria==500)
                     logrosSuperados.add(getLogroById(2));
                 else if(consumicionesActualesPorCategoria==1000)
@@ -131,10 +134,12 @@ public class LogrosBD {
                 break;
 
             case VINO_ID:
-                if(consumicionesActualesPorCategoria==20)
+                if(consumicionesActualesPorCategoria==5)
                     logrosSuperados.add(getLogroById(4));
-                else if(consumicionesActualesPorCategoria==100)
+                else if(consumicionesActualesPorCategoria==10) {
                     logrosSuperados.add(getLogroById(5));
+                    logro16[VINO_ID-1] = true;
+                }
                 else if(consumicionesActualesPorCategoria==500)
                     logrosSuperados.add(getLogroById(6));
                 else if(consumicionesActualesPorCategoria==1000)
@@ -142,10 +147,12 @@ public class LogrosBD {
                 break;
 
             case COPA_ID:
-                if(consumicionesActualesPorCategoria==10)
+                if(consumicionesActualesPorCategoria==5)
                     logrosSuperados.add(getLogroById(8));
-                else if(consumicionesActualesPorCategoria==50)
+                else if(consumicionesActualesPorCategoria==10) {
                     logrosSuperados.add(getLogroById(9));
+                    logro16[COPA_ID-1] = true;
+                }
                 else if(consumicionesActualesPorCategoria==200)
                     logrosSuperados.add(getLogroById(10));
                 else if(consumicionesActualesPorCategoria==500)
@@ -153,10 +160,12 @@ public class LogrosBD {
                 break;
 
             case CHUPITO_ID:
-                if(consumicionesActualesPorCategoria==20)
+                if(consumicionesActualesPorCategoria==5)
                     logrosSuperados.add(getLogroById(12));
-                else if(consumicionesActualesPorCategoria==100)
+                else if(consumicionesActualesPorCategoria==10) {
                     logrosSuperados.add(getLogroById(13));
+                    logro16[CHUPITO_ID-1] = true;
+                }
                 else if(consumicionesActualesPorCategoria==500)
                     logrosSuperados.add(getLogroById(14));
                 else if(consumicionesActualesPorCategoria==1000)
@@ -164,7 +173,10 @@ public class LogrosBD {
         }
 
         /**Comprobamos si se han cumplido los logros de alcanzar cierto nivel en cada categoria**/
-        //TODO: Aquí va la implementación de la comprobación de logros
+        if(isArrayCompleto(logro16))
+            compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(16));
+        if(isArrayCompleto(logro17))
+            compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(17));
 
         /**Comprobamos si se han cumplido los logros de cierto numero de consumiciones el mismo dia**/
         if(consumicionesHoy == 10)
@@ -175,7 +187,6 @@ public class LogrosBD {
             compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(20));
 
         /**Comprobamos si se han cumplido los logros de la hora pi**/
-        //TODO: Da un error porque intenta añadir un logro ya existente
         if(hora==314){
             switch (categoriaId) {
                 case CERVEZA_ID:
@@ -194,24 +205,33 @@ public class LogrosBD {
         }
 
         /**Comprobamos si se han cumplido los logros de las franjas horarias**/
-        //TODO: Da un error porque intenta añadir un logro ya existente
-        //Comprobar que ese logro no se ha superado ya.
-        if(categoriaId==CERVEZA_ID || categoriaId==COPA_ID) {
-            if(hora>=500 && hora<530) {
-                compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(25));
-            }
-            else if (hora>=530 && hora<630) {
-                compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(26));
-            }
-            else if (hora>=630 && hora<730) {
-                compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(27));
-            }
-            else if (hora>=730 && hora<830) {
-                compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(28));
+        if(hora>=500 && hora<=830) {
+            if(categoriaId==CERVEZA_ID || categoriaId==COPA_ID) {
+                if(hora>=500 && hora<530) {
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(25));
+                }
+                else if (hora>=530 && hora<630) {
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(26));
+                }
+                else if (hora>=630 && hora<730) {
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(27));
+                }
+                else if (hora>=730 && hora<=830) {
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(28));
+                }
             }
         }
 
+
         return logrosSuperados;
+    }
+
+    private boolean isArrayCompleto(boolean[] logros) {
+        for(int i=0; i<logros.length; i++) {
+            if(!logros[i])
+                return false;
+        }
+        return true;
     }
 
     private ArrayList<Logro> creaTodosLogros(int[] ids, String[] nombres, String[] descripciones, int[] puntos) {

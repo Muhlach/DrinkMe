@@ -19,6 +19,7 @@ import com.drinkme.sdm.myapplication.entity.Consumicion;
 import com.drinkme.sdm.myapplication.logic.BebidaBin;
 import com.drinkme.sdm.myapplication.logic.CategoriaBin;
 import com.drinkme.sdm.myapplication.logic.Estadistico;
+import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 import com.drinkme.sdm.myapplication.utils.FechaUtils;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class EstadisticasFragment extends Fragment {
 
     Spinner spinnerCategoria, spinnerBebida, spinnerTiempo;
     Button btnAplicarFiltro;
+    UsuarioBin user;
 
     MyDatabase db;
 
@@ -53,6 +55,7 @@ public class EstadisticasFragment extends Fragment {
         Bundle bundleRecibido = getArguments();
         estadisticos = bundleRecibido.getParcelableArrayList(MainActivity.ESTADISTICOS_KEY);
         categoriasArrayList = bundleRecibido.getParcelableArrayList(MainActivity.KEY_CATEGORIAS);
+        user = bundleRecibido.getParcelable(MainActivity.USER_KEY);
 
         db = MyDatabase.getDatabase(getActivity());
 
@@ -64,7 +67,7 @@ public class EstadisticasFragment extends Fragment {
         btnAplicarFiltro = (Button) view.findViewById(R.id.btnAplicar);
 
         cargaSpinners();
-        cargaEstadisticos(TODAS_ID, TODAS_ID, MES);
+        cargaEstadisticos(TODAS_ID, TODAS_ID, SEMANA);
 
         spinnerCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -117,13 +120,14 @@ public class EstadisticasFragment extends Fragment {
     private List<Consumicion> obtenConsumicionesFiltradasBD(int categoriaId, int bebidaId, int fechaId) {
         List<Consumicion> result = new ArrayList<Consumicion>();
         int[] fechas = FechaUtils.getRango(fechaId);
+        int userId = db.usuarioDAO().findByNombre(user.getUserID()).getId();
 
         if(categoriaId==TODAS_ID && bebidaId==TODAS_ID) {
-            result = db.consumicionDAO().getAllPorFecha(fechas[0], fechas[1]);
+            result = db.consumicionDAO().getAllPorFecha(fechas[0], fechas[1], userId);
         }
 
         else if (bebidaId==TODAS_ID){
-            result = db.consumicionDAO().getAllPorCategoria(categoriaId, fechas[0], fechas[1]);
+            result = db.consumicionDAO().getAllPorCategoria(categoriaId, fechas[0], fechas[1], userId);
         }
 
         else {
@@ -136,21 +140,25 @@ public class EstadisticasFragment extends Fragment {
     }
 
     private void calculaEstadisticos(List<Consumicion> consumicionesFiltradas, ArrayList<Estadistico> estadisticos) {
-        //Calculo de L total
-        double result = calculaLitrosTotales(consumicionesFiltradas);
+        //Calculo nuero de consumiciones
+        double result = consumicionesFiltradas.size();
         estadisticos.get(0).setValor(result);
+
+        //Calculo de L total
+        result = calculaLitrosTotales(consumicionesFiltradas);
+        estadisticos.get(1).setValor(result/1000);
 
         //Calculo de L de alcohol
         result = calculaLitrosAlcohol(consumicionesFiltradas);
-        estadisticos.get(1).setValor(result);
+        estadisticos.get(2).setValor(result/1000);
 
         //Calcuo de kcal ingeridas
         int kal = calculaKcal(consumicionesFiltradas);
-        estadisticos.get(2).setValor(result);
+        estadisticos.get(3).setValor(result);
 
         //Calculo de dinero gastado
         result = calculaDinero(consumicionesFiltradas);
-        estadisticos.get(3).setValor(result);
+        estadisticos.get(4).setValor(result);
     }
 
     private void cargaSpinners() {

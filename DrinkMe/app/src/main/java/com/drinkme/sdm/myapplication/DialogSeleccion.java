@@ -1,8 +1,10 @@
 package com.drinkme.sdm.myapplication;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.media.MediaPlayer;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -47,6 +49,7 @@ public class DialogSeleccion extends DialogFragment{
     int categoria;
     FragmentManager fragmentManager;
     private MediaPlayer mediaPlayer;
+    Context context;
 
     public DialogSeleccion(){}
 
@@ -54,7 +57,7 @@ public class DialogSeleccion extends DialogFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstances) {
         view = inflater.inflate(R.layout.dialog_seleccion_layout, container);
         fragmentManager = getFragmentManager();
-
+        context = getContext();
         spinnerBebida = (Spinner) view.findViewById(R.id.cmbxDialogBebidas);
         txPrecio = (TextView) view.findViewById(R.id.txDialogPrecio);
 
@@ -98,7 +101,7 @@ public class DialogSeleccion extends DialogFragment{
                         dialog.setArguments(bundle);
                         dialog.show(fragmentManager, "tag");
                     }
-                    String r = b.toString() + "  " + precio + ". Hay: " + registros + " bebidas registradas.";
+                    String r = b.toString() + "  " + precio;
                     Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
                     soundEffect();
                     dismiss();
@@ -139,7 +142,7 @@ public class DialogSeleccion extends DialogFragment{
     private void actualizaPuntosBD(int puntos) {
         MyDatabase db = MyDatabase.getDatabase(getActivity());
         UsuarioDAO usuarioDAO = db.usuarioDAO();
-        int usuarioId = usuarioDAO.findByNombre(user.getNombre()).getId();
+        int usuarioId = usuarioDAO.findByNombre(user.getUserID()).getId();
         usuarioDAO.actualizaPuntosUsuario(usuarioId, puntos);
     }
 
@@ -160,7 +163,7 @@ public class DialogSeleccion extends DialogFragment{
             MyDatabase db = MyDatabase.getDatabase(getActivity());
             UsuarioDAO usuarioDAO = db.usuarioDAO();
             LogrosDAO logrosDAO = db.logrosDAO();
-            int usuarioId = usuarioDAO.findByNombre(user.getNombre()).getId();
+            int usuarioId = usuarioDAO.findByNombre(user.getUserID()).getId();
             for(Logro l : logrosSuperados) {
                 LogrosSuperados ls = new LogrosSuperados(l.getLogroID(), usuarioId);
                 logrosDAO.insertAll(ls);
@@ -201,7 +204,7 @@ public class DialogSeleccion extends DialogFragment{
         BebidaDAO bebidaDAO = db.bebidaDAO();
         ConsumicionDAO consumicionDAO = db.consumicionDAO();
         int bebidaId = bebidaDAO.findByNombre(b.getBebName()).getId();
-        int usuarioId = usuarioDAO.findByNombre(user.getNombre()).getId();
+        int usuarioId = usuarioDAO.findByNombre(user.getUserID()).getId();
         int fecha = FechaUtils.getToday();
 
         Consumicion consumicion = new Consumicion(usuarioId, bebidaId, precio, fecha);
@@ -228,4 +231,45 @@ public class DialogSeleccion extends DialogFragment{
 
         return result;
     }
+
+
+//    private class GuardaBebidaAsync extends AsyncTask <Void, Void, Boolean> {
+//
+//        ProgressDialog progressDialog;
+//        BebidaBin b;
+//        Context c;
+//
+//        public GuardaBebidaAsync (BebidaBin b, Context c) {
+//            this.b = b;
+//            this.c = c;
+//        }
+//
+//        @Override
+//        protected Boolean doInBackground(Void... voids) {
+//            /** Guarda en la base de datos la consumicion y actualiza experiencia usuario **/
+//            int registros = guardarConsumicion(b, precio);
+//            /** Gestiona los logros superados **/
+//            ArrayList<Logro> logrosSuperados = user.actualizarLogros(getContext(), categoria);
+//            int recompensaLogros = accionSuperarLogros(logrosSuperados);
+//
+//            /** Gestiona las subidas de nivel **/
+//            user.actualizarPuntosExperiencia(b.getPuntosBebida()+recompensaLogros);
+//            actualizaPuntosBD(b.getPuntosBebida()+recompensaLogros);
+//            return true;
+//        }
+//
+//        @Override
+//        protected void onPreExecute() {
+//            progressDialog = new ProgressDialog(c);
+//            progressDialog.setTitle("Guardando consumición");
+//            progressDialog.setMessage("Por favor espere...");
+//            progressDialog.show();
+//        }
+//
+//
+//        @Override
+//        protected void onPostExecute(Boolean aBoolean) {
+//            progressDialog.dismiss();
+//        }
+//    }
 }

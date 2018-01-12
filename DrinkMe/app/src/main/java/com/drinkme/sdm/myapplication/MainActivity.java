@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_estadisticas:
                     b.putParcelableArrayList(ESTADISTICOS_KEY, estadisticosBD.getEstadisticos());
                     b.putParcelableArrayList(KEY_CATEGORIAS, categorias);
+                    b.putParcelable(USER_KEY, currentUser);
                     fragment = new EstadisticasFragment();
                     fragment.setArguments(b);
                     break;
@@ -261,15 +262,18 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private EstadisticosBD cargarEstadisticos() {
-        Estadistico e = new Estadistico(1, "Total L bebidos: ", -1);
-        Estadistico e1 = new Estadistico(2, "Total L alcohol: ", -1);
-        Estadistico e2 = new Estadistico(3, "Total kcal: ", -1);
-        Estadistico e3 = new Estadistico(4, "Total € gastados: ", -1);
+        Estadistico e1 = new Estadistico(1, "Numero de consumiciones: ", -1);
+        Estadistico e2 = new Estadistico(2, "Total L bebidos: ", -1);
+        Estadistico e3 = new Estadistico(3, "Total L alcohol: ", -1);
+        Estadistico e4 = new Estadistico(4, "Total kcal: ", -1);
+        Estadistico e5 = new Estadistico(5, "Total € gastados: ", -1);
         ArrayList<Estadistico> estadisticos = new ArrayList<Estadistico>();
-        estadisticos.add(e);
+
         estadisticos.add(e1);
         estadisticos.add(e2);
         estadisticos.add(e3);
+        estadisticos.add(e4);
+        estadisticos.add(e5);
 
         return new EstadisticosBD(estadisticos);
     }
@@ -314,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<LogrosSuperados> getLogrosSuperados() {
         MyDatabase db = MyDatabase.getDatabase(MainActivity.this);
-        Usuario u = db.usuarioDAO().findByNombre(currentUser.getNombre());
+        Usuario u = db.usuarioDAO().findByNombre(currentUser.getUserID());
         List<LogrosSuperados> superados = db.logrosDAO().getByUserId(u.getId());
         return superados;
     }

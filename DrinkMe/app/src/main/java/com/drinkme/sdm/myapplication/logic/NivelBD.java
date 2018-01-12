@@ -57,7 +57,7 @@ public class NivelBD {
      */
     public Nivel getNivelUsuario(int puntosActuales) {
         for(Nivel n : niveles) {
-            if(puntosActuales >= n.getPuntosMinimos() && puntosActuales<=n.getPuntosMaximos())
+            if(puntosActuales >= n.getPuntosMinimos() && puntosActuales<n.getPuntosMaximos())
                 return n;
         }
         return null;
