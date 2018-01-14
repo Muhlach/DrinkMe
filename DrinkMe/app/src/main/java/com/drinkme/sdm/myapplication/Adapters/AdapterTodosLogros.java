@@ -74,10 +74,6 @@ public class AdapterTodosLogros extends BaseAdapter{
         ImageView imagenSuperado = (ImageView) view.findViewById(R.id.imageLogroSuperado);
         imagenSuperado.setImageDrawable(dir.getLogroSuperadoImg());
 
-        if(!dir.isSuperado()) {
-            imagenSuperado.setVisibility(View.INVISIBLE);
-        }
-
         return view;
     }
 

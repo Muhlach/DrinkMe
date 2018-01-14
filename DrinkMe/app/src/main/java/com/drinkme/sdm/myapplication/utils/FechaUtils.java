@@ -72,10 +72,10 @@ public class FechaUtils {
         int ano = fecha.get(Calendar.YEAR);
 
         int[] diaYmes = getFirstDayOfTheWeekInTheMonthAndHisMonth(fecha.getTime());
-        result[1] = formateaAInt(diaYmes[0], diaYmes[1] , ano);
+        result[0] = formateaAInt(diaYmes[0], diaYmes[1] , ano);
 
         int[] diaYmes2 = getLastDayOfTheWeekInTheMonthAndHisMonth(fecha.getTime());
-        result[2] = formateaAInt(diaYmes2[0], diaYmes2[1] , ano);
+        result[1] = formateaAInt(diaYmes2[0], diaYmes2[1] , ano);
     }
 
     public static int getHora() {

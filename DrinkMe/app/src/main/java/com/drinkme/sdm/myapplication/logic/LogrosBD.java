@@ -6,6 +6,7 @@ import android.util.Log;
 import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.utils.FechaUtils;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +23,8 @@ public class LogrosBD {
     private final static int FECHA_MAX = 99999999;
 
     private ArrayList<Logro> todosLogros, logrosSuperados;
+    private boolean[] logro16 = new boolean[4];
+    private boolean[] logro17 = new boolean[4];
 
     public LogrosBD(int[] ids, String[] nombres, String[] descripciones, int[] puntos) {
         this.todosLogros = creaTodosLogros(ids, nombres, descripciones, puntos);
@@ -104,100 +107,131 @@ public class LogrosBD {
      *
      * @return
      */
-    public ArrayList<Logro> comprobarLogros(Context context, int categoriaId) {
+    public ArrayList<Logro> comprobarLogros(Context context, int categoriaId,
+                                            ArrayList<Logro> logrosYaSuperados, String nombreusuario) {
         ArrayList<Logro> logrosSuperados = new ArrayList<Logro>();
         MyDatabase bd = MyDatabase.getDatabase(context);
-        int cervezasActuales = bd.consumicionDAO().getAllPorCategoria(CERVEZA_ID, FECHA_MIN, FECHA_MAX).size();
-        int vinosActuales = bd.consumicionDAO().getAllPorCategoria(VINO_ID, FECHA_MIN, FECHA_MAX).size();
-        int copasActuales = bd.consumicionDAO().getAllPorCategoria(COPA_ID, FECHA_MIN, FECHA_MAX).size();
-        int chupuitosActuales = bd.consumicionDAO().getAllPorCategoria(CHUPITO_ID, FECHA_MIN, FECHA_MAX).size();
+        int userId = bd.usuarioDAO().findByNombre(nombreusuario).getId();
+        int consumicionesActualesPorCategoria = bd.consumicionDAO().getAllPorCategoria(categoriaId, FECHA_MIN, FECHA_MAX, userId).size();
         int hoy = FechaUtils.getToday();
-        int consumicionesHoy = bd.consumicionDAO().getAllPorFecha(hoy, hoy).size();
+        int consumicionesHoy = bd.consumicionDAO().getAllPorFecha(hoy, hoy, userId).size();
         int hora = FechaUtils.getHora();
 
         /**Comprobamos en primer lugar los logros de cada categoria **/
-        if(cervezasActuales==5)
-            logrosSuperados.add(getLogroById(0));
-        else if(cervezasActuales==10)
-            logrosSuperados.add(getLogroById(1));
-        else if(cervezasActuales==500)
-            logrosSuperados.add(getLogroById(2));
-        else if(cervezasActuales==1000)
-            logrosSuperados.add(getLogroById(3));
+        //TODO: Modificar los valores de las consumiciones cuando terminemos de debugear
+        switch (categoriaId) {
+            case CERVEZA_ID:
+                if(consumicionesActualesPorCategoria==5)
+                    logrosSuperados.add(getLogroById(0));
+                else if(consumicionesActualesPorCategoria==10) {
+                    logrosSuperados.add(getLogroById(1));
+                    logro16[CERVEZA_ID-1] = true;
+                }
+                else if(consumicionesActualesPorCategoria==500)
+                    logrosSuperados.add(getLogroById(2));
+                else if(consumicionesActualesPorCategoria==1000)
+                    logrosSuperados.add(getLogroById(3));
+                break;
 
-        if(vinosActuales==20)
-            logrosSuperados.add(getLogroById(4));
-        else if(vinosActuales==100)
-            logrosSuperados.add(getLogroById(5));
-        else if(vinosActuales==500)
-            logrosSuperados.add(getLogroById(6));
-        else if(vinosActuales==1000)
-            logrosSuperados.add(getLogroById(7));
+            case VINO_ID:
+                if(consumicionesActualesPorCategoria==5)
+                    logrosSuperados.add(getLogroById(4));
+                else if(consumicionesActualesPorCategoria==10) {
+                    logrosSuperados.add(getLogroById(5));
+                    logro16[VINO_ID-1] = true;
+                }
+                else if(consumicionesActualesPorCategoria==500)
+                    logrosSuperados.add(getLogroById(6));
+                else if(consumicionesActualesPorCategoria==1000)
+                    logrosSuperados.add(getLogroById(7));
+                break;
 
-        if(copasActuales==10)
-            logrosSuperados.add(getLogroById(8));
-        else if(copasActuales==50)
-            logrosSuperados.add(getLogroById(9));
-        else if(copasActuales==200)
-            logrosSuperados.add(getLogroById(10));
-        else if(copasActuales==500)
-            logrosSuperados.add(getLogroById(11));
+            case COPA_ID:
+                if(consumicionesActualesPorCategoria==5)
+                    logrosSuperados.add(getLogroById(8));
+                else if(consumicionesActualesPorCategoria==10) {
+                    logrosSuperados.add(getLogroById(9));
+                    logro16[COPA_ID-1] = true;
+                }
+                else if(consumicionesActualesPorCategoria==200)
+                    logrosSuperados.add(getLogroById(10));
+                else if(consumicionesActualesPorCategoria==500)
+                    logrosSuperados.add(getLogroById(11));
+                break;
 
-        if(chupuitosActuales==20)
-            logrosSuperados.add(getLogroById(12));
-        else if(chupuitosActuales==100)
-            logrosSuperados.add(getLogroById(13));
-        else if(chupuitosActuales==500)
-            logrosSuperados.add(getLogroById(14));
-        else if(chupuitosActuales==1000)
-            logrosSuperados.add(getLogroById(15));
+            case CHUPITO_ID:
+                if(consumicionesActualesPorCategoria==5)
+                    logrosSuperados.add(getLogroById(12));
+                else if(consumicionesActualesPorCategoria==10) {
+                    logrosSuperados.add(getLogroById(13));
+                    logro16[CHUPITO_ID-1] = true;
+                }
+                else if(consumicionesActualesPorCategoria==500)
+                    logrosSuperados.add(getLogroById(14));
+                else if(consumicionesActualesPorCategoria==1000)
+                    logrosSuperados.add(getLogroById(15));
+        }
 
         /**Comprobamos si se han cumplido los logros de alcanzar cierto nivel en cada categoria**/
-        //TODO: Aquí va la implementación de la comprobación de logros
+        if(isArrayCompleto(logro16))
+            compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(16));
+        if(isArrayCompleto(logro17))
+            compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(17));
 
         /**Comprobamos si se han cumplido los logros de cierto numero de consumiciones el mismo dia**/
         if(consumicionesHoy == 10)
-            logrosSuperados.add(getLogroById(18));
+            compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(18));
         else if(consumicionesHoy == 15)
-            logrosSuperados.add(getLogroById(19));
+            compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(19));
         else if(consumicionesHoy == 20)
-            logrosSuperados.add(getLogroById(20));
+            compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(20));
 
         /**Comprobamos si se han cumplido los logros de la hora pi**/
         if(hora==314){
             switch (categoriaId) {
                 case CERVEZA_ID:
-                    logrosSuperados.add(getLogroById(21));
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(21));
                     break;
                 case VINO_ID:
-                    logrosSuperados.add(getLogroById(22));
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(22));
                     break;
                 case COPA_ID:
-                    logrosSuperados.add(getLogroById(23));
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(23));
                     break;
                 case CHUPITO_ID:
-                    logrosSuperados.add(getLogroById(24));
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(24));
                     break;
             }
         }
 
         /**Comprobamos si se han cumplido los logros de las franjas horarias**/
-        if(categoriaId==CERVEZA_ID || categoriaId==COPA_ID) {
-            if(hora>=500 && hora<530) {
-                logrosSuperados.add(getLogroById(25));
-            }
-            else if (hora>=530 && hora<630) {
-                logrosSuperados.add(getLogroById(26));
-            }
-            else if (hora>=630 && hora<730) {
-                logrosSuperados.add(getLogroById(27));
-            }
-            else if (hora>=730 && hora<830) {
-                logrosSuperados.add(getLogroById(28));
+        if(hora>=500 && hora<=830) {
+            if(categoriaId==CERVEZA_ID || categoriaId==COPA_ID) {
+                if(hora>=500 && hora<530) {
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(25));
+                }
+                else if (hora>=530 && hora<630) {
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(26));
+                }
+                else if (hora>=630 && hora<730) {
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(27));
+                }
+                else if (hora>=730 && hora<=830) {
+                    compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(28));
+                }
             }
         }
 
+
         return logrosSuperados;
+    }
+
+    private boolean isArrayCompleto(boolean[] logros) {
+        for(int i=0; i<logros.length; i++) {
+            if(!logros[i])
+                return false;
+        }
+        return true;
     }
 
     private ArrayList<Logro> creaTodosLogros(int[] ids, String[] nombres, String[] descripciones, int[] puntos) {
@@ -211,4 +245,8 @@ public class LogrosBD {
     }
 
 
+    private void compruebaAnadeLogro(ArrayList<Logro> lista, ArrayList<Logro> logrosSuperados, Logro logro) {
+        if(!logrosSuperados.contains(logro))
+            lista.add(logro);
+    }
 }

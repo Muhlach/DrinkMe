@@ -68,9 +68,18 @@ public class AdapterEstadisticas extends BaseAdapter {
         nombre.setText(dir.getNombre());
 
         TextView valor = (TextView) view.findViewById(R.id.txValorEstadistico);
-        valor.setText(String.valueOf(dir.getValor()));
+
+
+        valor.setText(formateaValor(dir.getValor()));
 
 
         return view;
+    }
+
+    private String formateaValor(double d) {
+        if(d == (long) d)
+            return String.format("%d",(long)d);
+        else
+            return String.format("%s",d);
     }
 }

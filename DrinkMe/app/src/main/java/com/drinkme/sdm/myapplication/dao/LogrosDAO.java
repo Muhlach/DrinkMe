@@ -22,5 +22,5 @@ public interface LogrosDAO {
     List<LogrosSuperados> getByUserId(int idUsuario);
 
     @Insert
-    void insertAll(LogrosSuperados... logrosSuperados);
+    void insertAll(LogrosSuperados logro);
 }
