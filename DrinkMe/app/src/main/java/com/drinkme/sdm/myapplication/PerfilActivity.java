@@ -33,7 +33,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     private UsuarioBin user;
     private EditText email_et, altura_et, peso_et;
-    TextView nombre, fecha, nombreUO_et;
+    private TextView nombre, fecha, nombreUO_et;
     public static final String KEY_FOR_USER_IN_PA = "keyPA";
     MenuItem guardar, lapiz;
 
@@ -108,10 +108,7 @@ public class PerfilActivity extends AppCompatActivity {
 
             case itemCerrarSesion:
                 LoginActivity.deleteSharedPreferences();
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                finishAffinity();
                 break;
 
             case itemLapiz:
