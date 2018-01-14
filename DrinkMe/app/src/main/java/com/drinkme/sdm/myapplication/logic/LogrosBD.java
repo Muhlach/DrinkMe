@@ -21,8 +21,6 @@ public class LogrosBD {
     private final static int FECHA_MAX = 99999999;
 
     private ArrayList<Logro> todosLogros, logrosSuperados;
-    private boolean[] logro16 = new boolean[4];
-    private boolean[] logro17 = new boolean[4];
 
     public LogrosBD(int[] ids, String[] nombres, String[] descripciones, int[] puntos) {
         this.todosLogros = creaTodosLogros(ids, nombres, descripciones, puntos);
@@ -119,24 +117,22 @@ public class LogrosBD {
         //TODO: Modificar los valores de las consumiciones cuando terminemos de debugear
         switch (categoriaId) {
             case CERVEZA_ID:
-                if(consumicionesActualesPorCategoria==5)
+                if(consumicionesActualesPorCategoria==20)
                     logrosSuperados.add(getLogroById(0));
-                else if(consumicionesActualesPorCategoria==10) {
+                else if(consumicionesActualesPorCategoria==100) {
                     logrosSuperados.add(getLogroById(1));
-                    logro16[CERVEZA_ID-1] = true;
                 }
                 else if(consumicionesActualesPorCategoria==500)
                     logrosSuperados.add(getLogroById(2));
-                else if(consumicionesActualesPorCategoria==1000)
+                else if(consumicionesActualesPorCategoria==100)
                     logrosSuperados.add(getLogroById(3));
                 break;
 
             case VINO_ID:
-                if(consumicionesActualesPorCategoria==5)
+                if(consumicionesActualesPorCategoria==20)
                     logrosSuperados.add(getLogroById(4));
-                else if(consumicionesActualesPorCategoria==10) {
+                else if(consumicionesActualesPorCategoria==100) {
                     logrosSuperados.add(getLogroById(5));
-                    logro16[VINO_ID-1] = true;
                 }
                 else if(consumicionesActualesPorCategoria==500)
                     logrosSuperados.add(getLogroById(6));
@@ -145,11 +141,10 @@ public class LogrosBD {
                 break;
 
             case COPA_ID:
-                if(consumicionesActualesPorCategoria==5)
+                if(consumicionesActualesPorCategoria==10)
                     logrosSuperados.add(getLogroById(8));
-                else if(consumicionesActualesPorCategoria==10) {
+                else if(consumicionesActualesPorCategoria==50) {
                     logrosSuperados.add(getLogroById(9));
-                    logro16[COPA_ID-1] = true;
                 }
                 else if(consumicionesActualesPorCategoria==200)
                     logrosSuperados.add(getLogroById(10));
@@ -158,23 +153,16 @@ public class LogrosBD {
                 break;
 
             case CHUPITO_ID:
-                if(consumicionesActualesPorCategoria==5)
+                if(consumicionesActualesPorCategoria==20)
                     logrosSuperados.add(getLogroById(12));
-                else if(consumicionesActualesPorCategoria==10) {
+                else if(consumicionesActualesPorCategoria==100) {
                     logrosSuperados.add(getLogroById(13));
-                    logro16[CHUPITO_ID-1] = true;
                 }
                 else if(consumicionesActualesPorCategoria==500)
                     logrosSuperados.add(getLogroById(14));
                 else if(consumicionesActualesPorCategoria==1000)
                     logrosSuperados.add(getLogroById(15));
         }
-
-        /**Comprobamos si se han cumplido los logros de alcanzar cierto nivel en cada categoria**/
-        if(isArrayCompleto(logro16))
-            compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(16));
-        if(isArrayCompleto(logro17))
-            compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(17));
 
         /**Comprobamos si se han cumplido los logros de cierto numero de consumiciones el mismo dia**/
         if(consumicionesHoy == 10)
@@ -205,16 +193,16 @@ public class LogrosBD {
         /**Comprobamos si se han cumplido los logros de las franjas horarias**/
         if(hora>=500 && hora<=830) {
             if(categoriaId==CERVEZA_ID || categoriaId==COPA_ID) {
-                if(hora>=500 && hora<530) {
+                if(hora>=500 && hora<=530) {
                     compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(25));
                 }
-                else if (hora>=530 && hora<630) {
+                else if (hora>530 && hora<=630) {
                     compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(26));
                 }
-                else if (hora>=630 && hora<730) {
+                else if (hora>630 && hora<=730) {
                     compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(27));
                 }
-                else if (hora>=730 && hora<=830) {
+                else if (hora>730 && hora<=830) {
                     compruebaAnadeLogro(logrosSuperados, logrosYaSuperados, getLogroById(28));
                 }
             }
