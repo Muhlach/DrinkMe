@@ -18,8 +18,11 @@ import android.widget.Toast;
 
 import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 
+import java.nio.channels.InterruptedByTimeoutException;
+
 import static com.drinkme.sdm.myapplication.R.id.itemCerrarSesion;
 import static com.drinkme.sdm.myapplication.R.id.itemEditarPassword;
+import static com.drinkme.sdm.myapplication.R.id.itemGuardar;
 import static com.drinkme.sdm.myapplication.R.id.itemLapiz;
 
 public class PerfilActivity extends AppCompatActivity {
@@ -28,6 +31,7 @@ public class PerfilActivity extends AppCompatActivity {
     private EditText nombreUO_et, email_et, altura_et, peso_et;
     TextView nombre, fecha;
     public static final String KEY_FOR_USER_IN_PA = "keyPA";
+    MenuItem guardar, lapiz;
 
 
     @Override
@@ -81,6 +85,8 @@ public class PerfilActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.perfil_activity_menu, menu);
+        guardar = menu.findItem(R.id.itemGuardar);
+        lapiz = menu.findItem(R.id.itemLapiz);
         return true;
     }
 
@@ -98,7 +104,10 @@ public class PerfilActivity extends AppCompatActivity {
 
             case itemCerrarSesion:
                 LoginActivity.deleteSharedPreferences();
-                Toast.makeText(getApplicationContext(), "Tu sesión finalizará cuando cierres la app", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
 
             case itemLapiz:
@@ -106,7 +115,21 @@ public class PerfilActivity extends AppCompatActivity {
                 altura_et.setEnabled(true);
                 peso_et.setEnabled(true);
                 nombreUO_et.setEnabled(true);
+                guardar.setVisible(true);
+                lapiz.setVisible(false);
                 break;
+
+            case itemGuardar:
+                email_et.setEnabled(false);
+                altura_et.setEnabled(false);
+                peso_et.setEnabled(false);
+                nombreUO_et.setEnabled(false);
+                actualizarUsuario();
+                lapiz.setVisible(true);
+                guardar.setVisible(false);
+                break;
+
+
         }
 
 
@@ -121,7 +144,7 @@ public class PerfilActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            setResultToMainActivity();
+            onClickVolver(null);
         }
         return (super.onKeyDown(keyCode, event));
     }
@@ -129,17 +152,37 @@ public class PerfilActivity extends AppCompatActivity {
     /**
      * Metodo encargado de comunicar a main activity que la perfilActivity ha terminado
      */
-    private void setResultToMainActivity() {
+    private void actualizarUsuario() {
 
 
-        if (!altura_et.getText().toString().isEmpty() && !peso_et.getText().toString().isEmpty() && !email_et.getText().toString().isEmpty() && !nombreUO_et.getText().toString().isEmpty()) {
+        if (!altura_et.getText().toString().isEmpty() && !peso_et.getText().toString().isEmpty() &&
+                !email_et.getText().toString().isEmpty() && !nombreUO_et.getText().toString().isEmpty()) {
 
             user.setAltura(Integer.parseInt(altura_et.getText().toString()));
             user.setPeso(Integer.parseInt(peso_et.getText().toString()));
             user.setCorreo(email_et.getText().toString());
             user.setUserID(nombreUO_et.getText().toString());
 
-            try {
+//            try {
+//                final Intent resultIntent = new Intent();
+//                Bundle resultBundle = new Bundle();
+//                resultBundle.putParcelable(KEY_FOR_USER_IN_PA, user);
+//                resultIntent.putExtras(resultBundle);
+//                setResult(RESULT_OK, resultIntent);
+//                finish();
+//            } catch (Exception e) {
+//                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+//                setResult(RESULT_CANCELED);
+//                finish();
+//            }
+
+        }else
+            Toast.makeText(this,"Comprueba los datos", Toast.LENGTH_LONG).show();
+
+    }
+
+    private void setResultToMainActivity() {
+        try {
                 final Intent resultIntent = new Intent();
                 Bundle resultBundle = new Bundle();
                 resultBundle.putParcelable(KEY_FOR_USER_IN_PA, user);
@@ -151,13 +194,15 @@ public class PerfilActivity extends AppCompatActivity {
                 setResult(RESULT_CANCELED);
                 finish();
             }
-
-        }else
-            Toast.makeText(this,"Comprueba los datos", Toast.LENGTH_LONG).show();
-
     }
 
     void onClickVolver(View v) {
-        setResultToMainActivity();
+        if(!lapiz.isVisible()) {
+            //Crear dialogo de pregunta
+        }
+        else {
+            setResultToMainActivity();
+        }
+
     }
 }

@@ -329,11 +329,10 @@ public class MainActivity extends AppCompatActivity {
         return superados;
     }
 
-    //TODO se debería actualizar el usuario en la base de datos antes de cerrar la app, porque puede haberse actualizado
-
     @Override
     protected void onDestroy() {
-        database.usuarioDAO().updateUser(currentUser.getNombre(), currentUser.getCorreo(), currentUser.getAltura(), currentUser.getPeso(), currentUser.getContraseña(), currentUser.getUserID());
+        database.usuarioDAO().updateUser(currentUser.getNombre(), currentUser.getCorreo(),
+                currentUser.getAltura(), currentUser.getPeso(), currentUser.getContraseña(), currentUser.getUserID());
         super.onDestroy();
     }
 }

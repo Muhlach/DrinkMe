@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/itemGuardar"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="guardar"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/itemEditarPassword"
         android:title="Cambiar contraseña" />
     <item
