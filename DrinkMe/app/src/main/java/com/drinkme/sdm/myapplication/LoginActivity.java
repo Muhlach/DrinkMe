@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             hiloDeAnimacion();
         }else {
             finish();
-            usuario = database.usuarioDAO().findByNombre(user);
+            usuario = database.usuarioDAO().findByNombreReal(user);
             launchMainActivity();
         }
     }
