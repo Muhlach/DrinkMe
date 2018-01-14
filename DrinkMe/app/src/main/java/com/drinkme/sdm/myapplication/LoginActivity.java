@@ -92,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.putExtra(KEY_USUARIO_LOGEADO,usuarioLogeado);
         startActivity(intent);
+        finish();
     }
 
 

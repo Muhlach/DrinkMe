@@ -51,7 +51,7 @@ public class PerfilActivity_password_fragment extends DialogFragment {
         PerfilActivity perfilActivity = (PerfilActivity) getActivity();
 
         if(!newPassword.isEmpty() && !oldPassword_s.isEmpty()){
-            if (oldPass.equalsIgnoreCase(oldPassword.getText().toString())){
+            if (oldPass.equals(oldPassword.getText().toString())){
                 perfilActivity.updateUserPassword(newPassword);
                 Toast.makeText(perfilActivity.getApplicationContext(),"Cambio aplicado correctamente", Toast.LENGTH_SHORT).show();
                 dismiss();

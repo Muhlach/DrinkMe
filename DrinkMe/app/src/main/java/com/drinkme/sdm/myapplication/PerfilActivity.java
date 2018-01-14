@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.logic.UsuarioBin;
 
 import java.nio.channels.InterruptedByTimeoutException;
@@ -108,7 +109,12 @@ public class PerfilActivity extends AppCompatActivity {
 
             case itemCerrarSesion:
                 LoginActivity.deleteSharedPreferences();
-                finishAffinity();
+                MyDatabase database = MyDatabase.getDatabase(this);
+                database.usuarioDAO().updateUser(user.getNombre(), user.getCorreo(),
+                        user.getAltura(), user.getPeso(), user.getContraseña(), user.getUserID());
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 break;
 
             case itemLapiz:
@@ -162,18 +168,6 @@ public class PerfilActivity extends AppCompatActivity {
             user.setCorreo(email_et.getText().toString());
             user.setUserID(nombreUO_et.getText().toString());
 
-//            try {
-//                final Intent resultIntent = new Intent();
-//                Bundle resultBundle = new Bundle();
-//                resultBundle.putParcelable(KEY_FOR_USER_IN_PA, user);
-//                resultIntent.putExtras(resultBundle);
-//                setResult(RESULT_OK, resultIntent);
-//                finish();
-//            } catch (Exception e) {
-//                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-//                setResult(RESULT_CANCELED);
-//                finish();
-//            }
 
         }else
             Toast.makeText(this,"Comprueba los datos", Toast.LENGTH_LONG).show();

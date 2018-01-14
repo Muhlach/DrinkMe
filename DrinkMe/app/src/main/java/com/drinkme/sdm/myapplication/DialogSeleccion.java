@@ -80,6 +80,10 @@ public class DialogSeleccion extends DialogFragment{
                 //Comprobamos que se haya seleccionado una bebida y que se haya introducido precio
                 if(precioStr.isEmpty())
                     Toast.makeText(getActivity(), "Debes introducir un precio", Toast.LENGTH_SHORT).show();
+                else if(precioStr.equals(".")) {
+                    Toast.makeText(getActivity(), "Debes introducir un precio correcto", Toast.LENGTH_SHORT).show();
+                    txPrecio.setText("");
+                }
                 else {
                     precio = Double.valueOf(precioStr);
                     /** Guarda en la base de datos la consumicion y actualiza experiencia usuario **/
