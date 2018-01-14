@@ -1,8 +1,12 @@
 package com.drinkme.sdm.myapplication;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -198,11 +202,30 @@ public class PerfilActivity extends AppCompatActivity {
 
     void onClickVolver(View v) {
         if(!lapiz.isVisible()) {
-            //Crear dialogo de pregunta
+         crearDialogo().show();
         }
         else {
             setResultToMainActivity();
         }
+
+    }
+
+    public AlertDialog crearDialogo(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Los cambios no se guardarán, ¿quieres salir?")
+                .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        setResultToMainActivity();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+
+          return builder.create();
 
     }
 }
