@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             hiloDeAnimacion();
         }else {
             finish();
-            usuario = database.usuarioDAO().findByNombreReal(user);
+            usuario = database.usuarioDAO().findByNombre(user);
             launchMainActivity();
         }
     }
@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(checkUserAndPassword(user, password)){
             if(holdSesion)
-                saveInSharedPreferences(usuario.getNombre());
+                saveInSharedPreferences(usuario.getUserID());
             soundEffect();
             launchMainActivity();
             finish();

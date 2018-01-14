@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.drinkme.sdm.myapplication.R;
+import com.drinkme.sdm.myapplication.database.MyDatabase;
 
 /**
  * Created by alex on 26/12/2017.
@@ -45,7 +46,7 @@ public class UO_password_fragment extends Fragment {
                 password = password_et.getText().toString();
                 repassword = repassword_et.getText().toString();
                 correo = correo_et.getText().toString();
-                if (check()){
+                if (check()) {
                     crearCuentaActivity.setContrasena(password);
                     crearCuentaActivity.setEmail(correo);
                     crearCuentaActivity.setUsuarioID(usuario);
@@ -61,11 +62,19 @@ public class UO_password_fragment extends Fragment {
             Toast.makeText(crearCuentaActivity.getApplicationContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show();
             return false;
         } else {
-            if (!password.equalsIgnoreCase(repassword)){
+            if (!password.equalsIgnoreCase(repassword)) {
                 Toast.makeText(crearCuentaActivity.getApplicationContext(), "Comprueba tu password", Toast.LENGTH_SHORT).show();
-            return false;
+                return false;
             }
-            return true;
+
+            if (MyDatabase.getDatabase(getContext()).usuarioDAO().findByNombre(usuario) == null) {
+                return true;
+            } else {
+                nombreDeUo_et.setText(null);
+                Toast.makeText(crearCuentaActivity.getApplicationContext(), "Este nombre de usuario ya existe", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
         }
     }
 }

@@ -119,7 +119,7 @@ public class EstadisticasFragment extends Fragment {
     private List<Consumicion> obtenConsumicionesFiltradasBD(int categoriaId, int bebidaId, int fechaId) {
         List<Consumicion> result = new ArrayList<Consumicion>();
         int[] fechas = FechaUtils.getRango(fechaId);
-        int userId = db.usuarioDAO().findByNombreReal(user.getNombre()).getId();
+        int userId = db.usuarioDAO().findByNombre(user.getUserID()).getId();
 
         if(categoriaId==TODAS_ID && bebidaId==TODAS_ID) {
             result = db.consumicionDAO().getAllPorFecha(fechas[0], fechas[1], userId);

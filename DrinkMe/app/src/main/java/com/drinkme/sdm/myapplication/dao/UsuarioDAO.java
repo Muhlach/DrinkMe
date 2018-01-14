@@ -22,17 +22,8 @@ public interface UsuarioDAO {
     List<Usuario> getAll();
 */
 
-    /**
-     * En shared preferences se guarda el nombre real (DNI) ya que este nunca cambia
-     * @param nombre
-     * @return
-     */
-    @Query("SELECT * FROM usuarios WHERE nombre LIKE :nombre LIMIT 1")
-    Usuario findByNombreReal(String nombre);
-
-    /*
     @Query("SELECT * FROM usuarios WHERE userID LIKE :nombre LIMIT 1")
-    Usuario findByNombre(String nombre);*/
+    Usuario findByNombre(String nombre);
 
     @Query("SELECT * FROM usuarios WHERE userID LIKE :nombre and contrasena LIKE :contrasena LIMIT 1")
     Usuario findByNombreAndContraseña(String nombre, String contrasena);

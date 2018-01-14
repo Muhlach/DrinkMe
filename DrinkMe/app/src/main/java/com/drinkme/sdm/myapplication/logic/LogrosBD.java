@@ -109,7 +109,7 @@ public class LogrosBD {
                                             ArrayList<Logro> logrosYaSuperados, String nombreusuario) {
         ArrayList<Logro> logrosSuperados = new ArrayList<Logro>();
         MyDatabase bd = MyDatabase.getDatabase(context);
-        int userId = bd.usuarioDAO().findByNombreReal(nombreusuario).getId();
+        int userId = bd.usuarioDAO().findByNombre(nombreusuario).getId();
         int consumicionesActualesPorCategoria = bd.consumicionDAO().getAllPorCategoria(categoriaId, FECHA_MIN, FECHA_MAX, userId).size();
         int hoy = FechaUtils.getToday();
         int consumicionesHoy = bd.consumicionDAO().getAllPorFecha(hoy, hoy, userId).size();

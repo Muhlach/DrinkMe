@@ -32,8 +32,8 @@ import static com.drinkme.sdm.myapplication.R.id.itemLapiz;
 public class PerfilActivity extends AppCompatActivity {
 
     private UsuarioBin user;
-    private EditText nombreUO_et, email_et, altura_et, peso_et;
-    TextView nombre, fecha;
+    private EditText email_et, altura_et, peso_et;
+    TextView nombre, fecha, nombreUO_et;
     public static final String KEY_FOR_USER_IN_PA = "keyPA";
     MenuItem guardar, lapiz;
 
@@ -118,7 +118,6 @@ public class PerfilActivity extends AppCompatActivity {
                 email_et.setEnabled(true);
                 altura_et.setEnabled(true);
                 peso_et.setEnabled(true);
-                nombreUO_et.setEnabled(true);
                 guardar.setVisible(true);
                 lapiz.setVisible(false);
                 break;
@@ -127,7 +126,6 @@ public class PerfilActivity extends AppCompatActivity {
                 email_et.setEnabled(false);
                 altura_et.setEnabled(false);
                 peso_et.setEnabled(false);
-                nombreUO_et.setEnabled(false);
                 actualizarUsuario();
                 lapiz.setVisible(true);
                 guardar.setVisible(false);

@@ -140,7 +140,7 @@ public class DialogSeleccion extends DialogFragment{
     private void actualizaPuntosBD(int puntos) {
         MyDatabase db = MyDatabase.getDatabase(getActivity());
         UsuarioDAO usuarioDAO = db.usuarioDAO();
-        int usuarioId = usuarioDAO.findByNombreReal(user.getNombre()).getId();
+        int usuarioId = usuarioDAO.findByNombre(user.getUserID()).getId();
         usuarioDAO.actualizaPuntosUsuario(usuarioId, puntos);
     }
 
@@ -161,7 +161,7 @@ public class DialogSeleccion extends DialogFragment{
             MyDatabase db = MyDatabase.getDatabase(getActivity());
             UsuarioDAO usuarioDAO = db.usuarioDAO();
             LogrosDAO logrosDAO = db.logrosDAO();
-            int usuarioId = usuarioDAO.findByNombreReal(user.getNombre()).getId();
+            int usuarioId = usuarioDAO.findByNombre(user.getUserID()).getId();
             for(Logro l : logrosSuperados) {
                 LogrosSuperados ls = new LogrosSuperados(l.getLogroID(), usuarioId);
                 logrosDAO.insertAll(ls);
@@ -202,7 +202,7 @@ public class DialogSeleccion extends DialogFragment{
         BebidaDAO bebidaDAO = db.bebidaDAO();
         ConsumicionDAO consumicionDAO = db.consumicionDAO();
         int bebidaId = bebidaDAO.findByNombre(b.getBebName()).getId();
-        int usuarioId = usuarioDAO.findByNombreReal(user.getNombre()).getId();
+        int usuarioId = usuarioDAO.findByNombre(user.getUserID()).getId();
         int fecha = FechaUtils.getToday();
 
         Consumicion consumicion = new Consumicion(usuarioId, bebidaId, precio, fecha);

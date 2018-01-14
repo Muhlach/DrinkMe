@@ -324,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<LogrosSuperados> getLogrosSuperados() {
         MyDatabase db = MyDatabase.getDatabase(MainActivity.this);
-        Usuario u = db.usuarioDAO().findByNombreReal(currentUser.getNombre());
+        Usuario u = db.usuarioDAO().findByNombre(currentUser.getUserID());
         List<LogrosSuperados> superados = db.logrosDAO().getByUserId(u.getId());
         return superados;
     }
