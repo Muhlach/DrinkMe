@@ -50,6 +50,10 @@ public class LogrosFragment extends Fragment {
         Bundle bundleRecibido = getArguments();
         currentUser = bundleRecibido.getParcelable(MainActivity.USER_KEY);
 
+
+
+
+
         //Cargar los datos del usuario
         txNombre = (TextView) view.findViewById(R.id.lblNombreUsuarioLogros);
         txRango = (TextView) view.findViewById(R.id.lblRangoBebedorLogros);
@@ -57,7 +61,7 @@ public class LogrosFragment extends Fragment {
         txProgreso = (TextView) view.findViewById(R.id.lblProgresoNivel);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBarNivel);
 
-        txNombre.setText(currentUser.getNombre());
+        txNombre.setText(currentUser.getUserID());
         txRango.setText(currentUser.getNivel().getRangoBebedor());
         txNivel.setText(String.valueOf(currentUser.getNivel().getNivelID()));
         txProgreso.setText(currentUser.getPuntosExperiencia() + " / " + currentUser.getNivel().getPuntosMaximos());

@@ -1,12 +1,10 @@
 package com.drinkme.sdm.myapplication.logic;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.drinkme.sdm.myapplication.database.MyDatabase;
 import com.drinkme.sdm.myapplication.utils.FechaUtils;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -111,7 +109,7 @@ public class LogrosBD {
                                             ArrayList<Logro> logrosYaSuperados, String nombreusuario) {
         ArrayList<Logro> logrosSuperados = new ArrayList<Logro>();
         MyDatabase bd = MyDatabase.getDatabase(context);
-        int userId = bd.usuarioDAO().findByNombre(nombreusuario).getId();
+        int userId = bd.usuarioDAO().findByNombreReal(nombreusuario).getId();
         int consumicionesActualesPorCategoria = bd.consumicionDAO().getAllPorCategoria(categoriaId, FECHA_MIN, FECHA_MAX, userId).size();
         int hoy = FechaUtils.getToday();
         int consumicionesHoy = bd.consumicionDAO().getAllPorFecha(hoy, hoy, userId).size();

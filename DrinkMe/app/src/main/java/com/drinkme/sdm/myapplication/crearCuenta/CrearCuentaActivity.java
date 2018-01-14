@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class CrearCuentaActivity extends AppCompatActivity {
 
-    private boolean debug = true;
+    private boolean debug = false;
     private MyDatabase database;
     private int indexCurretFragment = 0;
     private ArrayList<Fragment> fragments;

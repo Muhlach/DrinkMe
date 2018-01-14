@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_FOR_PERFIL_ACTIVITY = 1;
     public static final java.lang.String NUEVO_NIVEL = "nuevonivel";
 
-    private boolean debug = true;
+    private boolean debug = false;
     UsuarioBin currentUser;
     EstadisticosBD estadisticosBD;
     ArrayList<CategoriaBin> categorias;
@@ -57,11 +57,8 @@ public class MainActivity extends AppCompatActivity {
         /** Carga los datos de usuario**/
         Bundle bundleRecibido = getIntent().getExtras();
         currentUser = bundleRecibido.getParcelable(LoginActivity.KEY_USUARIO_LOGEADO);
-        int aux = currentUser.getPuntosExperiencia();
-        currentUser.setPuntosExperiencia(aux);
 
-        /** Carga los logros**/
-        currentUser.setLogros(cargaLogros());
+        updateLogros();
 
         /** Carga las categorias**/
         categorias = cargarCategoriasyBebidas();
@@ -74,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_beber);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         setInitialFragment();
+    }
+
+    private void updateLogros() {
+        int aux = currentUser.getPuntosExperiencia();
+        currentUser.setPuntosExperiencia(aux);
+
+        /** Carga los logros**/
+        currentUser.setLogros(cargaLogros());
     }
 
     /**
@@ -171,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             final Bundle mBundle = data.getExtras();
             currentUser = mBundle.getParcelable(PerfilActivity.KEY_FOR_USER_IN_PA);
+            updateLogros();
             if (debug)
                 Toast.makeText(getApplicationContext(),currentUser.toString(),Toast.LENGTH_LONG).show();
         }
@@ -287,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
      * Metodo que carga los logros del usuario
      * @return
      */
-    public LogrosBD cargaLogros() {
+    public  LogrosBD cargaLogros() {
         Resources res = getResources();
         int[] ids = res.getIntArray(R.array.logros_id);
         String[] nombres = res.getStringArray(R.array.logros_nombres);
@@ -318,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<LogrosSuperados> getLogrosSuperados() {
         MyDatabase db = MyDatabase.getDatabase(MainActivity.this);
-        Usuario u = db.usuarioDAO().findByNombre(currentUser.getUserID());
+        Usuario u = db.usuarioDAO().findByNombreReal(currentUser.getNombre());
         List<LogrosSuperados> superados = db.logrosDAO().getByUserId(u.getId());
         return superados;
     }

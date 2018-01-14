@@ -164,7 +164,7 @@ public class UsuarioBin implements Parcelable {
      * @return
      */
     public ArrayList<Logro> actualizarLogros(Context context, int categoriaId) {
-        return logros.comprobarLogros(context, categoriaId, getLogrosSuperadosDelUsuario(), getUserID());
+        return logros.comprobarLogros(context, categoriaId, getLogrosSuperadosDelUsuario(), getNombre());
     }
 
     public void actualizarPuntosExperiencia(int puntosRecibidos) {
