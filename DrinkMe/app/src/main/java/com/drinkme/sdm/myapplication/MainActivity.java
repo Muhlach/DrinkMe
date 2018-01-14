@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private EstadisticosBD cargarEstadisticos() {
-        Estadistico e1 = new Estadistico(1, "Numero de consumiciones: ", -1);
+        Estadistico e1 = new Estadistico(1, "Total onsumiciones: ", -1);
         Estadistico e2 = new Estadistico(2, "Total L bebidos: ", -1);
         Estadistico e3 = new Estadistico(3, "Total L alcohol: ", -1);
         Estadistico e4 = new Estadistico(4, "Total kcal: ", -1);

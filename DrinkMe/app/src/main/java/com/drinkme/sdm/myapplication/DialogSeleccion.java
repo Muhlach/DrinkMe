@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -102,6 +103,7 @@ public class DialogSeleccion extends DialogFragment{
                         DialogSubeNivel dialog = new DialogSubeNivel();
                         dialog.setArguments(bundle);
                         dialog.show(fragmentManager, "tag");
+
                     }
                     String r = b.toString() + "  " + precio;
                     Toast.makeText(getActivity(), r, Toast.LENGTH_SHORT).show();
@@ -180,7 +182,7 @@ public class DialogSeleccion extends DialogFragment{
             //Mostramos dialogo de logros superados
             String[] logros = new String[logrosSuperados.size()];
             for(int i = 0; i<logrosSuperados.size(); i++) {
-                logros[i] = logrosSuperados.get(i).getLogroName();
+                logros[i] = logrosSuperados.get(i).getLogroName() + "  -  " + logrosSuperados.get(i).getPuntos() + " xp";
             }
             DialogoSuperarLogro dialog = new DialogoSuperarLogro();
             Bundle bundle = new Bundle();

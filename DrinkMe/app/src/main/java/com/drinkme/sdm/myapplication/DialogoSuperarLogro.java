@@ -1,5 +1,6 @@
 package com.drinkme.sdm.myapplication;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -10,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.drinkme.sdm.myapplication.Adapters.AdapterSuperarLogros;
 
 /**
  * Created by ssant on 01/01/2018.
@@ -46,7 +49,10 @@ public class DialogoSuperarLogro extends DialogFragment {
 
         titulo.setText(titulostr);
         puntos.setText(recompensastr);
-        listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_expandable_list_item_1, nombres));
+        Drawable img = getResources().getDrawable(R.drawable.ic_logros_24_lista, null);
+        AdapterSuperarLogros adapter = new AdapterSuperarLogros(getActivity(), nombres, img);
+        listView.setAdapter(adapter);
+        //listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_expandable_list_item_1, nombres));
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
