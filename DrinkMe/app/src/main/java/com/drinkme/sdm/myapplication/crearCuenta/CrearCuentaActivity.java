@@ -114,7 +114,5 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
         database.usuarioDAO().insertAll(user);
 
-        if (debug)
-            Toast.makeText(getApplicationContext(), user.toString(), Toast.LENGTH_LONG).show();
     }
 }
