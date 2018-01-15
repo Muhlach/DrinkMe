@@ -183,7 +183,6 @@ public class PerfilActivity extends AppCompatActivity {
                 setResult(RESULT_OK, resultIntent);
                 finish();
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
                 setResult(RESULT_CANCELED);
                 finish();
             }

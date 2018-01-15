@@ -177,8 +177,6 @@ public class MainActivity extends AppCompatActivity {
             final Bundle mBundle = data.getExtras();
             currentUser = mBundle.getParcelable(PerfilActivity.KEY_FOR_USER_IN_PA);
             updateLogros();
-            if (debug)
-                Toast.makeText(getApplicationContext(),currentUser.toString(),Toast.LENGTH_LONG).show();
         }
     }
 

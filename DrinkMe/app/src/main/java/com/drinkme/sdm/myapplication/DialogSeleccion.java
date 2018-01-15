@@ -117,8 +117,6 @@ public class DialogSeleccion extends DialogFragment{
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Consumición cancelada", Toast.LENGTH_SHORT).show();
-
                 dismiss();
             }
         });

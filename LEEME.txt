@@ -1,0 +1,24 @@
+Proyecto: DRINK ME!
+
+Autores:
+- Muhlach Relea, Javier 71672608P
+- Salgado Martín, Alejandro 51544280S
+- Santano Álvarez, Sergio 71681354 [coordinador]
+
+Contenido:
+- LEEME.txt - Información sobre la entrega
+- Documentacion.pdf - Documentación del proyecto siguiendo el patrón dado.
+- xxxxxxx.apk - APK de la aplicación
+- DrinkMe - Código de la aplicación
+
+A tener en cuenta:
+- El proyecto ha sido desarrollado en Android Studio 3
+- La version SDK de compilación es la 26, que tambien es la version objetivo
+- Minima SDK permitida: 21
+- La version del GRADLE es la 3.3
+- Como librerias se ha usado Room para la base de datos:
+	compile 'android.arch.lifecycle:extensions:1.0.0-rc1'
+    compile 'android.arch.persistence.room:runtime:1.0.0-rc1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.0.0-rc1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-rc1'
+- Todas las imagenes y audios de la app, se encuentran en el proyecto
