@@ -40,6 +40,9 @@ public class FechaUtils {
             case EstadisticasFragment.ANIO:
                 desglosaFechaAnio(result);
                 break;
+            case EstadisticasFragment.GLOBAL:
+                result[0] = 0;
+                result[1] = 99999999;
         }
 
         return result;

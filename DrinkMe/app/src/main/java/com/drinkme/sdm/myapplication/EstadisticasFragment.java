@@ -33,6 +33,7 @@ public class EstadisticasFragment extends Fragment {
     public static final int SEMANA = 0;
     public static final int MES = 1;
     public static final int ANIO = 2;
+    public static final int GLOBAL = 3;
 
     View view;
     ArrayList<Estadistico> estadisticos;
@@ -164,7 +165,7 @@ public class EstadisticasFragment extends Fragment {
         /**Definición de los arrays**/
         String[] arrayCategorias = cargaArrayCategorias();
         String[] bebidas = {"Todas"};
-        String[] tiempos = {"Última semana", "Último mes", "Último año"};
+        String[] tiempos = {"Última semana", "Último mes", "Último año", "Global"};
 
         /**Asignacion de adapter de las categorias**/
         ArrayAdapter<String> adCategorias = new ArrayAdapter<String>(getActivity(),
